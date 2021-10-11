@@ -1,0 +1,32 @@
+# Name and version of this dbt project.
+name: 'devkit_template_connector'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'devkit_template_connector'
+
+vars:
+  # Set the used database.
+  database: "sqlserver"
+  # Name of the schema where the raw input data is stored.
+  schema: "template_connector"
+
+# These configurations specify where dbt should look for different types of files.
+source-paths: ["models"]
+macro-paths: ["macros"]
+
+# Directory which will store compiled SQL files and will be removed by 'dbt clean'.
+target-path: "target"
+clean-targets:
+  - "target"
+
+# All models are materialized as tables by default.
+models:
+  +materialized: table
+
+# Quoting is enabled for databases, schemas, and identifiers.
+quoting:
+  database: true
+  schema: true
+  identifier: true

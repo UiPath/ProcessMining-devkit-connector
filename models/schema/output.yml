@@ -1,0 +1,53 @@
+version: 2
+
+# Output tests cover the output tables that match the defined data model.
+models:
+  - name: Cases
+    # Test whether the output table has an equal number of records as the input table.
+    tests:
+      - equal_rowcount:
+          compare_model: 'Purchase_orders_input'
+    columns:
+      - name: '"Case ID"'
+        # The ID should be not null, unique, and exist in the output.
+        tests:
+          - not_null
+          - unique
+          - exists
+      - name: '"Case value"'
+        # The price should be of type double.
+        tests:
+          - type_double:
+              table: "'Cases'"
+              column: "'Case value'"
+
+  - name: Events
+    # Test whether the combination of mandatory event attributes are unique.
+    # They do not have to be unique, so indicate this test as a warning.
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - '"Case ID"'
+            - '"Activity"'
+            - '"Event end"'
+          severity: 'warn'
+    columns:
+      - name: '"Case ID"'
+        # The ID should be not null and exist in the output. Uniqueness is not required at the event log table.
+        tests:
+          - not_null
+          - exists
+      - name: '"Activity"'
+        # The activity should be not null and exist in the output.
+        tests:
+          - not_null
+          - exists
+      - name: '"Event end"'
+        # The event end should be not null and exist in the output and of type timestamp.
+        tests:
+          - not_null
+          - exists
+          - type_timestamp:
+              table: "'Events'"
+              column: "'Event end'"
+      

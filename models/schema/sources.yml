@@ -1,0 +1,18 @@
+version: 2
+
+# Sources point to the tables in the database that contain the raw input data.
+# You can refer to these sources in the models by using the {{ source() }} jinja function.
+sources:
+  - name: "{{ var('schema') }}"
+    # Enabled quoting for databases, schemas, and identifiers where the sources are located.
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: Raw_change_log
+      - name: Raw_invoices
+      - name: Raw_purchase_order_approvals
+      - name: Raw_purchase_orders_status
+      - name: Raw_purchase_orders
+      - name: Raw_users
