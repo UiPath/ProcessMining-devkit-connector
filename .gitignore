@@ -1,0 +1,10 @@
+# compiled code & logs
+target/
+logs/
+# dbt folders that are not used
+dbt_modules/
+snapshots/
+analysis/
+data/
+# user specific file
+.user.yml
