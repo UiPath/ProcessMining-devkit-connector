@@ -55,7 +55,9 @@ If you are using SQL Sever Management Studio, you can upload the files by right 
 
 To run the dbt project you need to activate the virtual environment where dbt is installed.
 Follow the steps below to run the dbt project using Visual Studio Code:
-- Install the Python extension `ms-python.python` in Visual Studio Code.
+- Install the recommended extensions in Visual Studio Code.
+    - Go to manage extensions (Ctrl+Shift+X) and search for `@recommended`.
+    - For the extension `dbt Power User`, see the extension details on how to set it up.
 - Set the Python interpreter to the `python.exe` of your virtual environment.
 - The policy on your machine should allow you to execute scripts. Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 - Right click on the models folder and choose `Open in Integrated Terminal`.
