@@ -4,6 +4,8 @@ Framework definition page:
 - Mention the artefacts
 - Versioning
 - Pointers to start
+Introduction:
+https://uipath.atlassian.net/wiki/spaces/DEV/pages/86602809452/WIP+Framework+for+Apps+Connectors
 
 
 --> Technical docs (data models):
@@ -11,7 +13,6 @@ Framework definition page:
 - connector_app_framework > Data_connector_design_spec.pdf
 
 --> Connector docs (RFP)
-https://uipath.atlassian.net/wiki/spaces/DEV/pages/86602809452/WIP+Framework+for+Apps+Connectors
 
 --> DevKit
 connector_app_framework > Devkit.pdf
