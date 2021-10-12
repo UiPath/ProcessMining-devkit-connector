@@ -4,6 +4,6 @@
     // List of extensions which should be recommended for users of this workspace.
     "recommendations": [
         "ms-python.python",
-        "samuelcolvin.jinjahtml"
+        "innoverio.vscode-dbt-power-user"
     ]
 }
