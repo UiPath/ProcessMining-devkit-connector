@@ -34,7 +34,7 @@ https://uipath.atlassian.net/wiki/spaces/PG/pages/3526464758/P2P+Discovery+Accel
 --> DevKit
 We can maybe point to docs.
 connector_app_framework > Devkit.pdf
-## Development guidelines: SQL testing, tips & tricks
+## Development guidelines: SQL testing, tips & tricks - Birce 
 --> SQL best practices & Learnings
 https://uipath.atlassian.net/wiki/spaces/PG/pages/3591440028/SQL+connectors+learnings+and+best+practices
 
