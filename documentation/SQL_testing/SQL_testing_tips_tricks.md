@@ -1,22 +1,23 @@
 # Tooling
--DBT to handle the complete development workflow from raw data to transformed data, including testing and documentation: 
-https://www.getdbt.com/product/what-is-dbt/
-A Slack community for professionals working with DBT is available for which access can be requested here:
-https://www.getdbt.com/community/
--Visual studio code as the code editor to write the transformations: https://code.visualstudio.com/ 
-	-Visual studio code has all kind of plug-ins which improve your quality of life. None of the following plugins are necessary to install, but they can come in handy. 
-		-Better Jinja
-		-vscode-dbt
-		-dbt Power User
--We use Gitkraken as the GUI to manage version control over our Git. It should be possible to use Git GUI which you want. 
-	Note: It is possible to develop connectors for customers/projects which are not part of a Git repository. In such a case you will not need a Git tool.
+- DBT to handle the complete development workflow from raw data to transformed data, including testing and documentation: [WhatisDBT?] (https://www.getdbt.com/product/what-is-dbt/)
+
+A Slack community for professionals working with DBT is available for which access can be requested here: [Getdbt]
+(https://www.getdbt.com/community/)
+- Visual studio code as the code editor to write the transformations: https://code.visualstudio.com/ 
+  - Visual studio code has all kind of plug-ins which improve your quality of life. None of the following plugins are necessary to install, but they can come in handy. 
+    - Better Jinja
+    - vscode-dbt
+    - dbt Power User
+- We use Gitkraken as the GUI to manage version control over our Git. It should be possible to use Git GUI which you want. 
+  Note: It is possible to develop connectors for customers/projects which are not part of a Git repository. In such a case you will not need a Git tool.
+
 
 # Best practices
 ## Project structure
 In DBT, one query (select-from-where) is named a model. In a DBT project, the folder ‘models’ consists of the separate .sql files where in each file one query is defined.
--https://docs.getdbt.com/docs/guides/best-practices
--https://discourse.getdbt.com/t/how-we-structure-our-dbt-projects/355
--https://discourse.getdbt.com/t/why-the-fishtown-sql-style-guide-uses-so-many-ctes/1091
+ - https://docs.getdbt.com/docs/guides/best-practices
+ - https://discourse.getdbt.com/t/how-we-structure-our-dbt-projects/355
+ - https://discourse.getdbt.com/t/why-the-fishtown-sql-style-guide-uses-so-many-ctes/1091
 
 Some points that are discussed in the above links:
 -Limit references to raw data where you rename/cast fields once
