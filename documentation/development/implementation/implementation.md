@@ -10,18 +10,19 @@ In DBT, one query (select-from-where) is named a model. In a DBT project, the fo
 - <https://discourse.getdbt.com/t/why-the-fishtown-sql-style-guide-uses-so-many-ctes/1091>
 
 Some points that are discussed in the above links:
--Limit references to raw data where you rename/cast fields once
--Break complex models up into smaller pieces
--Add tests to your models
--The Fishtown’s style guide (developers of DBT)
 
-Compiling/running a DBT project results in separate compiled .sql files for each of the created models. You can run specific sets of models instead of always your whole dbt project. See for info: <https://docs.getdbt.com/reference/node-selection/graph-operators>
+- Limit references to raw data where you rename/cast fields once
+- Break complex models up into smaller pieces
+- Add tests to your models
+- The Fishtown’s style guide (developers of DBT)
+
+Compiling/running a DBT project results in separate compiled .sql files for each of the created models. You can run specific sets of models instead of always your whole dbt project. See for info: [Graph operators | dbt Docs](https://docs.getdbt.com/reference/node-selection/graph-operators)
 
 ## Model/query structure
 
-- Always use explicit select statement and not `select *` for readability and maintainability of correct SQL models. Especially for unions, using the `select *` can throw errors. A union requires the fields to be the same and in the same order. If only one of the unioned tables changes, a select * does not work anymore.
+- Always use explicit select statement and not `select *` for readability and maintainability of correct SQL models. Especially for unions, using the `select *` can throw errors. A union requires the fields to be the same and in the same order. If only one of the unioned tables changes, a `select *` does not work anymore.
 - Prevent database specific SQL syntax where also a more generic syntax can be used. This makes it easier to re-use the connector for more databases and limits changes when another database is used.
-  -If the connector needs to run on multiple databases, macros can be implemented to ‘choose’ which function to use. For an overview of the SQL functions used in the SAP-P2P DA connector and how we handled compatability with Snowflake and SQL server, see: (SAP-P2P DA Connector page on conf. this will be inserted)
+  - If the connector needs to run on multiple databases, macros can be implemented to ‘choose’ which function to use. For an overview of the SQL functions used in the SAP-P2P DA connector and how the compatability is handled within Snowflake and SQL server, see: **this part will be edited**
 
 ## Readability/consistency
 
@@ -41,12 +42,15 @@ Compiling/running a DBT project results in separate compiled .sql files for each
 - Use `union all` instead of `union`. Using the union all records from tables are concatenated, while union removes duplicates. In general `union` can be prevented with appropriate filtering beforehand.
 - If you are working on a large dataset, you can limit the data you are working with during development by using `limit` in your models. If you want you can add them in your query, where they are only executed if you change a certain setting:
 
-`select A`
-`from B`
-`where C`
-`{% if some condition is true %}`
-`limit 100`
-`{% endif %}`
+```json
+select A
+from B
+where C
+{% if some condition is true %}
+limit 100
+{% endif %}
+
+```
 
 See [Jinja and Macros | DBT docs](https://docs.getdbt.com/docs/building-a-dbt-project/jinja-macros) for more information.
 
@@ -63,20 +67,24 @@ Validation workflow:
 - Consider you have model A and model B, which you join together to create model C. You want to validate the results of model C.
 
 - You need to run all models to create the tables in the database.
-  - Run all models by the command ‘dbt run’
-  - Run one model by the command ‘dbt run -m model_A’
-  - Run multiple models by the command ‘dbt run -m model_A model_B’
+  - Run all models by the command `dbt run`
+  - Run one model by the command `dbt run -m model_A`
+  - Run multiple models by the command `dbt run -m model_A model_B`
 - You can only run model C the moment model A and model B are defined, because model C is dependent on the other two models.
 - Inspect the data in the database, where tables for model A, B, and C are created.
 - Best practice: make sure to run (with a subset of the data) at least all models you have changed to see whether there are any SQL errors before comitting/merging your changes.
-- Write `limit` 10 in the end of a query to only get 10 records for validation.
+- Write `limit 10` in the end of a query to only get 10 records for validation.
 - Make sure to clean up unused models in the database, which may be created during testing or became redundant after refactors.
 
 Useful query to inspect the record count related to a specific field in a table:
 
-`select “Field”, count(“Field”)`
-`from Table`
-`group by “Field”`
+```json
+
+select "Field", count("Field")
+from Table
+group by "Field"
+
+```
 
 # SQL learnings
 
@@ -85,11 +93,11 @@ Useful query to inspect the record count related to a specific field in a table:
 - Unions: columns should exactly match (names and order). It might be necessary to create empty attributes on parts of the union to get all the attributes (f.e. `NULL as “Attribute_X“`)
 - There is a difference between `union` and `union all`: using union, duplicate records are removed, but the performance is lower than when using union all.
 - When do you put something in the `where` clause and when in the `on` in a join:
-  - [Difference between WHERE and ON](https://dataschool.com/how-to-teach-people-sql/difference-between-where-and-on-in-sql/)
+  - [Difference between WHERE and ON in SQL](https://dataschool.com/how-to-teach-people-sql/difference-between-where-and-on-in-sql/)
 
 ## Making a variable for database specific functions
 
- This is possible based on macros. See section ‘Macros’ in the "Implementation details" section.
+ This is possible based on macros. See section "Macros" in the "Implementation details" section.
 
 # Implementation details
 
@@ -103,9 +111,9 @@ The connector is compatible with Snowflake and SQL server (T-SQL). Not all SQL f
 
 Each model (one .sql file) in the dbt project creates one table in the database. In general the model is structered as follows:
 
-1- Refer to the tables on which the model is dependent.
-2- A SQL statement containing the transformations.
-3- The select * from the SQL statement
+ 1- Refer to the tables on which the model is dependent.
+ 2- A SQL statement containing the transformations.
+ 3- The select * from the SQL statement
 
 ![image1](image1.png)
 
