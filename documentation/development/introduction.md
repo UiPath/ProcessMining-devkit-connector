@@ -9,5 +9,4 @@
     - Better Jinja
     - vscode-dbt
     - dbt Power User
-- We use Gitkraken as the GUI to manage version control over our Git. It should be possible to use Git GUI which you want.
-  Note: It is possible to develop connectors for customers/projects which are not part of a Git repository. In such a case you will not need a Git tool.
+- Gitkraken is used as the GUI to manage version control over the Git. It should be possible to use Git GUI which you want.

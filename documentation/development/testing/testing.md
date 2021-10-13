@@ -13,7 +13,7 @@ On the following levels of the transformations we have different type of tests i
 
 **Input tests**
 
-On the first level, we load in the raw data from the source and cast this data to the correct data type. Also filtering is applied where applicable.
+On the first level, the raw data from the source is loaded and casted to the correct data type. Also filtering is applied where applicable.
 
 - `Error` Uniqueness for the primary keys. This may be a combination of multiple columns. If the primary key is already not unique in the input table, then it may cause issues later on in the transformations. It is best to check this as early as possible.
 
@@ -41,7 +41,7 @@ The output of the transformations should match the input of the ‘app transform
 - `Error` Data types are as expected. For example, columns that are expected to contain boolean values should be of type boolean and not be numeric or dates. If this differs from the expected types, app transformation could not be performed on these columns resulting in either errors or null values.
 - `Error` Equal record counts from raw data to output where applicable. For example, the number of records in the EKKO table should be the same as in the purchase order entity table, purchase order create events table, and the output table. Otherwise, purchase orders might have been duplicated or missing along the transformation steps.
 
-Snowflake does not have functionality to check the existence of all columns. For this test, we select the column to be checked, but when the column does not exist a SQL compilation error occurs. The fact that a compilation error occurs also indicates that the column is not present in the table. See the below screenshot for the difference in results given by dbt. The “Approval_status” could not be found in the output table “Purchase_orders_base”. This is indicated by the ERROR. The “Creation_date” contains null values, while it is a mandatory attribute. This test could be implemented and returns a FAIL.
+Snowflake does not have functionality to check the existence of all columns. For this test, the column to be checked is selected, but when the column does not exist a SQL compilation error occurs. The fact that a compilation error occurs also indicates that the column is not present in the table. See the below screenshot for the difference in results given by dbt. The “Approval_status” could not be found in the output table “Purchase_orders_base”. This is indicated by the ERROR. The “Creation_date” contains null values, while it is a mandatory attribute. This test could be implemented and returns a FAIL.
 
 ![image4](image4.png)
 
@@ -52,11 +52,11 @@ Snowflake does not have functionality to check the existence of all columns. For
 
 Note that having tests that return either a warning or an error do not prevent generating the data. 
 
-## How to write tests 
+## How to write tests
 
-Each tests is a separate SQL query. For a test, the following logic is used: a test succeeds if 0 records are returned and a test fails if at least 1 record is returned. 
+Each tests is a separate SQL query. For a test, the following logic is used: a test succeeds if 0 records are returned and a test fails if at least 1 record is returned.
 
-Example: table T has column_A with values of either length 3 and 4. We expect that all lengths should be 3 for which we can write the following test:
+Example: table T has column_A with values of either length 3 and 4. It is expected that all lengths should be 3 for which the following test can be written:
 
 `select column_A`
 
