@@ -14,7 +14,7 @@ The following framework describes the standardized format for storing connector 
     - Setup the start of a connector
 	- SQL documentation
 	- Technical documentation
-- Validation framework
+- [Automated testing & validation](Automated_testing_validation.md)
 - Connector documentation template
 - Archive of version
 
@@ -28,7 +28,7 @@ The significant milestones of the connector are marked in the repo as a **Releas
 During development of the first version of a connector, there is no official release yet. It will be indicated clearly on the landing page of the connector.
 
 ### Versioning convention
-This part will be changed in PA-1811. This is a copy from what is present on https://uipath.atlassian.net/wiki/spaces/DEV/pages/86602809452/WIP+Framework+for+Apps+Connectors.
+This part will be changed in PA-1811. This is a copy from what is present on https://uipath.atlassian.net/wiki/spaces/DEV/pages/86602809452/WIP+Framework+for+Apps+Connectors. The proposed versioning is called semantic versioning.
 
 Apps are versioned taking into account their data model. Minor numbers are used for incremental updates to the data model; major versions are used to define breaking changes to the data model.
 
@@ -49,52 +49,3 @@ P2P-app-SAP-connector 1.0 implements the P2P-app 1.x data model. So it works wit
 Also all P2P-app-SAP-connector 1.x work with any P2P-app 1.x.
 
 P2P-app-SAP-connector 1.3 is not compatible with the P2P-app/2.0 or higher.
-
-***
-
-Introduction:
-https://uipath.atlassian.net/wiki/spaces/DEV/pages/86602809452/WIP+Framework+for+Apps+Connectors
-
-# setup starting environment (dbt, database, repo)
---> Setup starting environment for partner
-TODO start working from the README file in the devkit repo
-1. Go to https://github.com/UiPath-Process-Mining/devkit_connector
-2. New repo --> 
-	a. Do we make repo for partner?
-	b. Can partner make repo? 
-3. Rename connector to what partner is making
-# introduction to process mining & what is a connector? & data models/architecture/
---> Process mining introduction
-- TODO
---> Technical docs (data models):
-- https://uipath.atlassian.net/wiki/spaces/DEV/pages/3476588113/Process+Mining+Data+Models
-- connector_app_framework > Data_connector_design_spec.pdf
-## technical connector/app documention
-Probably we can refer to docs
---> Technical app documentation
-https://uipath.atlassian.net/wiki/spaces/PG/pages/3130000219/P2P+Discovery+Accelerator+Input+Data
-
---> Technical app documentation
-https://uipath.atlassian.net/wiki/spaces/PG/pages/3526464758/P2P+Discovery+Accelerator+table+structure
-
-# Development
-## Development guidelines: how to build connector
---> DevKit
-We can maybe point to docs.
-connector_app_framework > Devkit.pdf
-## Development guidelines: SQL testing, tips & tricks - Birce 
---> SQL best practices & Learnings
-https://uipath.atlassian.net/wiki/spaces/PG/pages/3591440028/SQL+connectors+learnings+and+best+practices
-
---> SQL testing
-https://uipath.atlassian.net/wiki/spaces/PG/pages/3624114244/SQL+connectors+testing
-
---> SQL implementation tips & tricks
-https://uipath.atlassian.net/wiki/spaces/PG/pages/84562968979/Implementation+details
-## Documentation from partners
---> Documentation template
-connector_app_framework > Connector_documentation_template.docx
-
-# Validation & acceptance
--- Testing framework
-https://uipath.atlassian.net/wiki/spaces/DEV/pages/84564934829/Cloud+connector+testing+framework
