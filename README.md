@@ -29,6 +29,7 @@ The documentation folder contains the following material:
     - If you experience problems with a recent version of Python where dbt can not properly be installed, consider using a previous version of Python.
 - For editing and running a dbt project, we advise Visual Studio Code. You can download it from [here](https://code.visualstudio.com/download).
 - To run the transformations you need to have access to a database.
+
 ### Create a Python virtual environment
 It is advised to create a Python virtual environment in which you will install dbt. 
 - Create a folder where your virtual environment will be located.
@@ -37,6 +38,7 @@ It is advised to create a Python virtual environment in which you will install d
     - Go to your folder where you want to create the environment: `cd [path_to_your_folder]`.
     - Create a virtual environment (named venv): `py -m virtualenv venv`.
     - Activate the virtual environment: `venv\Scripts\activate`.
+    
 ### Install dbt from GitHub source
 Make sure the virtual environment is still activated.
 - Clone the git repository: `git clone https://github.com/dbt-labs/dbt.git`.
