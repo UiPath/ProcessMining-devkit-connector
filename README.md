@@ -8,7 +8,7 @@ The repository contains the following:
 - documentation: enablement material to develop a new connector.
 - extractors: the extraction methods to load input data.
 - scripts: scripts to extract data, run transformations, and run tests.
-- tranforms: the transformations of the connector (example dbt project).
+- transforms: the transformations of the connector (example dbt project).
 - `.gitignore`: generated files from running the transformations.
 - `README.md`: instructions on how to use the connector.
 - `license.txt`: license for UiPath Process Mining connectors.
