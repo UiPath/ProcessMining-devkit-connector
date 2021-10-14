@@ -38,7 +38,7 @@ It is advised to create a Python virtual environment in which you will install d
     - Go to your folder where you want to create the environment: `cd [path_to_your_folder]`.
     - Create a virtual environment (named venv): `py -m virtualenv venv`.
     - Activate the virtual environment: `venv\Scripts\activate`.
-    
+
 ### Install dbt from GitHub source
 Make sure the virtual environment is still activated.
 - Clone the git repository: `git clone https://github.com/dbt-labs/dbt.git`.
@@ -52,3 +52,24 @@ More information about this plugin can be found [here](https://docs.getdbt.com/r
 - If not already installed, install the SQL Server driver `ODBC Driver 17 for SQL Server`.
 
 Make sure that the installed version of dbt and dbt-sqlserver are the same. Having a newer version of dbt could result in not having all functionality available.
+
+## Running a dbt project
+### Configuration
+Dbt projects contain a `profiles.yml` and `dbt_project.yml` file. Configuration of these files is necessary to run a dbt project on your database.
+- Add the environment variable `DBT_PROFILES_DIR` with as value the path to the *folder* where the `profiles.yml` is located.
+    - If you work on multiple dbt projects, make sure to put the `profiles.yml` at a location where all projects can access it.
+    - You need only one `profiles.yml` with a configuration for each project. 
+- Follow the [dbt documentation](https://docs.getdbt.com/dbt-cli/configure-your-profile) on how to configure your profile.
+- Set the name of your schema in the `dbt_project.yml`.
+
+### Execute
+To run a dbt project you need to activate the virtual environment where dbt is installed. Follow the steps below to run a dbt project using Visual Studio Code:
+- Install the recommended extensions in Visual Studio Code.
+    - Go to manage extensions (Ctrl+Shift+X) and search for `@recommended`.
+    - For the extension `dbt Power User`, see the extension details on how to set it up.
+- Set the Python interpreter to the `python.exe` of your virtual environment.
+- The policy on your machine should allow you to execute scripts. Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Right click on the models folder and choose `Open in Integrated Terminal`.
+
+If a Python interpreter is set and you open the project in an integrated terminal, the virtual environment is directly activated and you can run a dbt project.
+
