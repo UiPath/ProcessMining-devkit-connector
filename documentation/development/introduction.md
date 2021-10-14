@@ -1,6 +1,6 @@
-## Tooling
+# Tooling
 
-- DBT to handle the complete development workflow from raw data to transformed data, including testing and documentation: [What is DBT?](https://www.getdbt.com/product/what-is-dbt/)
+- DBT is used to handle the complete development workflow from raw data to transformed data, including testing and documentation: [What is DBT?](https://www.getdbt.com/product/what-is-dbt/)
 
   A Slack community for professionals working with DBT is available for which access can be requested here: [Get dbt](https://www.getdbt.com/community/)
 
@@ -10,3 +10,5 @@
     - vscode-dbt
     - dbt Power User
 - Gitkraken is used as the GUI to manage version control over the Git. It should be possible to use Git GUI which you want.
+
+
