@@ -66,9 +66,9 @@ Dbt projects contain a `profiles.yml` and `dbt_project.yml` file. Configuration 
 To run a dbt project you need to activate the virtual environment where dbt is installed. Follow the steps below to run a dbt project using Visual Studio Code:
 - Install the recommended extensions in Visual Studio Code.
     - Go to manage extensions (Ctrl+Shift+X) and search for `@recommended`.
-    - For the extension `dbt Power User`, see the extension details on how to set it up.
 - Set the Python interpreter to the `python.exe` of your virtual environment.
-- The policy on your machine should allow you to execute scripts. Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- The policy on your machine should allow you to execute scripts. 
+    - Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 - Right click on the models folder and choose `Open in Integrated Terminal`.
 
 If a Python interpreter is set and you open the project in an integrated terminal, the virtual environment is directly activated and you can run a dbt project.
