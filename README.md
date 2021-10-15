@@ -4,9 +4,9 @@ The devkit connector describes the standardized format of UiPath Process Mining 
 ## Repository structure
 The repository contains the following:
 - .vscode: workspace settings that are relevant when working in Visual Studio Code.
-- dev_data: input data files to validate the transformations.
 - documentation: enablement material to develop a new connector.
 - extractors: the extraction methods to load input data.
+- sample_data: input data files to validate the transformations.
 - scripts: scripts to extract data, run transformations, and run tests.
 - transforms: the transformations of the connector (example dbt project).
 - `.gitignore`: generated files from running the transformations.
@@ -19,7 +19,7 @@ The documentation folder contains the following material:
 - [repository_structure.md](documentation/repository_structure.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
 - [release_process.md](documentation/release_process.md): guidelines on the git workflow and explanation about versioning.
 - [example.md](documentation/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
-- [development.md](documentation/development.md): guidelines and tips&tricks on writing transformations.
+- [development.md](documentation/development.md): guidelines and best practices on writing transformations.
 - [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
 - [connector_documentation_template.docx](documentation/connector_documentation_template.docx): template to be filled in with documentation about the developed connector.
 

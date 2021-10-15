@@ -19,7 +19,7 @@ The entities that are involved in this process are *purchase orders* and *invoic
 ## Data model
 The goal of every connector is to transform raw input data into a data model for process mining. The data model describes the tables and attributes of the output which can be used by a specific process mining app. This example project transforms the input data to the [TemplateOne data model](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone-10) in which the purchase orders function as the cases.
 
-The raw input data is split over six .csv files and can be found in the dev_data folder. See the comments in the transformations on how the raw input data is transformed to the data model. For an overview of frequently used transforms, see `Frequently_used_transforms.sql`.
+The raw input data is split over six .csv files and can be found in the sample_data folder. See the comments in the transformations on how the raw input data is transformed to the data model. For an overview of frequently used transforms, see `Frequently_used_transforms.sql`.
 
 ## Running the project
 Import the .csv files in your database to run the transformations on this sample data. If you are using SQL Sever Management Studio, you can upload the files by right click on the database and choose `Tasks -> Import Flat File`.
