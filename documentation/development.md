@@ -52,13 +52,15 @@ Deviating from this structure may happen. For example, in the following two scen
 - Unions: the names and order of columns should exactly match. It may be necessary to create empty attributes on parts of the union to get all the attributes. This can be achieved by the select statement `NULL as "Attribute_X"`.
 
 ### Multiple databases support
-The main purpose of the macros are to select a function based on the database using Jinja. See the [dbt documentation](https://docs.getdbt.com/docs/building-a-dbt-project/jinja-macros) for more information about Jinja and macros. For example, the string_agg() function in T-SQL is similar to the listagg() function in Snowflake. A new function string_agg() is implemented in the form of the following macro:
+Each database has specific SQL syntax. Most transformations can run on every database, but some functions have a database specific syntax. To run the dbt project on multiple databases, macros in combination with the Jinja templating language are used. See the [dbt documentation](https://docs.getdbt.com/docs/building-a-dbt-project/jinja-macros) for more information about Jinja and macros. 
+
+The main purpose of the macros are to select a function based on the database using Jinja. For example, the `string_agg()` function in T-SQL is similar to the `listagg()` function in Snowflake. A new function `string_agg()` is implemented in the form of the following macro:
 
 ![macro_multiple_databases_support](images/macro_multiple_databases_support.png)
 
 In the sql statement, the macro is used as follows:
 
-`select {{ string_agg('“Attribute”') }} as “Aggregate_attribute”`
+`select {{ string_agg('"Attribute"') }} as "Aggregate_attribute"`
 
 ### Readability/consistency
 - SQL commands and functions are written in lower case, which reads ‘more easily’.
