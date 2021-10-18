@@ -14,7 +14,7 @@ Each extractor should contain instructions about:
 - **Installation**: how to set up this specific extractor. Typically that would refer to external urls that describe how to install such an extractor on your server.
 - **Extraction**: how to load the data needed for this connector.
 
-Depending on the extractor, there could be additional files that would serve as input to the extractor. For example, the set of tables to be extracted or the SQL files for the queries that need to be executed.
+Depending on the extractor, additional files could serve as input to the extractor. For example, the set of tables to be extracted or the SQL files for the queries that need to be executed.
 
 The following extraction methods will typically be available:
 
