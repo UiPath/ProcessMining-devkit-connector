@@ -19,14 +19,9 @@ Frequently_used_transforms as (
         end as "Invoice_type",
         -- Get first non-null value: when there is no payment timestamp, give it the value 'No payment'.
         -- When using coalesce() all arguments should be of the same data type.
-        coalesce(convert(nvarchar(50), Invoices_input."Paid_at"), 'No payment') as "Paid_at",
+        coalesce({{ to_varchar('Invoices_input."Paid_at"') }}, 'No payment') as "Paid_at",
         -- Timestamp based on only a date attribute
-        datetimefromparts(
-            datepart(year, Invoices_input."Payment_due_date"), 
-            datepart(month, Invoices_input."Payment_due_date"),
-            datepart(day, Invoices_input."Payment_due_date"),
-            -- hour, minute, second, millisecond
-            0, 0, 0, 0) as "Payment_due_date_timestamp",
+        {{ timestamp_from_date('Invoices_input."Payment_due_date"') }} as "Payment_due_date_timestamp",
         -- Trim part of a value: get the user number, which is at the right from the '-' character.
         right(Invoices_input."Creator", len(Invoices_input."Creator") - charindex('-', Invoices_input."Creator")) as "User_number",
         -- Assign boolean values: boolean values are best stored as 0 and 1. Indicate with 0 and 1 whether the payment is done.
