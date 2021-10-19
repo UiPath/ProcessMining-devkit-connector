@@ -6,10 +6,10 @@ with Raw_purchase_orders as (
 Purchase_orders_input as (
     select
         -- Convert non-text fields to the correct data type.
-        try_convert(datetime, Raw_purchase_orders."Created_at") as "Created_at",
+        {{ to_timestamp('Raw_purchase_orders."Created_at"') }} as "Created_at",
         Raw_purchase_orders."Creator",
         Raw_purchase_orders."ID",
-        try_convert(float, Raw_purchase_orders."Price") as "Price"
+        {{ to_double('Raw_purchase_orders."Price"') }} as "Price"
     from Raw_purchase_orders
 )
 

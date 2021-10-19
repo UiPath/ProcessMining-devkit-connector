@@ -11,7 +11,7 @@ Change_log_input as (
         Raw_change_log."ID",
         Raw_change_log."New_value",
         Raw_change_log."Old_value",
-        try_convert(datetime, Raw_change_log."Timestamp") as "Timestamp",
+        {{ to_timestamp('Raw_change_log."Timestamp"') }} as "Timestamp",
         Raw_change_log."User"
     from Raw_change_log
 )
