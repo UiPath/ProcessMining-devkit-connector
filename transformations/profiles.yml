@@ -1,4 +1,4 @@
-devkit_template_connector:
+devkit_connector:
   outputs:
 
     sqlserver:
@@ -8,7 +8,17 @@ devkit_template_connector:
       port: 1433
       user:
       password:
-      database: 
-      schema: 
+      database:
+      schema: "devkit_connector"
+
+    snowflake:
+      type: snowflake
+      account:
+      user:
+      password:
+      role:
+      database:
+      warehouse:
+      schema: "devkit_connector"
 
   target: sqlserver
