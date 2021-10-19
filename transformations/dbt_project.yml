@@ -1,16 +1,16 @@
 # Name and version of this dbt project.
-name: 'devkit_template_connector'
+name: 'devkit_connector'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'devkit_template_connector'
+profile: 'devkit_connector'
 
 vars:
-  # Set the used database.
+  # Set the used database. Supported options: "sqlserver", "snowflake".
   database: "sqlserver"
   # Name of the schema where the raw input data is stored.
-  schema: "template_connector"
+  schema: "devkit_connector"
 
 # These configurations specify where dbt should look for different types of files.
 source-paths: ["models"]
