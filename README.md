@@ -3,12 +3,12 @@ The devkit connector describes the standardized format of UiPath Process Mining 
 
 ## Repository structure
 The repository contains the following:
-- .vscode: workspace settings that are relevant when working in Visual Studio Code.
-- documentation: enablement material to develop a new connector.
-- extractors: the extraction methods to load input data.
-- sample_data: input data files to validate the transformations.
-- scripts: scripts to extract data, run transformations, and run tests.
-- transforms: the transformations of the connector (example dbt project).
+- `.vscode\`: workspace settings that are relevant when working in Visual Studio Code.
+- `documentation\`: enablement material to develop a new connector.
+- `extractors\`: the extraction methods to load input data.
+- `sample_data\`: input data files to validate the transformations.
+- `scripts\`: scripts to extract data, run transformations, and run tests.
+- `transformations\`: the transformations of the connector (example dbt project).
 - `.gitignore`: generated files from running the transformations.
 - `README.md`: instructions on how to use the connector.
 - `license.txt`: license for UiPath Process Mining connectors.
@@ -21,7 +21,7 @@ The documentation folder contains the following material:
 - [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
 - [example.md](documentation/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
 - [release_process.md](documentation/release_process.md): guidelines on the git workflow and explanation about versioning.
-- [connector_documentation_template.docx](documentation/connector_documentation_template.docx): template to be filled in with documentation about the developed connector.
+- [connector_documentation_template.docx](documentation/connector_documentation_template.docx): template to be filled with documentation about the developed connector.
 
 ## Installation
 ### Prerequisites
@@ -51,7 +51,7 @@ More information about this plugin can be found [here](https://docs.getdbt.com/r
 - Install the package in your virtual environment: `pip install dbt-sqlserver`.
 - If not already installed, install the SQL Server driver `ODBC Driver 17 for SQL Server`.
 
-Make sure that the installed version of dbt and dbt-sqlserver are the same. Having a newer version of dbt could result in not having all functionality available.
+Make sure that the installed version of dbt and dbt-sqlserver are the same. Having a newer version of dbt could result in not having all functionality available. You can check the installed versions by the command `dbt --version`. 
 
 ## Running a dbt project
 ### Configuration
@@ -60,8 +60,10 @@ Dbt projects contain a `profiles.yml` and `dbt_project.yml` file. Configuration 
     - If you work on multiple dbt projects, make sure to put the `profiles.yml` at a location where all projects can access it.
     - You need only one `profiles.yml` with a configuration for each project. 
 - Follow the [dbt documentation](https://docs.getdbt.com/dbt-cli/configure-your-profile) on how to configure your profile.
-- Set the name of your schema in the `dbt_project.yml`.
-
+- Configure the variables in the `dbt_project.yml`.
+    - Set on which database the transformations run.
+    - Set the name of your schema.
+    
 ### Execute
 To run a dbt project you need to activate the virtual environment where dbt is installed. Follow the steps below to run a dbt project using Visual Studio Code:
 - Install the recommended extensions in Visual Studio Code.
@@ -71,5 +73,4 @@ To run a dbt project you need to activate the virtual environment where dbt is i
     - Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 - Right click on the models folder and choose `Open in Integrated Terminal`.
 
-If a Python interpreter is set and you open the project in an integrated terminal, the virtual environment is directly activated and you can run a dbt project.
-
+The virtual environment is activated and you can run a dbt project.
