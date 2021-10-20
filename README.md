@@ -19,13 +19,12 @@ The documentation folder contains the following material:
 - [design_specification.md](documentation/design_specification.md): generic design specification for UiPath Process Mining connectors.
 - [development_best_practices.md](documentation/development_best_practices.md): guidelines and best practices on writing transformations.
 - [release_process.md](documentation/release_process.md): guidelines on the git workflow and explanation about versioning.
-
 - [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
 
 Besides that, the folder contains the following enablement material:
-- [connector_documentation_template.docx](documentation/connector_documentation_template.docx): template to be filled with documentation about the developed connector.
-- [example.md](documentation/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
-- [repository_structure.md](documentation/repository_structure.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
+- [connector_documentation.docx](documentation/enablement/connector_documentation.docx): template to be filled with documentation about the developed connector.
+- [deliverables.md](documentation/enablement/deliverables.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
+- [example.md](documentation/enablement/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
 
 ## Installation
 ### Prerequisites
