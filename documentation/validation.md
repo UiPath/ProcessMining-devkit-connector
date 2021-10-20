@@ -1,5 +1,4 @@
 # Validation
-
 This document describes how to validate the transformations of the connector. A dbt project is the set of queries that transforms the raw data into the transformed data, but the actual data is stored in the database. To inspect the data at each transformation step you need to inspect the data within the database. Dbt offers functionality to include tests in the connector, which supports the validation process.
 
 ## Workflow
@@ -45,10 +44,8 @@ On the first level, the raw data from the source is loaded and casted to the cor
 
 - `Error` Uniqueness for the primary keys. This may be a combination of multiple columns. If the primary key is already not unique in the input table, then it may cause issues later on in the transformations. It is best to check this as early as possible.
 - `Error` Not having null values for the primary keys/columns that form the primary key. Having null values may result in incorrect primary keys or in duplicate values.
-- `Warning` Attribute length is as expected. Key values may start with leading zeros that may be missing if the input is corrupted. However, this is not a hard requirement, as having unexpected lengths is possible or may not lead to issues.
 
 ### Transformation tests
-
 Multiple transformation steps take place between the raw input and the output. Joining tables incorrectly may result in unexpected record counts or duplicate IDs.
 
 - `Error` Uniqueness for the ID columns in the entity tables.
@@ -58,7 +55,6 @@ Multiple transformation steps take place between the raw input and the output. J
 - `Error` Only one create event per entity instance. For example, a specific purchase order can only be created once in the event log. Having the creation event twice would indicate a duplication of events.
 
 ### Output tests
-
 The output of the transformations should match the input of the ‘app transformations', which is the expected  schema of the corresponding app. 
 
 - `Error` Not having null values for the mandory columns. These are, for example, the IDs.
@@ -69,7 +65,6 @@ The output of the transformations should match the input of the ‘app transform
 
 
 ### Warnings vs Errors
-
 - `Error` In case the data is incorrect in such a way that the data can not be visualized/analyzed later on or leads to incorrect values. For example, unexpected duplication of records.
 - `Warning` In case there is a large probability for incorrect data, but that the behavior on which is checked is not a hard requirement. For example, attributes having an unexpected length.
 

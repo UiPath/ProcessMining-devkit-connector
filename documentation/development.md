@@ -1,41 +1,47 @@
 # Development
-Connectors transform data from the source system into a data model that is suitable for Process Mining. Although connectors transform data from different source systems and for different processes, the same development steps apply. This document provides guidelines and best practices for the development of connectors.
+Connectors extract and transform data from the source system into a data model that is suitable for Process Mining. Although connectors transform data from different source systems and for different processes, the same development steps apply. This document provides guidelines and best practices for the development of connectors.
 
+## Design specification
+A connector consists of an *extraction* part and a *transformation* part. In the extraction part, raw data is copied from the source system into a database. This is achieved by using one of the extractors. In the transformation part, the raw data is transformed to the required data model.
 
-## Design spec
-A connector consists of an *extract and load* part and a *transforms* part. In the extract and load part, raw data is copied from the source system into a database. This is achieved by one of the extractors. The transform part transforms the raw data to the required data model.
+![highlevel_design_specification](images/highlevel_design_specification.png)
 
-![highlevel_connector_description](images/highlevel_connector_description.png)
+### Extraction
+In this step, the data from the source system is made available in the database where the transformation can run. The data is kept in the same format as in the original database. Transformations should not happen in this part. The following guidelines apply:
+- Tables and fields that are not needed should not be loaded.
+- The configuration instructions do not contain credentials or other secrets.
+- The configuration instructions describe how to reduce data size. For example, by filtering on date ranges and other applicable concepts.
 
-### Extract and load
-In this step, the data is kept in the same form as in the original database. Transformations should not happen in this part. The following guidelines apply:
-- The queries for getting the data should be in an appropriate form for the system and extraction method.
-- Columns that are not needed should not be loaded.
-- The queries do not directly contain credentials or other secrets.
-- The queries contain parameters for filtering on date ranges and other applicable concepts.
+### Transformation
+In this step, the extracted data is transformed to the required data model. Depending on the app for which the connector is developed, the data model is either the generic process mining model (TemplateOne) or the process specific models (Discovery Accelerators P2P and O2C).
 
-### Transforms
-The transform step transforms the copy of the source systems input tables to the required data model. Depending on the process, the data model is either the generic process mining model (TemplateOne) or the process specific models (Discovery Accelerators P2P and O2C).
-- TemplateOne data model, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone).
-- P2P data model, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-the-purchase-to-pay-discovery-accelerator).
-- O2C data model, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-the-order-to-cash-discovery-accelerator).
+Data models:
+- TemplateOne, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone).
+- Purchase-to-Pay, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-the-purchase-to-pay-discovery-accelerator).
+- Order-to-Cash, see [here](https://docs.uipath.com/process-mining/docs/input-tables-of-the-order-to-cash-discovery-accelerator).
 
-It is advised to be familiar with the [Connector Development Kit](https://docs.uipath.com/process-mining/v2021.10/docs/kb-connector-development-kit) on UiPath docs. It will guide you through the different steps of writing the transformations. The following image is a visual representation of the steps described in the development kit.
+It is advised to be familiar with the [Connector Development Guide](https://docs.uipath.com/process-mining/v2021.10/docs/kb-connector-development-guide) on UiPath docs. It will guide you through the different steps of writing the transformations as shown in the image below. The split between the *system transformations* and the *process transformations* is the difference between the data model for the Discovery Accelerators (P2P and O2C) and TemplateOne.
 
 ![highlevel_transformation_steps](images/highlevel_transformation_steps.png)
 
-The dotted-red line shows the difference between the data model for the Discovery Accelerators (P2P and O2C) and TemplateOne. For the Discovery Accelerators, the output data is expected to contain *entities* and *events*. For TemplateOne, a *cases* and *event log* table is expected. Another way to look at this image is that the steps left of the dotted-red line are *system specific* and the steps on the right *process specific*. The process specific transformations are expected to be source system agnostic.
+- For the Discovery Accelerators, only the system transformations apply. The data model consists of *entities* and *events*. Entities are specific for the process. For example, the P2P data model contains "Purchase orders" and "Invoices". 
+- For TemplateOne, both the system and process transformations apply. Based on the entities and events, the *event log* is constructed. Additionally, *business data* needs to be supplied in the form of tags and due dates. The process specific transformations are expected to be source system agnostic.
+
+The transformations are written in a dbt project where the different steps can clearly be recognized.
+
+#### Multiple databases support
+The transformations should be able to run on multiple databases. Each database has specific SQL syntax. Most transformations can run on every database, but some functions have a database specific syntax. To run the dbt project on multiple databases, macros in combination with the Jinja templating language are used. See the [dbt documentation](https://docs.getdbt.com/docs/building-a-dbt-project/jinja-macros) for more information about Jinja and macros. 
 
 ## Best practices
 
 ### Project structure
-The transforms folder contains the dbt project with the transformations. The transformations are split in several .sql files and grouped according to the steps described in the Connector Development Kit.
+The transformations folder contains the dbt project with the transformations. The transformations are split in several queries and grouped according to the steps described in the [Connector Development Guide](https://docs.uipath.com/process-mining/v2021.10/docs/kb-connector-development-guide).
 
 ### Query structure
-Each query in the dbt project creates one table in the database. In general the model is structered as follows:
-- Refer to the tables on which the model is dependent.
-- A SQL statement containing the transformations.
-- The select * from the SQL statement.
+Each query in the dbt project creates one table in the database. In general, the model is structered as follows:
+1. Refer to the tables on which the query is dependent. This makes sure all queries are executed in the correct order. Referencing this on top of the query makes it easier to recognize the dependencies.
+2. A SQL statement containing the transformations.
+3. The `select *` from the SQL statement. This third part allows for direct filtering on a defined alias in the transformation.
 
 ![query_structure](images/query_structure.png)
 
@@ -44,30 +50,19 @@ Deviating from this structure may happen. For example, in the following two scen
 - When we need a preprocessing step specific for the SQL statement. For example, we can define a `Table_B_preprocessing` such that `Table_B` is dependent on both `Table_A` and `Table_B_preprocessing`.
 
 ###  SQL specifics
-- Always use explicit select statement and not `select *` for readability and maintainability of correct SQL models. Especially for unions, using the `select *` can throw errors. A union requires the fields to be the same and in the same order. If only one of the unioned tables changes, a `select *` does not work anymore.
-- Prevent database specific SQL syntax where also a more generic syntax can be used. This makes it easier to re-use the connector for more databases and limits changes when another database is used.
+- Prevent database-specific SQL syntax where also a more generic syntax can be used. This makes it easier to re-use the connector for more databases.
     - If the connector needs to run on multiple databases, macros can be implemented to ‘choose’ which function to use. 
-    - Do not use the alias of a column directly be in the same model. Some SQL dialects are not able to use the aliases directly.
+    - Do not use the alias of a column directly in the same model. Some SQL dialects are not able to use the aliases directly.
+- In unions, the names and order of columns should exactly match. It may be necessary to create empty attributes on parts of the union to get all the attributes. This can be achieved by the select statement `NULL as "Attribute_X"`.
+- Always use explicit select statements in the transformation part of the query and not `select *` for readability and maintainability. Especially for unions, using the `select *` can yield errors. A union requires the fields to be the same and in the same order. If only one of the unioned tables changes, a `select *` does not work anymore.
 - Consider how NULL values are handled in your database. For example, concatenation with NULL could result in a total value of NULL. That means that ‘Not_a_null_value’ + NULL results in NULL.
-- Unions: the names and order of columns should exactly match. It may be necessary to create empty attributes on parts of the union to get all the attributes. This can be achieved by the select statement `NULL as "Attribute_X"`.
-
-### Multiple databases support
-Each database has specific SQL syntax. Most transformations can run on every database, but some functions have a database specific syntax. To run the dbt project on multiple databases, macros in combination with the Jinja templating language are used. See the [dbt documentation](https://docs.getdbt.com/docs/building-a-dbt-project/jinja-macros) for more information about Jinja and macros. 
-
-The main purpose of the macros are to select a function based on the database using Jinja. For example, the `string_agg()` function in T-SQL is similar to the `listagg()` function in Snowflake. A new function `string_agg()` is implemented in the form of the following macro:
-
-![macro_multiple_databases_support](images/macro_multiple_databases_support.png)
-
-In the sql statement, the macro is used as follows:
-
-`select {{ string_agg('"Attribute"') }} as "Aggregate_attribute"`
 
 ### Readability/consistency
 - SQL commands and functions are written in lower case, which reads ‘more easily’.
 - Use the same level of indentation for select, from, where, join, etc., to understand more easily the structure of the model.
 - Use consistent naming conventions for tables and fields to prevent SQL errors that tables or fields do not exist in your database. We adhere to the following guidelines:
   - Tables and fields start with a capital.
-  - Use between separate words in tables and attributes an underscore.
+  - Use an underscore between separate words in tables and attributes.
   - All attributes have quotes. For Snowflake, all attribute names will end up in the database with capital letters when written without quotes.
   - Tables do not have quotes. This is in favor of readability in combination with attributes having quotes.
   - Try to define your attributes as much as possible in an alphabetical order, unless a different order makes more sense.
