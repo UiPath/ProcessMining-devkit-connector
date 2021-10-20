@@ -36,3 +36,6 @@ The following examples describe how the version number should be updated:
     - Update Y: Connector 1.0.1 → Connector 1.1.0
 - The *requisitions* table is split into *requisition_headers* and *requisition_items* to match the new data model of App 2.0.0
     - Update X: Connector 1.1.0 → Connector 2.0.0
+
+### Framework
+The framework in which connectors and apps are being developed and used also has a version number. This is needed to know which connectors and apps are readable by our software and which are supported. Major numbers are used for breaking changes and minor numbers for incremental non-breaking changes. The version number of the framework can be found by the version number of the devkit connector.
