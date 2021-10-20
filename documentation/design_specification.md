@@ -1,7 +1,7 @@
 # Design specification
 Connectors extract and transform data from the source system into a data model that is suitable for Process Mining. A connector consists of an *extraction* part and a *transformations* part. In the extraction part, raw data is copied from the source system into a database. This is achieved by using one of the extractors. In the transformation part, the raw data is transformed to the required data model.
 
-![highlevel_design_specification](images/highlevel_design_specification.png)
+![highlevel_design_specification](images/highlevel_design_specification.PNG)
 
 ## Extraction
 In this step, the data from the source system is made available in the database where the transformations can run. The data is kept in the same format as in the original database. Transformations should not happen in this part. The following guidelines apply:
