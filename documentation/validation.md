@@ -14,18 +14,18 @@ Consider you have model A and model B, which you join together to create model C
 
 Useful query to inspect the record count related to a specific field in a table:
 
-```json
+```
 select "Field", count("Field")
 from Table
 group by "Field"
 ```
 
 ## Tests with dbt
-Dbt offers out of the box tests such as `unique` and `not_null` checks on columns in your data. Tests that are not out of the box available can be implemented as a macro. More detailed information on tests with dbt can be found on [Tests | dbt Docs](https://docs.getdbt.com/docs/building-a-dbt-project/tests).
+Dbt offers out of the box tests such as `unique` and `not_null` checks on columns in your data. Tests that are not out of the box available can be implemented as a macro. More detailed information on tests with dbt can be found in the [dbt documentation](https://docs.getdbt.com/docs/building-a-dbt-project/tests).
 
 Each tests is a separate SQL query. For a test, the following logic is used: a test succeeds if 0 records are returned and a test fails if at least 1 record is returned. For example, `table T` has `column_A` with values of either length 3 and 4. It is expected that all lengths should be 3 for which the following test can be written:
 
-```json
+```
 select column_A
 from T
 where len(column_A) <> 3

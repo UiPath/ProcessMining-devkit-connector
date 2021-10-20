@@ -7,7 +7,7 @@ The entities that are involved in this process are *purchase orders* and *invoic
 ### Data model
 The goal of every connector is to transform raw input data into a data model for process mining. The data model describes the tables and attributes of the output which can be used by a specific process mining app. This example project transforms the input data to the [TemplateOne data model](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone-10) in which the purchase orders function as the cases.
 
-The raw input data is split over six .csv files and can be found in the sample_data folder. See the comments in the transformations on how the raw input data is transformed to the data model. For an overview of frequently used transforms, see `Frequently_used_transforms.sql`.
+The raw input data is split over six .csv files and can be found in the `sample_data` folder. See the comments in the transformations on how the raw input data is transformed to the data model.
 
 ## Folder structure
 The example dbt project contains the following:
@@ -20,16 +20,16 @@ The example dbt project contains the following:
 - `profiles.yml`: contains the configuration to connect to your database.
 
 ## Tests
-The example project includes tests to validate the transformations. The implemented tests can be found in the *models/schema* folder. Some tests are offered out of the box by dbt and others are implemented in macros. Some useful test macros can be found in the *macros/tests* folder.
+The example project includes tests to validate the transformations. The implemented tests can be found in the `models/schema` folder. Some tests are offered out of the box by dbt and others are implemented in macros. Some useful test macros can be found in the `macros/tests` folder.
 
 The tests are implemented in such a way that they can run on a SQL Server and Snowflake database. 
 
 ## Multiple databases support
-For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of the variable `database` in the `dbt_project.yml` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions can be found in the *macros* folder.
+For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of the variable `database` in the `dbt_project.yml` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions can be found in the `macros` folder.
 
 The main purpose of the macros are to select a function based on the database using Jinja. For example, the `string_agg()` function in T-SQL is similar to the `listagg()` function in Snowflake. A new function `string_agg()` is implemented in the form of the following macro:
 
-![macro_multiple_databases_support](images/macro_multiple_databases_support.png)
+![macro_multiple_databases_support](../images/macro_multiple_databases_support.png)
 
 In the SQL statement, the macro is used as follows:
 
