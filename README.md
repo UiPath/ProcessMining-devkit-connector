@@ -9,19 +9,23 @@ The repository contains the following:
 - `sample_data\`: input data files to validate the transformations.
 - `scripts\`: scripts to extract data, run transformations, and run tests.
 - `transformations\`: the transformations of the connector (example dbt project).
-- `.gitignore`: generated files from running the transformations.
+- `.gitignore`: list of generated files from running the transformations.
 - `README.md`: instructions on how to use the connector.
 - `license.txt`: license for UiPath Process Mining connectors.
-- `settings.json`: settings for this connector.
+- `settings.json`: settings for the connector.
 
 ### Documentation
 The documentation folder contains the following material:
-- [repository_structure.md](documentation/repository_structure.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
-- [development.md](documentation/development.md): description of the design spec with guidelines and best practices on writing transformations.
-- [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
-- [example.md](documentation/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
+- [design_specification.md](documentation/design_specification.md): generic design specification for UiPath Process Mining connectors.
+- [development_best_practices.md](documentation/development_best_practices.md): guidelines and best practices on writing transformations.
 - [release_process.md](documentation/release_process.md): guidelines on the git workflow and explanation about versioning.
+
+- [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
+
+Besides that, the folder contains the following enablement material:
 - [connector_documentation_template.docx](documentation/connector_documentation_template.docx): template to be filled with documentation about the developed connector.
+- [example.md](documentation/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
+- [repository_structure.md](documentation/repository_structure.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
 
 ## Installation
 ### Prerequisites

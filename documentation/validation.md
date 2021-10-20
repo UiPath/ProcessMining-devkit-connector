@@ -6,7 +6,7 @@ Consider you have model A and model B, which you join together to create model C
 
 - You need to run all models to create the tables in the database.
   - Run all models by the command `dbt run`.
-  - Or run multiple models by the command `dbt run -m model_A model_B`
+  - Or run multiple models by the command `dbt run -m model_A model_B`.
 - You can only run model C the moment model A and model B are defined, because model C is dependent on the other two models.
 - Inspect the data in the database, where tables for model A, B, and C are created.
 - Make sure to run at least all models you have changed while developing to see whether there are any SQL errors before comitting your changes.
@@ -62,7 +62,6 @@ The output of the transformations should match the input of the ‘app transform
 - `Error` Existence of all columns. Some columns may not contain any values, but to match the app transformations the columns should at least be present in the output.
 - `Error` Data types are as expected. For example, columns that are expected to contain boolean values should be of type boolean and not be numeric or dates. If this differs from the expected types, app transformation could not be performed on these columns resulting in either errors or null values.
 - `Error` Equal record counts from raw data to output where applicable. For example, the number of records in the input table should be the same as in the entity table. Otherwise, records may have been duplicated or missing along the transformation steps.
-
 
 ### Warnings vs Errors
 - `Error` In case the data is incorrect in such a way that the data can not be visualized/analyzed later on or leads to incorrect values. For example, unexpected duplication of records.
