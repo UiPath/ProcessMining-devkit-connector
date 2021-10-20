@@ -5,7 +5,7 @@ A newly developed connector is expected to have the same repository structure as
 Workspace settings that are relevant when working in Visual Studio Code. The folder contains an `extensions.json` and a `settings.json` file. The `extensions.json` lists recommended extensions to support development on the connector. The `settings.json` contains settings related to formatting. The content of this folder could remain the same as in the devkit connector.
 
 ## documentation\
-The documentation folder should contain relevant documentation to the developed connector. The [connector_documentation.docx](documentation/enablement/connector_documentation.docx) is the template to provide this documentation. In addition, diagrams or other supporting information can be provided.
+The documentation folder should contain relevant documentation to the developed connector. The [connector_documentation.docx](connector_documentation.docx) is the template to provide this documentation. In addition, diagrams or other supporting information can be provided.
 
 The documentation that is available in the devkit connector can to a large extent remain since it is relevant for connectors in general. Only the documentation in the enablement folder should be cleaned up before a release.
 
@@ -36,12 +36,12 @@ Besides the small sample dataset, a large dataset will be requested to check the
 Scripts are provided to extract data and to run transformations and tests.
 
 ## transformations\
-The dbt project in this folder defines all transformations from input data to the data model of the app. The transformations are writtin according to the guidelines as described in [development_best_practices.md](documentation\enablement\development.md). 
+The dbt project in this folder defines all transformations from input data to the data model of the app. The transformations are writtin according to the guidelines as described in [development_best_practices.md](..\development_best_practices.md). 
 
 ## .gitignore
 Generated files from running the transformations are listed. The content of this folder could remain the same as in the devkit connector.
 
-## README
+## README.md
 This section describes instructions on how to use the connector. 
 
 ## license.txt
