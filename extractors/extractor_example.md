@@ -17,9 +17,9 @@ The connection for SQL server is defined as below:
 
 ![sqlserver](images/sqlconnection.png)
 
-After the configurations are set for both source and destination on CDATA, job scheduling can be customized according to the frequency needed for the related data.
+After the configurations are set for both source and destination on CDATA, job scheduling can be customized according to the data extraction frequency needed.
 
-To complete the datapipeline, and to be able to insert the extracted source data to correct schema within the SQL server schema name needs to be defined on the job settings which is "devkit_connector" for this example:
+To complete the datapipeline, and to be able to insert the extracted source data to correct schema within the SQL server, schema name needs to be defined on the job settings which is "devkit_connector" for this example:
 
 ![jobs3](images/jobs3.png)
 
