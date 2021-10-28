@@ -26,4 +26,3 @@ To complete the datapipeline, and to be able to insert the extracted source data
 After the settings are completed for the related job, the extraction and load can be initialized using "Run" command:
 
 ![jobrun](images/jobrun.png)
-
