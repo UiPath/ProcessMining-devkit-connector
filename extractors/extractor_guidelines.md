@@ -45,10 +45,16 @@ To provide the connectivity and trigger the data extraction between the source s
 
     1 - Using the left "Add job" button, source and destination are chosen.
 ![job1](images/jobs1.png)
+
     2 - In job settings, relevant tables are chosen using the "Add tables" button.
 ![job2](images/jobs2.png)
+
     3 - After the tables are defined, the task settings can be viewed by clicking on the listed task.
+
     4- In "General" section, Schema Name is defined under the Destination Table Information.
+
     5- To change the mapping or to provide additional settings for the columns, "Column-mapping" section is used.
+
     6- Additional replication options are also available on the "Advanced" section.
+    
     7- After the configurations are set, data can be viewed using "Preview" section.
