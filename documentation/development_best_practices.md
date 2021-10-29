@@ -27,6 +27,7 @@ Deviating from this structure may happen. For example, in the following two scen
 ## Readability/consistency
 - SQL commands and functions are written in lower case, which reads ‘more easily’.
 - Use the same level of indentation for select, from, where, join, etc., to understand more easily the structure of the model.
+  - Use indentation for the usage of functions if this improves readability, f.e. use indentation for each statement in a `case` function.
 - Use consistent naming conventions for tables and fields to prevent SQL errors that tables or fields do not exist in your database. We adhere to the following guidelines:
   - Tables and fields start with a capital.
   - Use an underscore between separate words in tables and attributes.
@@ -34,6 +35,8 @@ Deviating from this structure may happen. For example, in the following two scen
   - Tables do not have quotes. This is in favor of readability in combination with attributes having quotes.
   - Try to define your attributes as much as possible in an alphabetical order, unless a different order makes more sense.
 - All attributes are prefixed with the table they originate from. This is required if an attribute exists in multiple tables which are used in the query, but not required if there is no such ambiguity. For understandability and to easier extend models with more tables we prefix the field by default.
+- Commas used for separation of attributes are placed at the end of the line.
+- Use inline comments when certain constructions need to be explained. When this is done, make sure the comment adds value. 
 
 ## Performance
 - Avoid `select distinct` where it is also possible to build an aggregate and just take one record.
