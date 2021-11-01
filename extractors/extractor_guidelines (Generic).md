@@ -21,7 +21,7 @@ TBD
 
 Depending on the type of the source system, Cdata offers different connection formats. To obtain the detailed information on the connector types and the source systems, see [here](https://www.cdata.com/drivers/).
 
-To provide the configurations for the extraction pipeline, web application interface of "Cdata Sync Admin Console" is used.
+To provide the configurations for the extraction pipeline, web application interface of "Cdata Sync Admin Console" is utilised.
 
 In `Connections` page, suitable source system can be chosen:
 
@@ -46,7 +46,7 @@ To provide the connectivity and trigger the data extraction between the source s
     1 - Using the left "Add job" button, source and destination are chosen.
 ![job1](images/jobs1.png)
 
-    2 - In job settings, relevant tables are chosen using the "Add tables" button.
+    2 - In job settings, relevant tables are chosen using the "Add tables" button. For each file and the corresponding table, jobs should be configured seperately.
 ![job2](images/jobs2.png)
 
     3 - After the tables are defined, the task settings can be viewed by clicking on the listed task.
