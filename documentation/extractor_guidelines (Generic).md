@@ -79,7 +79,7 @@ To complete the datapipeline, and to be able to insert the extracted source data
 
 ![jobs3](images/jobs3.png)
 
-The source folder can consist of multiple files. In that case, each .tsv file can be specified within the task settings. Therefore, the related jobs should also be run separately for each file.
+The source folder can consist of multiple files. In that case, each file can be specified within the task settings separately, or together by using `Add custom query` option. The related jobs should also be run separately for each file.
 
 After the settings are completed for the related job, the extraction and load can be initialized using "Run" command:
 
@@ -87,6 +87,6 @@ After the settings are completed for the related job, the extraction and load ca
 
 The logs created for this task can be found in the `Logging and history` section in `Job settings` page.
 
-The data records tranferred to the destination server can be found under the related schema with the file name defined in the source settings.
+The data records transferred to the destination server can be found under the related schema with the file name defined in the source settings.
 
 ![sqloutput](images/sqlserveroutput.png)

@@ -19,11 +19,11 @@ The CSV file connection can be set either using a local file path or an online d
 
 ![csvpath](images/csvfile.png)
 
-In the "Advanced" page, you can find the `data formatting` section for the specified connection type. In this section, manual file formatting can be realized if needed. The file format can also be changed in the `FMT` button in `Data formatting`. Even tough the connection type is marked as CSV connection, we will be using .tsv files, therefore "TabDelimited" option needs to be chosen.
+In the "Advanced" page, you can find the `data formatting` section for the specified connection type. In this section, manual file formatting can be realized if needed. The file format can also be changed in the `FMT` button in `Data formatting`. Even though the connection type is defined as the CSV connection, ".tsv" files can be used by changing the file extension into ".csv". Also, "TabDelimited" option needs to be set for this file type.
 
 ![dataformatting](images/dataform.png)
 
--SQL server settings:
+- SQL server settings:
 The connection for SQL server is defined as below:
 
 ![sqlserver](images/sqlconnection.png)
@@ -34,7 +34,7 @@ To complete the datapipeline, and to be able to insert the extracted source data
 
 ![jobs3](images/jobs3.png)
 
-The source folder can consist of multiple files. In that case, each .tsv file can be specified within the task settings. Therefore, the related jobs should also be run separately for each file.
+The source folder can consist of multiple files. In that case, each file can be specified within the task settings separately, or together by using `Add custom query` option. The related jobs should also be run separately for each file.
 
 After the settings are completed for the related job, the extraction and load can be initialized using "Run" command:
 
@@ -42,6 +42,6 @@ After the settings are completed for the related job, the extraction and load ca
 
 The logs created for this task can be found in the `Logging and history` section in `Job settings` page.
 
-The data records tranferred to the destination server can be found under the related schema with the file name defined in the source settings, i.e. "Raw_invoices".
+The data records transferred to the destination server can be found under the related schema with the file name defined in the source settings, i.e. "Raw_invoices".
 
 ![sqloutput](images/sqlserveroutput.png)
