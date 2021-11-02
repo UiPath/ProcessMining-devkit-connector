@@ -1,4 +1,4 @@
-# Extraction (this part will be inserted within the README.md)
+# Extraction
 
 This document provides the detailed information about the procedure to be followed for a data extraction for devkit-connector using a CSV connection and a SQL server as destination.
 
