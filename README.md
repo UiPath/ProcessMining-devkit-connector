@@ -1,79 +1,46 @@
 # Devkit connector
 The devkit connector describes the standardized format of UiPath Process Mining connectors that are developed with [dbt](https://docs.getdbt.com/). Use this template to quick start the development of a new connector. Before developing a new connector, please read the [dbt introduction](https://docs.getdbt.com/docs/introduction/).
 
+A UiPath Process Mining connector is part of the Connector & App Framework. For information about the framework, see the [UiPath documentation](https://docs.uipath.com/process-mining/v1/docs/connector-and-app-framework-10). Here you can also find information about what is expected from a UiPath Process Mining connector and how to work with dbt.
+
 ## Repository structure
 The repository contains the following:
 - `.vscode\`: workspace settings that are relevant when working in Visual Studio Code.
-- `documentation\`: enablement material to develop a new connector.
+- `documentation\`: connector documentation template.
 - `extractors\`: the extraction methods to load input data.
 - `sample_data\`: input data files to validate the transformations.
 - `scripts\`: scripts to extract data, run transformations, and run tests.
 - `transformations\`: the transformations of the connector (example dbt project).
 - `.gitignore`: list of generated files from running the transformations.
-- `README.md`: instructions on how to use the connector.
+- `README.md`: introduction to the connector.
 - `license.txt`: license for UiPath Process Mining connectors.
 - `settings.json`: settings for the connector.
 
-### Documentation
-The documentation folder contains the following material:
-- [design_specification.md](documentation/design_specification.md): generic design specification for UiPath Process Mining connectors.
-- [development_best_practices.md](documentation/development_best_practices.md): guidelines and best practices on writing transformations.
-- [release_process.md](documentation/release_process.md): guidelines on the git workflow and explanation about versioning.
-- [validation.md](documentation/validation.md): guidelines on how to write tests and information on the validation of a connector.
+## Example
+The devkit connector contains a simple procurement example on how to write transformations in a dbt project. The example dbt project can be found in the `transformations` folder. The input data and the process are artificial and simplified compared to a real procurement process. The structure of the dbt project is the advised structure to have in any connector.
 
-Besides that, the folder contains the following enablement material:
-- [connector_documentation.docx](documentation/enablement/connector_documentation.docx): template to be filled with documentation about the developed connector.
-- [deliverables.md](documentation/enablement/deliverables.md): a newly developed connector is expected to have the same repository structure as this devkit connector. This document describes what the repository should contain for a released connector.
-- [example.md](documentation/enablement/example.md): the devkit connector contains a simple procurement example on how to write transformations in a dbt project. This document provides information about the example dbt project.
+### Process description
+The entities that are involved in this process are *purchase orders* and *invoices*. A purchase order is created in the system after which it needs two approvals before it can be executed. Once the invoice for the order is received, the invoice is entered into the system. The invoice contains the price, the payment due date, and the payment timestamp. Until the payment is done, the payment timestamp on the invoice is empty. Once the payment is done, the payment timestamp is updated.
 
-## Installation
-### Prerequisites
-- To install and run a dbt project, you need Python 3.6 or higher. You can download it from [here](https://www.python.org/downloads/).
-    - If you experience problems with a recent version of Python where dbt can not properly be installed, consider using a previous version of Python.
-- For editing and running a dbt project, we advise Visual Studio Code. You can download it from [here](https://code.visualstudio.com/download).
-- To run the transformations you need to have access to a database.
+### Data model
+The goal of every connector is to transform raw input data into a data model for process mining. The data model describes the tables and attributes of the output which can be used by a specific process mining app. This example project transforms the input data to the [TemplateOne data model](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone-10) in which the purchase orders function as the cases.
 
-### Create a Python virtual environment
-It is advised to create a Python virtual environment in which you will install dbt. 
-- Create a folder where your virtual environment will be located.
-- Open the command prompt and run the following commands:
-    - Install the Python package `virtualenv`: `py -m pip install virtualenv`.
-    - Go to your folder where you want to create the environment: `cd [path_to_your_folder]`.
-    - Create a virtual environment (named venv): `py -m virtualenv venv`.
-    - Activate the virtual environment: `venv\Scripts\activate`.
+The raw input data is split over six .csv files and can be found in the `sample_data` folder. Import the files in your database to run the transformations on this sample data. See the comments in the transformations on how the raw input data is transformed to the data model.
 
-### Install dbt from GitHub source
-Make sure the virtual environment is still activated.
-- Clone the git repository: `git clone https://github.com/dbt-labs/dbt.git`.
-- Move to the cloned folder: `cd dbt`.
-- Install all requirements: `pip install -r requirements.txt`.
-- To check whether the installation is successful execute the command `dbt --version`.
+### Folder structure
+The example dbt project contains the following:
+- `macros\`: generic functions that can be used in transformations.
+    - `tests\`: functions to test the transformations.
+- `models\`: the transformations of the example project in the advised structure of a connector.
+    - `Frequently_used_transforms.sql`: example query with frequently used transformations.
+    - `Multiple_databases_support.sql`: example query to illustrate multiple databases support.
+- `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project.
+- `profiles.yml`: contains the configuration to connect to your database.
 
-To run transformations on SQL Server, you need to install the package `dbt-sqlserver`. This is a community plugin for dbt and not part of the core functionality.
-More information about this plugin can be found [here](https://docs.getdbt.com/reference/warehouse-profiles/mssql-profile).
-- Install the package in your virtual environment: `pip install dbt-sqlserver`.
-- If not already installed, install the SQL Server driver `ODBC Driver 17 for SQL Server`.
+### Tests
+The example project includes tests to validate the transformations. The implemented tests can be found in the `models\schema` folder. Some tests are offered out of the box by dbt and others are implemented in macros. Some useful test macros can be found in the `macros\tests` folder.
 
-Make sure that the installed version of dbt and dbt-sqlserver are the same. Having a newer version of dbt could result in not having all functionality available. You can check the installed versions by the command `dbt --version`. 
+The tests are implemented in such a way that they can run on a SQL Server database and on a Snowflake database. 
 
-## Running a dbt project
-### Configuration
-Dbt projects contain a `profiles.yml` and `dbt_project.yml` file. Configuration of these files is necessary to run a dbt project on your database.
-- Add the environment variable `DBT_PROFILES_DIR` with as value the path to the *folder* where the `profiles.yml` is located.
-    - If you work on multiple dbt projects, make sure to put the `profiles.yml` at a location where all projects can access it.
-    - You need only one `profiles.yml` with a configuration for each project. 
-- Follow the [dbt documentation](https://docs.getdbt.com/dbt-cli/configure-your-profile) on how to configure your profile.
-- Configure the variables in the `dbt_project.yml`.
-    - Set on which database the transformations run.
-    - Set the name of your schema.
-    
-### Execute
-To run a dbt project you need to activate the virtual environment where dbt is installed. Follow the steps below to run a dbt project using Visual Studio Code:
-- Install the recommended extensions in Visual Studio Code.
-    - Go to manage extensions (Ctrl+Shift+X) and search for `@recommended`.
-- Set the Python interpreter to the `python.exe` of your virtual environment.
-- The policy on your machine should allow you to execute scripts. 
-    - Set your policy to `RemoteSigned` by opening a terminal and running the command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-- Right click on the models folder and choose `Open in Integrated Terminal`.
-
-The virtual environment is activated and you can run a dbt project.
+### Multiple databases support
+For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of the variable `database` in the `dbt_project.yml` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions can be found in the `macros` folder.
