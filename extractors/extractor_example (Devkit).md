@@ -49,8 +49,14 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
 
     5- In advance job settings, enter the `Destination Schema`:
     ![destination](images/destinationschema.png)
-    6- Press Save changes.
+    6- In job settings, column mappings will not be changed.
+    7- Press Save changes.
 
 ### Execution
 
 To run the extraction, use the script (see `extractor_automation.md` for more information) that executes the Job that was just created.
+
+### Additional notes
+
+**Transformations** will not be applied on Cdata platform. Therefore, this functionality will not be in use.
+**Filtering** should be applied as much as possible to limit row and column number.
