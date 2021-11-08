@@ -41,12 +41,14 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
     2- Set the source connection to the CSV connection that was just created.
     3- Set the destination connection to the MS SQL connection that was just created.
     4- Press Add custom query, and enter the following query:
+
     ```json
     {
         REPLICATE ....;
         REPLICATE ....;
     }
     ```
+
     5- In advance job settings, enter the `Destination Schema`:
     ![destination](images/destinationschema.png)
     6- Press Save changes.
