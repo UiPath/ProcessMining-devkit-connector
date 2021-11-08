@@ -1,11 +1,35 @@
 # <Connector title + version>
 
 \<Name of developing company>
-<Developer name + email 1>
-<Developmer name + email 2>
-<...>
+\<Developer name + email 1>
+\<Developmer name + email 2>
+\<...>
 
 [REMOVE THIS: The intended audience of this documentation is a developer persona that intends to use/deploy this connector. Please keep this in mind when writing this documentation.]
+
+## Table of contents
+- [General solution description](#General-solution-description)
+    - [Source system](#Source-system)
+    - [Process](#Process)
+    - [Connector output & compatability](#Connector-output-&-compatability)
+- [Source system data](#Source-system-data)
+    - [Data availability](#Data-availability)
+    - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
+    - [Input data](#Input-data)
+    - [Entities](#Entities)
+    - [Activities](#Activities)
+    - [Output attribute mapping](#Output-attribute-mapping)
+- [Connector design flowchart](#Connector-design-flowchart)
+- [Connector design details](#Connector-design-details)
+- [How to extend the connector](#How-to-extend-the-connector)
+    - [Connector configuration](#Connector-configuration)
+    - [Adding output attributes](#Adding-output-attributes)
+    - [Adding activities](#Adding-activities)
+    - [Adding entities](#Adding-entities)
+- [Limitations, known issues, common problems](#Limitations-known-issues-common-problems)
+    - [Limitations](#Limitations)
+    - [Known issues](#Known-issues)
+    - [Common problems](#Common-problems)
 
 ## General solution description
 \<High level solution description> 
@@ -23,10 +47,10 @@
 ### Data availability
 \<Many systems require certain options to be turned on for the system to start generating proper logs. Describe what is required on the source system side to use this connector. For example, should certain tables be used? Should certain fields be used in a specific way?>
 
-### Data extraction & connection to \<source system name>
+### Data extraction & connection to source system
 \<Describe in detail the different ways in which data could/should be extracted from the source system.>
 
-### \<Source system name> input data
+### Input data
 \<List and describe each of the input tables required by the connector.>
 \<For each input table, list and describe the fields to be extracted.>
 \<List fields that can be used to filter input data.>
