@@ -44,8 +44,8 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
 
     ```json
     {
-        REPLICATE ....;
-        REPLICATE ....;
+        "REPLICATE ....;"
+        "REPLICATE ....;"
     }
     ```
 
