@@ -33,7 +33,7 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
 
     1- Define a new connection of type **System.Data.SqlClient**
     2- Configure the settings to connect to your MS SQL staging database.
-    ![sqlserver](images/sqlconnection.png)
+![sqlserver](images/sqlconnection.png)
 
 ### Create a job
 
@@ -48,7 +48,8 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
     }
 
     5- In advance job settings, enter the `Destination Schema`:
-    ![destination](images/destinationschema.png)
+![destination](images/destinationschema.png)
+
     6- In job settings, column mappings will not be changed.
     7- Press Save changes.
 
