@@ -21,7 +21,9 @@ The CSV file connection can be set either using a local file path or an online d
 
 ![location](images/csvlocation.png)
 
-In the "Advanced" page, you can find the `data formatting` section for the specified connection type. In this section, manual file formatting can be applied if needed.
+In the "Advanced" page, you can find the `Data Formatting` section for the specified connection type. In this section, manual file formatting can be applied if needed.
+
+The file format can also be changed in the `FMT` button in `Data Formatting`. Even though the connection type is defined as the CSV connection, ".tsv" files can be used by changing the relevant file extension into ".csv" and "TabDelimited" option needs to be set for this file type.
 
 ### Create destination connection
 
@@ -36,10 +38,16 @@ In the "Advanced" page, you can find the `data formatting` section for the speci
     3. Set the destination connection to the MS SQL connection that was just created.
     4. Press Add custom query, and enter the following query:
 
-    {
-        "REPLICATE ....;"
-        "REPLICATE ....;"
-    }
+```
+{
+    REPLICATE [Raw_change_log];
+    REPLICATE [Raw_invoices];
+    REPLICATE [Raw_purchase_order_approvals];
+    REPLICATE [Raw_purchase_orders];
+    REPLICATE [Raw_purchase_orders_status];
+    REPLICATE [Raw_users]
+}
+```
 
     5. In advance job settings, enter the `Destination Schema`:
 ![destination](images/destinationschema.png)
@@ -54,6 +62,6 @@ To run the extraction, use the script (see `extractor_automation.md` for more in
 
 ### Additional notes
 
-CData Sync is only used for extracting data, not for doing data transformations. Therefore, the **Transformations** tab in CData won't be used.
+CData Sync is only used for extracting data, not for applying data transformations. Therefore, the **Transformations** tab in CData won't be used.
 
 **Filtering** should be applied as much as possible to limit row and column number.
