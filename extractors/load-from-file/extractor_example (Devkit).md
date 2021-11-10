@@ -12,8 +12,8 @@ First the source and destination connections should be defined in CData. For gen
 
 ### Create source connection:
 
-    1. Define a new connection of type "CSV".
-    2. Set the URI to the path where the CSV files are stored.
+1. Define a new connection of type **CSV**.
+2. Set the URL to the path where the CSV files are stored.
 
 ![csvpath](images/csvfile.png)
 
@@ -23,20 +23,20 @@ The CSV file connection can be set either using a local file path or an online d
 
 In the "Advanced" page, you can find the `Data Formatting` section for the specified connection type. In this section, manual file formatting can be applied if needed.
 
-The file format can also be changed in the `FMT` button in `Data Formatting`. Even though the connection type is defined as the CSV connection, ".tsv" files can be used by changing the relevant file extension into ".csv" and "TabDelimited" option needs to be set for this file type.
+The file format can also be changed in the `FMT` button in `Data Formatting`. Even though the connection type is defined as the CSV connection, ".tsv" files will be used by changing the relevant file extension into ".csv" and "TabDelimited" option needs to be choosen in `FMT`.
 
 ### Create destination connection
 
-    1. Define a new connection of type "SQL Server".
-    2. Configure the settings to connect to your MS SQL staging database.
+1. Define a new connection of type **SQL Server**.
+2. Configure the settings to connect to your MS SQL staging database.
 ![sqlserver](images/sqlconnection.png)
 
 ### Create a job
 
-    1. Create a new job
-    2. Set the source connection to the CSV connection that was just created.
-    3. Set the destination connection to the MS SQL connection that was just created.
-    4. Press Add custom query, and enter the following query:
+1. Create a new job
+2. Set the source connection to the CSV connection that was just created.
+3. Set the destination connection to the MS SQL connection that was just created.
+4. Press Add custom query, and enter the following query:
 
 ```
 {
@@ -49,10 +49,10 @@ The file format can also be changed in the `FMT` button in `Data Formatting`. Ev
 }
 ```
 
-    5. In advance job settings, enter the `Destination Schema`:
+5. In advance job settings, enter the `Destination Schema`:
 ![destination](images/destinationschema.png)
 
-    6. Press Save changes.
+6. Press Save changes.
 
 **Note:** In the job settings, the column mappings will be set automatically. They don't have to be changed.
 
