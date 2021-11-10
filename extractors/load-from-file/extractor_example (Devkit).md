@@ -29,6 +29,7 @@ The file format can also be changed in the `FMT` button in `Data Formatting`. Ev
 
 1. Define a new connection of type **SQL Server**.
 2. Configure the settings to connect to your MS SQL staging database.
+
 ![sqlserver](images/sqlconnection.png)
 
 ### Create a job
@@ -50,6 +51,7 @@ The file format can also be changed in the `FMT` button in `Data Formatting`. Ev
 ```
 
 5. In advance job settings, enter the `Destination Schema`:
+
 ![destination](images/destinationschema.png)
 
 6. Press Save changes.
