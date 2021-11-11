@@ -12,20 +12,27 @@
     - [Source system](#Source-system)
     - [Process](#Process)
     - [Connector output & compatability](#Connector-output-&-compatability)
-- [Source system data](#Source-system-data)
-    - [Data availability](#Data-availability)
+- [Prerequisites](#Prerequisites)
+    - [Environmental settings](#Environmental_settings)
+    - [System specific settings](#System_specific_settings)
+- [Extraction](#Source-system-data)
     - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
     - [Input data](#Input-data)
+- [Connector design](#Connector_design)
     - [Entities](#Entities)
     - [Activities](#Activities)
     - [Output attribute mapping](#Output-attribute-mapping)
-- [Connector design flowchart](#Connector-design-flowchart)
+    - [Business data configuration](#Business_data_configuration)
+- [Connector design diagrams](#Connector_design_diagrams)
+    - [Connector design flowchart](#Connector-design-flowchart)
+    - [Entity relationship diagram](#Entity_relationship_diagram)
 - [Connector design details](#Connector-design-details)
 - [How to extend the connector](#How-to-extend-the-connector)
     - [Connector configuration](#Connector-configuration)
     - [Adding output attributes](#Adding-output-attributes)
     - [Adding activities](#Adding-activities)
     - [Adding entities](#Adding-entities)
+    - [Adding business data](#Adding_business_data)
 - [Limitations, known issues, common problems](#Limitations-known-issues-common-problems)
     - [Limitations](#Limitations)
     - [Known issues](#Known-issues)
@@ -43,9 +50,16 @@
 ### Connector output & compatability
 \<Refer to the data model and corresponding Process Mining application that this connector is compatible with and built for.>
 
-## Source system data
-### Data availability
-\<Many systems require certain options to be turned on for the system to start generating proper logs. Describe what is required on the source system side to use this connector. For example, should certain tables be used? Should certain fields be used in a specific way?>
+## Prerequisites
+\<Overview of all prerequisites to be met.>
+
+### Environmental settings
+\<Description of any environmental prerequisites, like server requirements, configuration needed in firewall to be able to use extractor or connector>
+
+### System specific settings
+\<Overview of all specific settings to be configured, additional modules to be installed, special access to be granted or specific ways to make use of the source system to start generating proper logs.
+
+## Extraction
 
 ### Data extraction & connection to source system
 \<Describe in detail the different ways in which data could/should be extracted from the source system.>
@@ -54,6 +68,8 @@
 \<List and describe each of the input tables required by the connector.>\
 \<For each input table, list and describe the fields to be extracted.>\
 \<List fields that can be used to filter input data.>
+
+## Connector design
 
 ### Entities
 \<If the connector output contains entities: for each entity, list which input data is used to create an entity.>
@@ -64,8 +80,16 @@
 ### Output attribute mapping
 \<For each output attribute, list which input data is used to create an attribute and briefly describe how the attribute values are computed. Also, for any attribute that is not part of the data model for which this connector is created, describe the attribute and its relevance.>
 
-## Connector design flowchart
+### Business data configuration
+\<In case the connector is created to output data for TemplateOne, give an overview how the input for the business data has to be configured (tags, due dates) and a definition of tags and due dates which are available out of the box.>
+
+## Connector design diagrams
+
+### Connector design flowchart
 \<Connector design flowchart that visually shows on a high level how the data 'flows' through the connector. At least include input and output tables.> 
+
+### Entity relationship diagram
+\<In case multiple entities are used and combined in the output give an entity relationship diagram.>
 
 ## Connector design details
 \<List and describe any relevant design details not yet covered in the other sections. If none exist, remove this section.>
@@ -83,12 +107,15 @@
 ### Adding entities
 \<Describe how to add entities to the connector.>
 
+### Adding business data
+\<Describe how to add business data (tags, due dates) to the connector. This section is only applicable if the connector outputs files for TemplateOne.>
+
 ## Limitations, known issues, common problems
 ### Limitations
 \<List all known limitations.>
 
 ### Known issues
-\<List all known limitations.>
+\<List all known issues.>
 
 ### Common problems
 \<List common problems and how to tackle them.>\
