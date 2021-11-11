@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Raw_purchase_order_approvals as (
     select * from {{ source(var("schema"), 'Raw_purchase_order_approvals') }}
 ),
@@ -14,3 +16,7 @@ Purchase_order_approvals_input as (
 )
 
 select * from Purchase_order_approvals_input
+
+{% if is_incremental() %}
+    where "Approved_at" > (select max("Approved_at") from {{ this }})
+{% endif %}

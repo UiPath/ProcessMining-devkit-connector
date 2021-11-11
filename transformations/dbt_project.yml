@@ -8,9 +8,9 @@ profile: 'devkit_connector'
 
 vars:
   # Set the used database. Supported options: "sqlserver", "snowflake".
-  database: "sqlserver"
+  database: "snowflake"
   # Name of the schema where the raw input data is stored.
-  schema: "devkit_connector"
+  schema: "dbt_incremental_models"
 
 # These configurations specify where dbt should look for different types of files.
 source-paths: ["models"]
