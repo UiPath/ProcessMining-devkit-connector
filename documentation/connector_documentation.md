@@ -15,7 +15,7 @@
 - [Prerequisites](#Prerequisites)
     - [Environmental settings](#Environmental_settings)
     - [System specific settings](#System_specific_settings)
-- [Extraction](#Source-system-data)
+- [Extraction](#Extraction)
     - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
     - [Input data](#Input-data)
 - [Connector design](#Connector_design)
@@ -54,7 +54,7 @@
 \<Overview of all prerequisites to be met.>
 
 ### Environmental settings
-\<Description of any environmental prerequisites, like server requirements, configuration needed in firewall to be able to use extractor or connector>
+\<Description of any environmental prerequisites, like server requirements and configuration needed in firewall to be able to use the extractor or connector.>
 
 ### System specific settings
 \<Overview of all specific settings to be configured, additional modules to be installed, special access to be granted or specific ways to make use of the source system to start generating proper logs.
