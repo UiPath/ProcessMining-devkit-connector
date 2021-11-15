@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Raw_change_log as (
     select * from {{ source(var("schema"), 'Raw_change_log') }}
 ),
@@ -17,3 +19,7 @@ Change_log_input as (
 )
 
 select * from Change_log_input
+
+{% if is_incremental() %}
+    where "Timestamp" > (select max("Timestamp") from {{ this }})
+{% endif %}

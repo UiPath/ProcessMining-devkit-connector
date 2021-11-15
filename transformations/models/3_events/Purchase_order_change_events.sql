@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
@@ -31,3 +33,7 @@ Purchase_order_change_events as (
 select * from Purchase_order_change_events
 -- Filter the records for which an activity is defined.
 where Purchase_order_change_events."Activity" is not NULL
+
+{% if is_incremental() %}
+    and "Event_end" > (select max("Event_end") from {{ this }})
+{% endif %}

@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
@@ -17,3 +19,7 @@ Purchase_order_create_events as (
 )
 
 select * from Purchase_order_create_events
+
+{% if is_incremental() %}
+    where "Event_end" > (select max("Event_end") from {{ this }})
+{% endif %}

@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Invoices as (
     select * from {{ ref('Invoices') }}
 ),
@@ -18,3 +20,7 @@ Invoice_create_events as (
 )
 
 select * from Invoice_create_events
+
+{% if is_incremental() %}
+    where "Event_end" > (select max("Event_end") from {{ this }})
+{% endif %}

@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 with Invoice_create_events as (
     select * from {{ ref('Invoice_create_events') }}
 ),
@@ -83,3 +85,7 @@ select *,
     -- An event ID is generated to join event properties to the event log.
     row_number() over (order by Events_all."Event_end") as "Event_ID"
 from Events_all
+
+{% if is_incremental() %}
+    where "Event_end" > (select max("Event_end") from {{ this }})
+{% endif %}
