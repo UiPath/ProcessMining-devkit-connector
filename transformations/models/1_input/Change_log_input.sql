@@ -1,7 +1,7 @@
 {{ config(materialized = 'incremental') }}
 
 with Raw_change_log as (
-    select * from {{ source(var("schema"), 'Raw_change_log') }}
+    select * from {{ source(var("schema"), 'Raw_change_log_110k') }}
 ),
 
 /* Transaction log describing changes on entities identified by the ID.

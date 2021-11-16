@@ -6,7 +6,7 @@ with Purchase_orders as (
 Change_log as (
     select * from {{ ref('Change_log') }}
     {% if is_incremental() %}
-        where "Timestamp" > (select max("Timestamp") from {{ this }})
+        where "Timestamp" > (select max("Event_end") from {{ this }})
     {% endif %}
 ),
 

@@ -3,7 +3,7 @@
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
     {% if is_incremental() %}
-        where "Created_at" > (select max("Created_at") from {{ this }})
+        where "Created_at" > (select max("Event_end") from {{ this }})
     {% endif %}
 ),
 

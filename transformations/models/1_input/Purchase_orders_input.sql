@@ -1,5 +1,5 @@
 with Raw_purchase_orders as (
-    select * from {{ source(var("schema"), 'Raw_purchase_orders') }}
+    select * from {{ source(var("schema"), 'Raw_purchase_orders_110k') }}
 ),
 
 /* Input table for the purchase order entity containing purchase order properties. */

@@ -2,9 +2,6 @@
 
 with Purchase_order_event_log_preprocessing as (
     select * from {{ ref('Purchase_order_event_log_preprocessing') }}
-    {% if is_incremental() %}
-        where "Event_end" > (select max("Event_end") from {{ this }})
-    {% endif %}
 ),
 Events_all as (
     select * from {{ ref('Events_all') }}

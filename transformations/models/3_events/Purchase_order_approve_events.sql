@@ -6,7 +6,7 @@ with Purchase_orders as (
 Purchase_order_approvals as (
     select * from {{ ref('Purchase_order_approvals') }}
     {% if is_incremental() %}
-        where "Approved_at" > (select max("Approved_at") from {{ this }})
+        where "Approved_at" > (select max("Event_end") from {{ this }})
     {% endif %}
 ),
 

@@ -1,7 +1,7 @@
 {{ config(materialized = 'incremental') }}
 
 with Raw_purchase_order_approvals as (
-    select * from {{ source(var("schema"), 'Raw_purchase_order_approvals') }}
+    select * from {{ source(var("schema"), 'Raw_purchase_order_approvals_110k') }}
 ),
 
 /* Transaction log of purchase order approvals.

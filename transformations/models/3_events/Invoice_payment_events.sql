@@ -3,7 +3,7 @@
 with Invoices as (
     select * from {{ ref('Invoices') }}
     {% if is_incremental() %}
-        where "Paid_at" > (select max("Paid_at") from {{ this }})
+        where "Paid_at" > (select max("Event_end") from {{ this }})
     {% endif %}
 ),
 
