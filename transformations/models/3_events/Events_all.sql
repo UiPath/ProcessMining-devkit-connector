@@ -96,7 +96,4 @@ Events_all as (
     from Purchase_order_create_events
 )
 
-select *,
-    -- An event ID is generated to join event properties to the event log.
-    row_number() over (order by Events_all."Event_end") as "Event_ID"
-from Events_all
+select * from Events_all

@@ -1,7 +1,10 @@
 {{ config(materialized = 'incremental') }}
 
 with Purchase_order_event_log as (
-    select * from {{ ref('Purchase_order_event_log') }}
+    select *,
+    -- An event ID is generated to define the due dates.
+    row_number() over (order by "Event_end") as "Event_ID"
+    from {{ ref('Purchase_order_event_log') }}
     {% if is_incremental() %}
         where "Event_end" > (select max("Event end") from {{ this }})
     {% endif %}

@@ -2,10 +2,10 @@ with Entity_relations as (
     select * from {{ ref('Entity_relations') }}
 ),
 Events_all as (
-    select * from {{ ref('Events_all') }}
-    {% if is_incremental() %}
-        where "Event_end" > (select max("Event_end") from {{ this }})
-    {% endif %}
+    select *,
+    -- An event ID is generated to join event properties to the event log.
+    row_number() over (order by "Event_end") as "Event_ID"
+    from {{ ref('Events_all') }}
 ),
 
 -- Supporting table to get the distinct purchase orders in the entity relation table.

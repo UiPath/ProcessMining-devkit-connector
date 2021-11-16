@@ -1,5 +1,8 @@
 with Purchase_order_event_log as (
-    select * from {{ ref('Purchase_order_event_log') }}
+    select *,
+    -- An event ID is generated to define the due dates.
+    row_number() over (order by "Event_end") as "Event_ID"
+    from {{ ref('Purchase_order_event_log') }}
 ),
 Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
