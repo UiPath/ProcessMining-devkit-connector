@@ -1,6 +1,7 @@
 # compiled code & logs
 target/
 logs/
+scripts/LogFile.log
 # dbt folders that are not used
 dbt_modules/
 snapshots/
