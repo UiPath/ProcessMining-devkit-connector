@@ -1,5 +1,6 @@
 @ECHO OFF
 SET directory=%~dp0
-SET scriptPath=%directory%extractor.ps1
+SET scriptPath=%directory%extraction.ps1
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '%scriptPath%'";
-PAUSE
+::Uncomment the following line to debug the extraction script
+::PAUSE
