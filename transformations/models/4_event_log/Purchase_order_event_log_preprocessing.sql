@@ -3,6 +3,9 @@ with Entity_relations as (
 ),
 Events_all as (
     select * from {{ ref('Events_all') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 
 -- Supporting table to get the distinct purchase orders in the entity relation table.

@@ -2,6 +2,9 @@
 
 with Invoices as (
     select * from {{ ref('Invoices') }}
+    {% if is_incremental() %}
+        where "Created_at" > (select max("Created_at") from {{ this }})
+    {% endif %}
 ),
 
 /* Create events are defined based on the creation timestamp on the entity table.
@@ -20,7 +23,3 @@ Invoice_create_events as (
 )
 
 select * from Invoice_create_events
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

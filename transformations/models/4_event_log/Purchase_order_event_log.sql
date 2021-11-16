@@ -2,9 +2,15 @@
 
 with Purchase_order_event_log_preprocessing as (
     select * from {{ ref('Purchase_order_event_log_preprocessing') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 Events_all as (
     select * from {{ ref('Events_all') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 
 /* Table containing a record for each event in the purchase order end to end event log. 
@@ -28,7 +34,3 @@ select *,
     -- An event ID is generated to define the due dates.
     row_number() over (order by Purchase_order_event_log."Event_end") as "Event_ID"
 from Purchase_order_event_log
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

@@ -5,6 +5,9 @@ with Purchase_orders as (
 ),
 Purchase_order_approvals as (
     select * from {{ ref('Purchase_order_approvals') }}
+    {% if is_incremental() %}
+        where "Approved_at" > (select max("Approved_at") from {{ this }})
+    {% endif %}
 ),
 
 /* Define the approval events for purchase orders that are available in the entity table. */
@@ -24,7 +27,3 @@ Purchase_order_approve_events as (
 )
 
 select * from Purchase_order_approve_events
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

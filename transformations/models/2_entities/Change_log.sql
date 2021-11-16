@@ -2,6 +2,9 @@
 
 with Change_log_input as (
     select * from {{ ref('Change_log_input') }}
+    {% if is_incremental() %}
+        where "Timestamp" > (select max("Timestamp") from {{ this }})
+    {% endif %}
 ),
 Users as (
     select * from {{ ref('Users') }}
@@ -26,7 +29,3 @@ Change_log as (
 )
 
 select * from Change_log
-
-{% if is_incremental() %}
-    where "Timestamp" > (select max("Timestamp") from {{ this }})
-{% endif %}

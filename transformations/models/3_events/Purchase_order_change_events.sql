@@ -5,6 +5,9 @@ with Purchase_orders as (
 ),
 Change_log as (
     select * from {{ ref('Change_log') }}
+    {% if is_incremental() %}
+        where "Timestamp" > (select max("Timestamp") from {{ this }})
+    {% endif %}
 ),
 
 /* Define the change events for purchase orders that are available in the entity table.
@@ -33,7 +36,3 @@ Purchase_order_change_events as (
 select * from Purchase_order_change_events
 -- Filter the records for which an activity is defined.
 where Purchase_order_change_events."Activity" is not NULL
-
-{% if is_incremental() %}
-    and "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

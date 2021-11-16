@@ -2,6 +2,9 @@
 
 with Invoices as (
     select * from {{ ref('Invoices') }}
+    {% if is_incremental() %}
+        where "Paid_at" > (select max("Paid_at") from {{ this }})
+    {% endif %}
 ),
 
 /* Payment events are defined based on the payment timestamp on the invoice entity table.
@@ -26,7 +29,3 @@ Invoice_payment_events as (
 )
 
 select * from Invoice_payment_events
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

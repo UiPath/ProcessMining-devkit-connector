@@ -2,6 +2,9 @@
 
 with Purchase_order_event_log as (
     select * from {{ ref('Purchase_order_event_log') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 
 -- The fields on this table should match the data model.
@@ -20,7 +23,3 @@ Events as (
 )
 
 select * from Events
-
-{% if is_incremental() %}
-    where "Event end" > (select max("Event end") from {{ this }})
-{% endif %}

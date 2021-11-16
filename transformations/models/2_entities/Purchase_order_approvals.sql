@@ -2,6 +2,9 @@
 
 with Purchase_order_approvals_input as (
     select * from {{ ref('Purchase_order_approvals_input') }}
+    {% if is_incremental() %}
+        where "Approved_at" > (select max("Approved_at") from {{ this }})
+    {% endif %}
 ),
 Users as (
     select * from {{ ref('Users') }}
@@ -24,7 +27,3 @@ Purchase_order_approvals as (
 )
 
 select * from Purchase_order_approvals
-
-{% if is_incremental() %}
-    where "Approved_at" > (select max("Approved_at") from {{ this }})
-{% endif %}

@@ -2,6 +2,9 @@
 
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
+    {% if is_incremental() %}
+        where "Created_at" > (select max("Created_at") from {{ this }})
+    {% endif %}
 ),
 
 /* Create events are defined based on the creation timestamp on the entity table.
@@ -19,7 +22,3 @@ Purchase_order_create_events as (
 )
 
 select * from Purchase_order_create_events
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}

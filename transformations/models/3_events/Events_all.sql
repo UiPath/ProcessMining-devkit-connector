@@ -2,18 +2,33 @@
 
 with Invoice_create_events as (
     select * from {{ ref('Invoice_create_events') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 Invoice_payment_events as (
     select * from {{ ref('Invoice_payment_events') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 Purchase_order_approve_events as (
     select * from {{ ref('Purchase_order_approve_events') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 Purchase_order_change_events as (
     select * from {{ ref('Purchase_order_change_events') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 Purchase_order_create_events as (
     select * from {{ ref('Purchase_order_create_events') }}
+    {% if is_incremental() %}
+        where "Event_end" > (select max("Event_end") from {{ this }})
+    {% endif %}
 ),
 
 /* Union all separate events table into one set of distinct events.
@@ -85,7 +100,3 @@ select *,
     -- An event ID is generated to join event properties to the event log.
     row_number() over (order by Events_all."Event_end") as "Event_ID"
 from Events_all
-
-{% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
-{% endif %}
