@@ -17,4 +17,4 @@ Use the following custom query when creating the job:
 }
 ```
 
-To run the extraction method, configure the `extraction.ps1` file and then execute the script `extraction.bat` under the scripts folder.
+To run the extraction method, configure and execute the `cdata-extraction.ps1` file that can be found in the scripts folder.
