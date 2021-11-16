@@ -22,5 +22,5 @@ Events as (
 select * from Events
 
 {% if is_incremental() %}
-    where "Event_end" > (select max("Event_end") from {{ this }})
+    where "Event end" > (select max("Event end") from {{ this }})
 {% endif %}
