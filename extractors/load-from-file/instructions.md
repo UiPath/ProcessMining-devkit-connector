@@ -1,6 +1,6 @@
 # Instructions
 
-See for instructions about the `load-from-file` extraction method the [UiPath documentation](link to extraction methods page). 
+See for instructions about the `load-from-file` extraction method the [UiPath documentation](https://docs.uipath.com/process-mining/v1/docs/extractors-1-0). 
 
 ## Configuration
 Input files for this connector can be found in the `data.zip` in the sample_data folder. These are tab delimited .csv files. To load them using the `load-from-file` extraction method, make sure to extract the .zip and configure the source connection in CData Sync to point to the location of the files.
