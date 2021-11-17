@@ -2,6 +2,9 @@
 
 with Raw_change_log as (
     select * from {{ source(var("schema"), 'Raw_change_log_110k') }}
+    {% if is_incremental() %}
+        where {{ to_timestamp('"Timestamp"') }} > (select max("Timestamp") from {{ this }})
+    {% endif %}
 ),
 
 /* Transaction log describing changes on entities identified by the ID.
@@ -19,7 +22,3 @@ Change_log_input as (
 )
 
 select * from Change_log_input
-
-{% if is_incremental() %}
-    where "Timestamp" > (select max("Timestamp") from {{ this }})
-{% endif %}
