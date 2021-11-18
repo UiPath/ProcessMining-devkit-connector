@@ -6,7 +6,7 @@ with Raw_purchase_order_approvals as (
 The approved purchase order is identified by the ID. */
 Purchase_order_approvals_input as (
     select
-        Raw_purchase_order_approvals."Approved_at",
+        {{ to_timestamp('Raw_purchase_order_approvals."Approved_at"') }} as "Approved_at",
         Raw_purchase_order_approvals."Approved_by",
         Raw_purchase_order_approvals."ID",
         Raw_purchase_order_approvals."Level"
