@@ -57,7 +57,7 @@
 ## Extraction
 
 ### Data extraction & connection to source system
-\<Describe in detail the different ways in which data could/should be extracted from the source system.>
+\<Describe in detail the different data extractors provided. Describe how to setup each extractor, which settings are available and how to connect to the source system. Also provide information how the different scripts provided should be used.>
 
 ### Input data
 \<List and describe each of the input tables required by the connector.>\
