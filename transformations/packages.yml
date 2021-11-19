@@ -1,0 +1,4 @@
+# Use git token method because pm-utils is a private repository.
+packages:
+  - git: "https://{{env_var('DBT_ENV_SECRET_GIT_CREDENTIAL')}}@github.com/UiPath-Process-Mining/pm-utils.git"
+    revision: main
