@@ -12,7 +12,7 @@ Invoice_payment_events as (
         Invoices."Paid_at" as "Event_end",
         -- Optional event attributes
         case
-            when {{ date_from_timestamp('Invoices."Paid_at"') }} <= Invoices."Payment_due_date"
+            when {{ pm_utils.date_from_timestamp('Invoices."Paid_at"') }} <= Invoices."Payment_due_date"
             then 'Payment on time'
             else 'Payment overdue'
         end as "Event_detail",

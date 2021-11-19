@@ -15,9 +15,9 @@ Multiple_databases_support as (
         {% endif %}
         as "Price_converted",
         -- With a macro the code is more readable.
-        {{ to_varchar('Invoices_input."Price"') }} as "Price_converted_with_macro",
+        {{ pm_utils.to_varchar('Invoices_input."Price"') }} as "Price_converted_with_macro",
         -- Timestamp based on only a date attribute.
-        {{ timestamp_from_date('Invoices_input."Payment_due_date"') }} as "Payment_due_date_timestamp"
+        {{ pm_utils.timestamp_from_date('Invoices_input."Payment_due_date"') }} as "Payment_due_date_timestamp"
     from Invoices_input
 )
 
