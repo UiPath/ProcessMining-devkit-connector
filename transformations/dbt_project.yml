@@ -11,6 +11,10 @@ vars:
   database: "sqlserver"
   # Name of the schema where the raw input data is stored.
   schema: "devkit_connector"
+  # Configuration to use pm-utils package.
+  date_format: 23 # sqlserver: 23, snowflake: 'YYYY-MM-DD'
+  time_format: 8 # sqlserver: 8, snowflake: 'hh24:mi:ss'
+  datetime_format: 20 # sqlserver: 20, snowflake: 'YYYY-MM-DD hh24:mi:ss.ff3'
 
 # These configurations specify where dbt should look for different types of files.
 source-paths: ["models"]
