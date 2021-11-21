@@ -2,6 +2,7 @@
 target/
 logs/
 scripts/LogFile.log
+scripts/response.txt
 # dbt folders that are not used
 dbt_modules/
 snapshots/
