@@ -1,5 +1,5 @@
 with Raw_users as (
-    select * from {{ source(var("schema"), 'Raw_users') }}
+    select * from {{ source(var("schema_sources"), 'Raw_users') }}
 ),
 
 /* Master data table containing information about users. 

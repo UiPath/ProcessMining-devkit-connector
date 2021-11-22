@@ -1,5 +1,5 @@
 with Raw_invoices as (
-    select * from {{ source(var("schema"), 'Raw_invoices') }}
+    select * from {{ source(var("schema_sources"), 'Raw_invoices') }}
 ),
 
 /* Input table for the invoices entity.

@@ -1,5 +1,5 @@
 with Raw_purchase_order_approvals as (
-    select * from {{ source(var("schema"), 'Raw_purchase_order_approvals') }}
+    select * from {{ source(var("schema_sources"), 'Raw_purchase_order_approvals') }}
 ),
 
 /* Transaction log of purchase order approvals.

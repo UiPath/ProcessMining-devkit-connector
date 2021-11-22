@@ -1,5 +1,5 @@
 with Raw_purchase_orders_status as (
-    select * from {{ source(var("schema"), 'Raw_purchase_orders_status') }}
+    select * from {{ source(var("schema_sources"), 'Raw_purchase_orders_status') }}
 ),
 
 /* Status information related to the purchase order entity. */
