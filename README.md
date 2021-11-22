@@ -29,18 +29,16 @@ The raw input data is split over six .csv files and can be found in the `sample_
 
 ### Folder structure
 The example dbt project contains the following:
-- `macros\`: generic functions that can be used in transformations.
-    - `tests\`: functions to test the transformations.
+
 - `models\`: the transformations of the example project in the advised structure of a connector.
     - `Frequently_used_transforms.sql`: example query with frequently used transformations.
     - `Multiple_databases_support.sql`: example query to illustrate multiple databases support.
 - `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project.
+- `packages.yml`: lists the packages used in this dbt project. The example project uses the pm-utils package and can be installed by running the command `dbt deps`.
 - `profiles.yml`: contains the configuration to connect to your database.
 
 ### Tests
-The example project includes tests to validate the transformations. The implemented tests can be found in the `models\schema` folder. Some tests are offered out of the box by dbt and others are implemented in macros. Some useful test macros can be found in the `macros\tests` folder.
-
-The tests are implemented in such a way that they can run on a SQL Server database and on a Snowflake database. 
+The example project includes tests to validate the transformations. The implemented tests can be found in the `models\schema` folder. Some tests are offered out of the box by dbt and others are from the pm-utils package. 
 
 ### Multiple databases support
-For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of the variable `database` in the `dbt_project.yml` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions can be found in the `macros` folder.
+For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of the variable `database` in the `dbt_project.yml` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions are implemented in the pm-utils package.
