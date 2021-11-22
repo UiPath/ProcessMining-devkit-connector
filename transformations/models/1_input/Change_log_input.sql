@@ -1,5 +1,5 @@
 with Raw_change_log as (
-    select * from {{ source(var("schema"), 'Raw_change_log') }}
+    select * from {{ source(var("schema_sources"), 'Raw_change_log') }}
 ),
 
 /* Transaction log describing changes on entities identified by the ID.
