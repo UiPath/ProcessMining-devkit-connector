@@ -12,12 +12,13 @@ $LogMessage = "$Stamp $LogString"
 Add-content $LogFile -value $LogMessage
 }
 
-<# Create a log file in the relative directory of the script if it is not already existent.#>
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+<# Create a log file in the relative directory of the script if it is not already existent. #>
+$scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
-
 try
 {
+    <# Wait for 1 second for the instance to have time to write the previous files#>
+    Start-Sleep -s 1
     if (!(Test-Path "$Logfile"))
     {
        New-Item -name $Logfile -type "file"
