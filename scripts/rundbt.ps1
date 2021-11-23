@@ -15,10 +15,7 @@ function Response-Append
 {
 Param ([string]$responseFile)
 try
-    {
-        <# Wait for 1 second for the instance to have time to write the file #>
-        Start-Sleep -s 1
-        
+    {   
         $responseText=Get-Content -Path ($responseFile)
         if($responseText -ne $null)
         {
@@ -40,6 +37,8 @@ $scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
 try
 {
+    <# Wait for 1 second for the instance to have time to write the previous files#>
+    Start-Sleep -s 1
     if (!(Test-Path "$Logfile"))
     {
        New-Item -name $Logfile -type "file"
@@ -49,10 +48,18 @@ catch
 {
     echo "Log file not found. Creating it."
 }
-
+New-Item $responseFile -ItemType file
 try
 {
     Write-Log ("dbt run START")
+    if ((Test-Path "$responseFile"))
+    {
+        Clear-Content $responseFile
+    }
+    else
+    {
+        New-Item -name $responseFile -type "file"
+    }
     cmd /c "cd /d `"$venvDir\Scripts`" & activate & cd /d `"$Env:DBT_PROFILES_DIR\$appName`" & dbt run -m Sales_order_items_base 1> `"$responseFile`" 2>&1"
 }
 catch
@@ -78,6 +85,14 @@ else
 try
 {
     Write-Log ("dbt test START")
+    if ((Test-Path "$responseFile"))
+    {
+        Clear-Content $responseFile
+    }
+    else
+    {
+        New-Item -name $responseFile -type "file"
+    }
     cmd /c "cd /d `"$venvDir\Scripts`" & activate & cd /d `"$Env:DBT_PROFILES_DIR\$appName`" & dbt test -m Sales_order_items_base 1> `"$responseFile`" 2>&1"
 }
 catch
