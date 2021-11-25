@@ -17,8 +17,6 @@ $scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
 try
 {
-    <# Wait for 1 second for the instance to have time to write the previous files#>
-    Start-Sleep -s 1
     if (!(Test-Path "$Logfile"))
     {
        New-Item -name $Logfile -type "file"
@@ -47,8 +45,15 @@ catch
     return -2
 }
 
-$successfulExtraction = $false<# Insert your logic here to check the status of the extraction #>
-foreach($element in $json.value){    if($element.Status -eq "SUCCESS" -And $element.Result -eq $null)    {        $successfulExtraction = $true    }}
+$successfulExtraction = $false
+<# Insert your logic here to check the status of the extraction #>
+foreach($element in $json.value)
+{
+    if($element.Status -eq "SUCCESS" -And $element.Result -eq $null)
+    {
+        $successfulExtraction = $true
+    }
+}
 
 <# If the extraction is successful #>
 if($successfulExtraction -eq $true)
