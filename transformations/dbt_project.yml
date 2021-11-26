@@ -7,16 +7,14 @@ config-version: 2
 profile: 'devkit_connector'
 
 vars:
-  # Set the used database. Supported options: "sqlserver", "snowflake".
-  database: "sqlserver"
    # Name of the schema where the raw input data is stored.
   schema_sources: "devkit_connector"
   # Name of the schema where the transformations run.
   schema: "devkit_connector"
   # Configuration to use pm-utils package.
-  date_format: 23 # sqlserver: 23, snowflake: 'YYYY-MM-DD'
-  time_format: 8 # sqlserver: 8, snowflake: 'hh24:mi:ss'
-  datetime_format: 20 # sqlserver: 20, snowflake: 'YYYY-MM-DD hh24:mi:ss.ff3'
+  date_format: 23 # SQL Server: 23, Snowflake: 'YYYY-MM-DD'
+  time_format: 8 # SQL Server: 8, Snowflake: 'hh24:mi:ss'
+  datetime_format: 20 # SQL Server: 20, Snowflake: 'YYYY-MM-DD hh24:mi:ss.ff3'
 
 # These configurations specify where dbt should look for different types of files.
 source-paths: ["models"]
