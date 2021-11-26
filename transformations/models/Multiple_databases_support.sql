@@ -8,9 +8,9 @@ Multiple_databases_support as (
         -- Convert one data type to another. For example, from double to string.
         -- Snowflake: to_varchar()
         -- SQL server: convert()
-        {% if var("database") == 'snowflake' %}
+        {% if target.type == 'snowflake' %}
             to_varchar(Invoices_input."Price")
-        {% elif var("database") == 'sqlserver' %}
+        {% elif target.type == 'sqlserver' %}
             convert(nvarchar(50), Invoices_input."Price")
         {% endif %}
         as "Price_converted",
