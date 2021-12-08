@@ -4,8 +4,8 @@ $eDir = $scriptDir
 $tDir = $scriptDir
 
 <# Extractor #>
-$extractionReturnCode = PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $eDir\extraction.ps1"
-Write-Host "extraction.ps1 exited with exit code $extractionReturnCode"
+$extractionReturnCode = PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $eDir\extract_cdata.ps1"
+Write-Host "extract_cdata.ps1 exited with exit code $extractionReturnCode"
 
 <# Proceed only if extractor returns 0 or stop if above returns anything else #>
 if($extractionReturnCode -ne 0)
@@ -14,8 +14,8 @@ if($extractionReturnCode -ne 0)
 }
 
 <# Transform #>
-$transformReturnCode = PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $tDir\rundbt.ps1"
-Write-Host "rundbt.ps1 exited with exit code $transformReturnCode"
+$transformReturnCode = PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $tDir\transform.ps1"
+Write-Host "transform.ps1 exited with exit code $transformReturnCode"
 
 <# Proceed only if transform returns 0 or stop if above returns anything else #>
 if($transformReturnCode -ne 0)
