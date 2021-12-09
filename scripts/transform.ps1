@@ -62,17 +62,6 @@ Param ([string]$cmdType)
 $scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
 $responseFile=$scriptDir + "\response.txt"
-try
-{
-    if (!(Test-Path "$Logfile"))
-    {
-       New-Item -name $Logfile -type "file"
-    }
-}
-catch
-{
-    echo "Log file not found. Creating it."
-}
 
 Execute-dbt("run")
 Execute-dbt("test")
