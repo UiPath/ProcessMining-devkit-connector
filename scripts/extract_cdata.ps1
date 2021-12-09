@@ -15,17 +15,6 @@ Add-content $LogFile -value $LogMessage
 <# Create a log file in the relative directory of the script if it is not already existent. #>
 $scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
-try
-{
-    if (!(Test-Path "$Logfile"))
-    {
-       New-Item -name $Logfile -type "file"
-    }
-}
-catch
-{
-    echo "Log file not found. Creating it."
-}
 
 $params = @{"JobName"=$job;
  "ExecutionType"="Run";
