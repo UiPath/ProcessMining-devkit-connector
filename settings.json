@@ -1,6 +1,5 @@
 {
     "name": "Devkit connector",
     "app": "TemplateOne",
-    "framework-version": "1.0",
-    "extractor": "load-from-file"
+    "framework-version": "1.0"
   }
