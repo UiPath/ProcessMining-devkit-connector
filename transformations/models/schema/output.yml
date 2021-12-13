@@ -15,11 +15,9 @@ models:
           - unique
           - pm_utils.exists
       - name: '"Case value"'
-        # The price should be of type double.
+        # The case value should be of type double.
         tests:
-          - pm_utils.type_double:
-              table: "'Cases'"
-              column: "'Case value'"
+          - pm_utils.type_double
 
   - name: Events
     # Test whether the combination of mandatory event attributes are unique.
@@ -27,9 +25,9 @@ models:
     tests:
       - pm_utils.unique_combination_of_columns:
           combination_of_columns:
-            - '"Case ID"'
-            - '"Activity"'
-            - '"Event end"'
+            - 'Case ID'
+            - 'Activity'
+            - 'Event end'
           severity: 'warn'
     columns:
       - name: '"Case ID"'
@@ -47,7 +45,4 @@ models:
         tests:
           - not_null
           - pm_utils.exists
-          - pm_utils.type_timestamp:
-              table: "'Events'"
-              column: "'Event end'"
-      
+          - pm_utils.type_timestamp
