@@ -9,8 +9,6 @@ profile: 'devkit_connector'
 vars:
    # Name of the schema where the raw input data is stored.
   schema_sources: "devkit_connector"
-  # Name of the schema where the transformations run.
-  schema: "devkit_connector"
   # Configuration to use pm-utils package.
   date_format: 23 # SQL Server: 23, Snowflake: 'YYYY-MM-DD'
   time_format: 8 # SQL Server: 8, Snowflake: 'hh24:mi:ss'
