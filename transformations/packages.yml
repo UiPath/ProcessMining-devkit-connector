@@ -1,4 +1,4 @@
 # The revision is set to main until the first release of pm-utils is available.
 packages:
   - git: "https://github.com/UiPath-Process-Mining/pm-utils.git"
-    revision: main
+    revision: v0.1.0
