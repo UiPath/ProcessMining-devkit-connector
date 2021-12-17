@@ -1,7 +1,7 @@
 # Devkit connector
 The devkit connector describes the standardized format of UiPath Process Mining connectors that are developed with [dbt](https://docs.getdbt.com/). Use this template to quick start the development of a new connector. Before developing a new connector, please read the [dbt introduction](https://docs.getdbt.com/docs/introduction/).
 
-A UiPath Process Mining connector is part of the Connector & App Framework. For information about the framework, see the [UiPath documentation](https://docs.uipath.com/process-mining/v1/docs/connector-and-app-framework-10). Here you can also find information about what is expected from a UiPath Process Mining connector and how to work with dbt.
+A UiPath Process Mining connector is part of the Connector & App Framework. For information about the framework, see the [UiPath documentation](https://docs.uipath.com/process-mining/v0/docs/connector-and-app-framework). Here you can also find information about what is expected from a UiPath Process Mining connector and how to work with dbt.
 
 ## Repository structure
 The repository contains the following:
