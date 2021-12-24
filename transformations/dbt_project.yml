@@ -1,6 +1,6 @@
 # Name and version of this dbt project.
 name: 'devkit_connector'
-version: 'v0.1.0'
+version: 'v0.1.1'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
@@ -15,7 +15,7 @@ vars:
   datetime_format: 20 # SQL Server: 20, Snowflake: 'YYYY-MM-DD hh24:mi:ss.ff3'
 
 # These configurations specify where dbt should look for different types of files.
-source-paths: ["models"]
+model-paths: ["models"]
 macro-paths: ["macros"]
 
 # Directory which will store compiled SQL files and will be removed by 'dbt clean'.
