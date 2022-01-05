@@ -3,8 +3,9 @@ target/
 logs/
 scripts/LogFile.log
 scripts/response.txt
+# package folder
+dbt_packages/
 # dbt folders that are not used
-dbt_modules/
 snapshots/
 analysis/
 data/
