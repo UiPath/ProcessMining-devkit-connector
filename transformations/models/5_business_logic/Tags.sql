@@ -35,7 +35,7 @@ Min_and_max_event_ends as (
 A subset of the purchase order table has a specific tag.
 Define the subsets with the where statement.
 Union for all tags the subsets of the purchase order table together. */
-Tags as (
+Tags_preprocessing as (
     -- Invoice price differs from order price
     select
         Purchase_orders."Purchase_order_ID",
@@ -59,6 +59,14 @@ Tags as (
         'Throughput time more than 10 days' as "Tag"
     from Min_and_max_event_ends
     where datediff(day, Min_and_max_event_ends."Min_event_end", Min_and_max_event_ends."Max_event_end") > 10
+),
+
+-- The fields on this table should match the data model.
+Tags as (
+    select
+        Tags_preprocessing."Purchase_order_ID" as "Case ID",
+        Tags_preprocessing."Tag"
+    from Tags_preprocessing
 )
 
 select * from Tags

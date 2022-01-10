@@ -10,7 +10,7 @@ Invoices as (
 
 /* Table containing the due dates for the purchase order event log.
 The implemented due date is the 'Payment due date' related to the 'Pay invoice' event. */
-Due_dates as (
+Due_dates_preprocessing as (
     select
         Purchase_order_event_log."Event_ID",
         'Payment due date' as "Due_date",
@@ -24,6 +24,16 @@ Due_dates as (
     left join Invoices
         on Purchase_orders."Purchase_order_ID" = Invoices."Purchase_order_ID"
     where Purchase_order_event_log."Activity" = 'Pay invoice'
+),
+
+-- The fields on this table should match the data model.
+Due_dates as (
+    select
+        Due_dates_preprocessing."Event_ID" as "Event ID",
+        Due_dates_preprocessing."Due_date" as "Due date",
+        Due_dates_preprocessing."Actual_date" as "Actual date",
+        Due_dates_preprocessing."Expected_date" as "Expected date"
+    from Due_dates_preprocessing
 )
 
 select * from Due_dates
