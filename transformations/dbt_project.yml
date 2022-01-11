@@ -1,6 +1,7 @@
 # Name and version of this dbt project.
 name: 'devkit_connector'
 version: '0.1.1'
+require-dbt-version: [">=1.0.0", "<2.0.0"]
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
