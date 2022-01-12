@@ -1,7 +1,13 @@
 <# Configure the variables for the extraction #>
-$URL='YOUR_CDATA_SERVER_URL'
-$authtoken='YOUR_AUTHENTICATION_TOKEN'
-$job='YOUR_JOB'
+$URL= $Env:CDATA_SERVER_URL
+$authtoken= $Env:CDATA_AUTH_TOKEN
+
+<# Create a log file in the relative directory of the script if it is not already existent. #>
+$scriptDir = $PSScriptRoot
+$Logfile = $scriptDir + "\LogFile.log"
+
+$SettingsObject = Get-Content -Path $scriptDir\config.json | ConvertFrom-Json
+$job= $SettingsObject.job1
 
 <# Custom function for appending text to a file #>
 function Write-Log
@@ -12,9 +18,7 @@ $LogMessage = "$Stamp $LogString"
 Add-content $LogFile -value $LogMessage
 }
 
-<# Create a log file in the relative directory of the script if it is not already existent. #>
-$scriptDir = $PSScriptRoot
-$Logfile = $scriptDir + "\LogFile.log"
+
 
 $params = @{"JobName"=$job;
  "ExecutionType"="Run";
