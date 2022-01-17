@@ -3,7 +3,7 @@ target/
 logs/
 scripts/LogFile.log
 scripts/response.txt
-scripts/config.json
+scripts/config_local.json
 # package folder
 dbt_packages/
 # dbt folders that are not used
