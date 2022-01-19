@@ -3,7 +3,7 @@ with Purchase_order_event_log as (
 ),
 
 -- The fields on this table should match the data model.
-Events as (
+Event_log_base as (
     select
         -- Mandatory
         Purchase_order_event_log."Purchase_order_ID" as "Case ID",
@@ -17,4 +17,4 @@ Events as (
     from Purchase_order_event_log
 )
 
-select * from Events
+select * from Event_log_base
