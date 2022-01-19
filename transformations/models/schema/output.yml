@@ -19,7 +19,7 @@ models:
         tests:
           - pm_utils.type_double
 
-  - name: Events
+  - name: Event_log_base
     # Test whether the combination of mandatory event attributes are unique.
     # They do not have to be unique, so indicate this test as a warning.
     tests:
