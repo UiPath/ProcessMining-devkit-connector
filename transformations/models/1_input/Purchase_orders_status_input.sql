@@ -1,13 +1,13 @@
-with Raw_purchase_orders_status as (
-    select * from {{ source(var("schema_sources"), 'Raw_purchase_orders_status') }}
+with Purchase_order_statuses_raw as (
+    select * from {{ source(var("schema_sources"), 'Purchase_order_statuses_raw') }}
 ),
 
 /* Status information related to the purchase order entity. */
 Purchase_orders_status_input as (
     select
-        Raw_purchase_orders_status."ID",
-        Raw_purchase_orders_status."Status"
-    from Raw_purchase_orders_status
+        Purchase_order_statuses_raw."ID",
+        Purchase_order_statuses_raw."Status"
+    from Purchase_order_statuses_raw
 )
 
 select * from Purchase_orders_status_input
