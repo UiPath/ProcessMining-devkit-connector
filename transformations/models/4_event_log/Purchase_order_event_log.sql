@@ -1,8 +1,8 @@
 with Purchase_order_event_log_preprocessing as (
     select * from {{ ref('Purchase_order_event_log_preprocessing') }}
 ),
-Events_all as (
-    select * from {{ ref('Events_all') }}
+Events_base as (
+    select * from {{ ref('Events_base') }}
 ),
 
 /* Table containing a record for each event in the purchase order end to end event log. 
@@ -11,15 +11,15 @@ Purchase_order_event_log as (
     select
         -- Mandatory event attributes
         Purchase_order_event_log_preprocessing."Purchase_order_ID",
-        Events_all."Activity",
-        Events_all."Event_end",
+        Events_base."Activity",
+        Events_base."Event_end",
         -- Optional event attributes
-        Events_all."Event_detail",
-        Events_all."Team",
-        Events_all."User"
+        Events_base."Event_detail",
+        Events_base."Team",
+        Events_base."User"
     from Purchase_order_event_log_preprocessing
-    inner join Events_all
-        on Purchase_order_event_log_preprocessing."Event_ID" = Events_all."Event_ID"
+    inner join Events_base
+        on Purchase_order_event_log_preprocessing."Event_ID" = Events_base."Event_ID"
 )
 
 select *,

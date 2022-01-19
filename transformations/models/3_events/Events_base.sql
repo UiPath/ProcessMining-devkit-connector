@@ -17,7 +17,7 @@ Purchase_order_create_events as (
 /* Union all separate events table into one set of distinct events.
 This events table is used as a base for the event log.
 The columns on each of the events tables should be exactly the same to union them. */
-Events_all as (
+Events_base as (
     select
         -- Mandatory event attributes
         Invoice_create_events."Activity",
@@ -81,5 +81,5 @@ Events_all as (
 
 select *,
     -- An event ID is generated to join event properties to the event log.
-    row_number() over (order by Events_all."Event_end") as "Event_ID"
-from Events_all
+    row_number() over (order by Events_base."Event_end") as "Event_ID"
+from Events_base
