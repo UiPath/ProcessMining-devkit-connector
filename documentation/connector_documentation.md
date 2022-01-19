@@ -83,9 +83,9 @@
 
 | KPI | Description |
 | :---: | :---: |
-| Automation rate| count(events, filter(records, Automated)  / count(events))|
+| Automation rate| (Number of events filtered by Automated records / Total number of events) |
 
-\<Add a disclaimer: Not all the KPIs are available out of box, they need to be added to app to make use of them.>
+\<Add a disclaimer: Not all the KPIs are available out of box, they need to be added to app.>
 
 ## Connector design diagrams
 
