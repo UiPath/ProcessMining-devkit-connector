@@ -10,9 +10,9 @@ sources:
       schema: true
       identifier: true
     tables:
-      - name: Raw_change_log
-      - name: Raw_invoices
-      - name: Raw_purchase_order_approvals
-      - name: Raw_purchase_orders_status
-      - name: Raw_purchase_orders
-      - name: Raw_users
+      - name: Change_log_raw
+      - name: Invoices_raw
+      - name: Purchase_order_approvals_raw
+      - name: Purchase_order_statuses_raw
+      - name: Purchase_orders_raw
+      - name: Users_raw
