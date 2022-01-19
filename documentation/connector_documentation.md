@@ -78,6 +78,15 @@
 ### Business data configuration
 \<In case the connector is created to output data for TemplateOne, give an overview how the input for the business data has to be configured (tags, due dates) and a definition of tags and due dates which are available out of the box.>
 
+### KPIs
+\<For each attribute, list the KPIs that can be used based on the data that is provided for TemplateOne. Also provide the related definition.>
+
+| KPI | Description |
+| :---: | :---: |
+| Automation rate| count(events, filter(records, Automated)  / count(events))|
+
+\<Add a disclaimer: Not all the KPIs are available out of box, they need to be added to app to make use of them.>
+
 ## Connector design diagrams
 
 ### Connector design flowchart
