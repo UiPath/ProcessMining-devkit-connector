@@ -3,7 +3,7 @@ with Purchase_orders as (
 ),
 
 -- The fields on this table should match the data model.
-Cases as (
+Cases_base as (
     select
         -- Mandatory
         Purchase_orders."Purchase_order_ID" as "Case ID",
@@ -13,4 +13,5 @@ Cases as (
     from Purchase_orders
 )
 
-select * from Cases
+select * from Cases_base
+

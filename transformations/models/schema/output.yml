@@ -2,7 +2,7 @@ version: 2
 
 # Output tests cover the output tables that match the defined data model.
 models:
-  - name: Cases
+  - name: Cases_base
     # Test whether the output table has an equal number of records as the input table.
     tests:
       - pm_utils.equal_rowcount:
