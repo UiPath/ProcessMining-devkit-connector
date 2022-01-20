@@ -1,24 +1,7 @@
 version: 2
 
-# Output tests cover the output tables that match the defined data model.
+# Events tests cover that Event_log_base matches the defined data model.
 models:
-  - name: Cases_base
-    # Test whether the output table has an equal number of records as the input table.
-    tests:
-      - pm_utils.equal_rowcount:
-          compare_model: 'Purchase_orders_input'
-    columns:
-      - name: '"Case ID"'
-        # The ID should be not null, unique, and exist in the output.
-        tests:
-          - not_null
-          - unique
-          - pm_utils.exists
-      - name: '"Case value"'
-        # The case value should be of type double.
-        tests:
-          - pm_utils.type_double
-
   - name: Event_log_base
     # Test whether the combination of mandatory event attributes are unique.
     # They do not have to be unique, so indicate this test as a warning.
