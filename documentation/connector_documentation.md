@@ -18,6 +18,7 @@
     - [Activities](#Activities)
     - [Output attribute mapping](#Output-attribute-mapping)
     - [Business data configuration](#Business_data_configuration)
+    - [KPIs](#KPIs)
 - [Connector design diagrams](#Connector_design_diagrams)
     - [Connector design flowchart](#Connector-design-flowchart)
     - [Entity relationship diagram](#Entity_relationship_diagram)
@@ -83,7 +84,7 @@
 
 | KPI | Description |
 | :---: | :---: |
-| Automation rate| (Number of events filtered by Automated records / Total number of events) |
+| Automation rate| (Number of events where Automated equals `TRUE` / Total number of events) |
 
 \<Add a disclaimer: Not all the KPIs are available out of box, they need to be added to app.>
 
