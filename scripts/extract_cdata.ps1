@@ -7,7 +7,7 @@ $scriptDir = $PSScriptRoot
 $Logfile = $scriptDir + "\LogFile.log"
 
 $SettingsObject = Get-Content -Path $scriptDir\config.json | ConvertFrom-Json
-$job= $SettingsObject.job1
+$job= $SettingsObject.job
 
 <# Custom function for appending text to a file #>
 function Write-Log
