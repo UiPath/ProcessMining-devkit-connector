@@ -6,10 +6,10 @@ with Purchase_orders as (
 Cases_base as (
     select
         -- Mandatory
-        Purchase_orders."Purchase_order_ID" as "Case ID",
+        Purchase_orders."Purchase_order_ID" as "Case_ID",
         -- Optional
-        Purchase_orders."Status" as "Case status",
-        Purchase_orders."Price" as "Case value"
+        Purchase_orders."Status" as "Case_status",
+        Purchase_orders."Price" as "Case_value"
     from Purchase_orders
 )
 
