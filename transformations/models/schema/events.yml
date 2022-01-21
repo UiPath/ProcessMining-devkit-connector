@@ -8,12 +8,12 @@ models:
     tests:
       - pm_utils.unique_combination_of_columns:
           combination_of_columns:
-            - 'Case ID'
+            - 'Case_ID'
             - 'Activity'
-            - 'Event end'
+            - 'Event_end'
           severity: 'warn'
     columns:
-      - name: '"Case ID"'
+      - name: '"Case_ID"'
         # The ID should be not null and exist in the output. Uniqueness is not required at the event log table.
         tests:
           - not_null
@@ -23,7 +23,7 @@ models:
         tests:
           - not_null
           - pm_utils.exists
-      - name: '"Event end"'
+      - name: '"Event_end"'
         # The event end should be not null and exist in the output and of type timestamp.
         tests:
           - not_null

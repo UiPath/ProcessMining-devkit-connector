@@ -8,13 +8,13 @@ models:
       - pm_utils.equal_rowcount:
           compare_model: 'Purchase_orders_input'
     columns:
-      - name: '"Case ID"'
+      - name: '"Case_ID"'
         # The ID should be not null, unique, and exist in the output.
         tests:
           - not_null
           - unique
           - pm_utils.exists
-      - name: '"Case value"'
+      - name: '"Case_value"'
         # The case value should be of type double.
         tests:
           - pm_utils.type_double
