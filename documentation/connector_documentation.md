@@ -35,7 +35,7 @@
     - [Common problems](#Common-problems)
 
 ## General solution description
-\<High level solution description> 
+\<High level solution description>
 
 ### Source system
 \<Describe the source system for which this connector was built. Include technical details such as version compatibility.>
@@ -43,7 +43,7 @@
 ### Process
 \<High level description of the process for which this connector was built. >
 
-### Connector output & compatability
+### Connector output & compatibility
 \<Refer to the data model and corresponding Process Mining application that this connector is compatible with and built for.>
 
 ## Prerequisites
@@ -80,13 +80,13 @@
 \<In case the connector is created to output data for TemplateOne, give an overview how the input for the business data has to be configured (tags, due dates) and a definition of tags and due dates which are available out of the box.>
 
 ### KPIs
-\<For each attribute, list the KPIs that can be used based on the data that is provided for TemplateOne. Also provide the related definition.>
+\<This section is only needed for TemplateOne connectors. List the KPIs that can be calculated based on the data that is provided for TemplateOne. Also provide the related definition.>
 
 | KPI | Description |
 | :---: | :---: |
 | Automation rate| (Number of events where Automated equals `TRUE` / Total number of events) |
 
-\<Add a disclaimer: Not all the KPIs are available out of box, they need to be added to app.>
+\<Add a disclaimer: Not all KPIs are available in TemplateOne out of the box, they might have to be added to app.>
 
 ## Connector design diagrams
 
