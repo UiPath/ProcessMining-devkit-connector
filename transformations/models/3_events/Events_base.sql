@@ -81,5 +81,5 @@ Events_base as (
 
 select *,
     -- An event ID is generated to join event properties to the event log.
-    row_number() over (order by Events_base."Event_end") as "Event_ID"
+    row_number() over (order by Events_base."Event_end") as "Event_ID_internal"
 from Events_base
