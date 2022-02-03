@@ -13,16 +13,16 @@
 - [Extraction](#Extraction)
     - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
     - [Input data](#Input-data)
-- [Connector design](#Connector_design)
+- [Connector transformation design](#Connector_transformation_design)
     - [Entities](#Entities)
     - [Activities](#Activities)
     - [Output attribute mapping](#Output-attribute-mapping)
     - [Business data configuration](#Business_data_configuration)
     - [KPIs](#KPIs)
-- [Connector design diagrams](#Connector_design_diagrams)
-    - [Connector design flowchart](#Connector-design-flowchart)
+- [Connector transformation design diagrams](#Connector_transformation_design_diagrams)
+    - [Connector transformation design flowchart](#Connector-transformation-design-flowchart)
     - [Entity relationship diagram](#Entity_relationship_diagram)
-- [Connector design details](#Connector-design-details)
+- [Connector transformation design details](#Connector-transformation-design-details)
 - [How to extend the connector](#How-to-extend-the-connector)
     - [Connector configuration](#Connector-configuration)
     - [Adding output attributes](#Adding-output-attributes)
@@ -65,10 +65,10 @@
 \<For each input table, list and describe the fields to be extracted.>\
 \<List fields that can be used to filter input data.>
 
-## Connector design
+## Connector transformation design
 
 ### Entities
-\<If the connector output contains entities: for each entity, list which input data is used to create an entity.>
+\<If the connector transformations output contains entities: for each entity, list which input data is used to create an entity.>
 
 ### Activities
 \<For each activity, list which input data is used to create an activity. Also, provide a brief description of each activity and its relevance.>
@@ -88,15 +88,15 @@
 
 \<Add a disclaimer: Not all KPIs are available in TemplateOne out of the box, they might have to be added to app.>
 
-## Connector design diagrams
+## Connector transformation design diagrams
 
-### Connector design flowchart
+### Connector transformation design flowchart
 \<Connector design flowchart that visually shows on a high level how the data 'flows' through the connector. At least include input and output tables.> 
 
 ### Entity relationship diagram
 \<In case multiple entities are used and combined in the output give an entity relationship diagram.>
 
-## Connector design details
+## Connector transformation design details
 \<List and describe any relevant design details not yet covered in the other sections. If none exist, remove this section.>
 
 ## How to extend the connector
