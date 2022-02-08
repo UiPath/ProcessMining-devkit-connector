@@ -30,6 +30,7 @@ The raw input data is split over six .csv files and can be found in the `sample_
 ### Folder structure
 The example dbt project contains the following:
 
+- `macros\`: functions to use in the dbt project that are not included in the pm-utils package.
 - `models\`: the transformations of the example project in the advised structure of a connector.
     - `Frequently_used_transforms.sql`: example query with frequently used transformations.
     - `Multiple_databases_support.sql`: example query to illustrate multiple databases support.
