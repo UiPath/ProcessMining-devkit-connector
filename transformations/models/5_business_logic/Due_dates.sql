@@ -9,13 +9,15 @@ Invoices as (
 ),
 
 /* Table containing the due dates for the purchase order event log.
-The implemented due date is the 'Payment due date' related to the 'Pay invoice' event. */
-Due_dates_preprocessing as (
+The implemented due date is the 'Payment due date' related to the 'Pay invoice' event.
+The fields on this table should match the data model. */
+Due_dates as (
     select
         Purchase_order_event_log."Event_ID",
         'Payment due date' as "Due_date",
         Purchase_order_event_log."Event_end" as "Actual_date",
-        Invoices."Payment_due_date" as "Expected_date"
+        Invoices."Payment_due_date" as "Expected_date",
+        {{ datediff('millisecond', 'Invoices."Payment_due_date"', 'Purchase_order_event_log."Event_end"') }} as "Days_late"
     from Purchase_order_event_log
     -- Get the payment due date from the invoices table.
     -- Invoice information can be made available on this table via the purchase order ID of the event.
@@ -24,16 +26,6 @@ Due_dates_preprocessing as (
     left join Invoices
         on Purchase_orders."Purchase_order_ID" = Invoices."Purchase_order_ID"
     where Purchase_order_event_log."Activity" = 'Pay invoice'
-),
-
--- The fields on this table should match the data model.
-Due_dates as (
-    select
-        Due_dates_preprocessing."Event_ID",
-        Due_dates_preprocessing."Due_date",
-        Due_dates_preprocessing."Actual_date",
-        Due_dates_preprocessing."Expected_date"
-    from Due_dates_preprocessing
 )
 
 select * from Due_dates
