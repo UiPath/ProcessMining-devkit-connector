@@ -64,6 +64,7 @@ Tags_preprocessing as (
 -- The fields on this table should match the data model.
 Tags as (
     select
+        row_number() over (order by Tags_preprocessing."Purchase_order_ID") as "Tag_ID",
         Tags_preprocessing."Purchase_order_ID" as "Case_ID",
         Tags_preprocessing."Tag"
     from Tags_preprocessing
