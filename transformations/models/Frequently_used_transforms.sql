@@ -14,7 +14,7 @@ Frequently_used_transforms as (
         -- Case statement: based on the price, define whether the invoice is high value or low value.
         case
             when Invoices_input."Price" > 100
-            then 'High value invoice'
+                then 'High value invoice'
             else 'Low value invoice'
         end as "Invoice_type",
         -- Get first non-null value: when there is no payment timestamp, give it the value 'No payment'.
@@ -26,8 +26,8 @@ Frequently_used_transforms as (
         right(Invoices_input."Creator", len(Invoices_input."Creator") - charindex('-', Invoices_input."Creator")) as "User_number",
         -- Assign boolean values: boolean values are best stored as 0 and 1. Indicate with 0 and 1 whether the payment is done.
         case
-            when Invoices_input."Paid_at" is NULL
-            then 0
+            when Invoices_input."Paid_at" is null
+                then 0
             else 1
         end as "Payment_done"
     from Invoices_input

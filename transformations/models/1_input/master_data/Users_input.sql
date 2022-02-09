@@ -2,7 +2,7 @@ with Users_raw as (
     select * from {{ source(var("schema_sources"), 'Users_raw') }}
 ),
 
-/* Master data table containing information about users. 
+/* Master data table containing information about users.
 The user is identified by the ID. */
 Users_input as (
     select
