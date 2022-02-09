@@ -1,6 +1,7 @@
 with Invoices as (
     select * from {{ ref('Invoices') }}
 ),
+
 Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),

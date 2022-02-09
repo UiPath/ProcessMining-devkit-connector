@@ -1,6 +1,7 @@
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
+
 Change_log as (
     select * from {{ ref('Change_log') }}
 ),
@@ -13,9 +14,9 @@ Purchase_order_change_events as (
         Purchase_orders."Purchase_order_ID",
         case
             when Change_log."Field" = 'Price'
-            then 'Change order price'
+                then 'Change order price'
             when Change_log."Field" = 'Status' and Change_log."New_value" = 'Ordered'
-            then 'Execute order'
+                then 'Execute order'
         end as "Activity",
         Change_log."Timestamp" as "Event_end",
         -- Optional event attributes
@@ -30,4 +31,4 @@ Purchase_order_change_events as (
 
 select * from Purchase_order_change_events
 -- Filter the records for which an activity is defined.
-where Purchase_order_change_events."Activity" is not NULL
+where Purchase_order_change_events."Activity" is not null

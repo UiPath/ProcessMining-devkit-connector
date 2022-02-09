@@ -1,14 +1,14 @@
 with Entity_relations as (
     select * from {{ ref('Entity_relations') }}
 ),
+
 Events_base as (
     select * from {{ ref('Events_base') }}
 ),
 
 -- Supporting table to get the distinct purchase orders in the entity relation table.
 Entity_relations_distinct_purchase_orders as (
-    select
-        Entity_relations."Purchase_order_ID"
+    select Entity_relations."Purchase_order_ID"
     from Entity_relations
     group by Entity_relations."Purchase_order_ID"
 ),
@@ -42,7 +42,7 @@ Purchase_order_event_log_preprocessing as (
         on Events_base."Invoice_ID" = Entity_relations_distinct_invoices."Invoice_ID"
 ),
 
-/* Table containing a record for each event in the purchase order end to end event log. 
+/* Table containing a record for each event in the purchase order end to end event log.
 Based on the event ID the event attributes are added to the event log. */
 Purchase_order_event_log as (
     select
@@ -59,7 +59,8 @@ Purchase_order_event_log as (
         on Purchase_order_event_log_preprocessing."Event_ID_internal" = Events_base."Event_ID_internal"
 )
 
-select *,
+select
+    *,
     -- An event ID is generated to define the due dates.
     row_number() over (order by Purchase_order_event_log."Event_end") as "Event_ID"
 from Purchase_order_event_log

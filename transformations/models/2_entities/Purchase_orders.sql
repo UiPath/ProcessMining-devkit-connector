@@ -1,9 +1,11 @@
 with Purchase_orders_input as (
     select * from {{ ref('Purchase_orders_input') }}
 ),
+
 Purchase_orders_status as (
     select * from {{ ref('Purchase_orders_status') }}
 ),
+
 Users as (
     select * from {{ ref('Users') }}
 ),

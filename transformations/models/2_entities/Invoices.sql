@@ -1,6 +1,7 @@
 with Invoices_input as (
     select * from {{ ref('Invoices_input') }}
 ),
+
 Users as (
     select * from {{ ref('Users') }}
 ),

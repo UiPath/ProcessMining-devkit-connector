@@ -1,20 +1,22 @@
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
+
 Invoices as (
     select * from {{ ref('Invoices') }}
 ),
+
 Purchase_order_event_log as (
     select * from {{ ref('Purchase_order_event_log') }}
 ),
 
 -- Preprocessing tables with supporting information to define tags.
 Execute_order_events as (
-    select
-        Purchase_order_event_log."Purchase_order_ID"
+    select Purchase_order_event_log."Purchase_order_ID"
     from Purchase_order_event_log
     where Purchase_order_event_log."Activity" = 'Execute order'
 ),
+
 Approve_order_level_2_events as (
     select
         Purchase_order_event_log."Purchase_order_ID",
@@ -22,6 +24,7 @@ Approve_order_level_2_events as (
     from Purchase_order_event_log
     where Purchase_order_event_log."Activity" = 'Approve order level 2'
 ),
+
 Min_and_max_event_ends as (
     select
         Purchase_order_event_log."Purchase_order_ID",
@@ -52,10 +55,11 @@ Tags_preprocessing as (
     from Execute_order_events
     left join Approve_order_level_2_events
         on Execute_order_events."Purchase_order_ID" = Approve_order_level_2_events."Purchase_order_ID"
-    where Approve_order_level_2_events."Purchase_order_ID" is NULL
+    where Approve_order_level_2_events."Purchase_order_ID" is null
     -- Throughput time more than 10 days
     union all
-    select Min_and_max_event_ends."Purchase_order_ID",
+    select
+        Min_and_max_event_ends."Purchase_order_ID",
         'Throughput time more than 10 days' as "Tag"
     from Min_and_max_event_ends
     where datediff(day, Min_and_max_event_ends."Min_event_end", Min_and_max_event_ends."Max_event_end") > 10

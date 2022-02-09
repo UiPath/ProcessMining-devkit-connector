@@ -1,6 +1,7 @@
 with Change_log_input as (
     select * from {{ ref('Change_log_input') }}
 ),
+
 Users as (
     select * from {{ ref('Users') }}
 ),

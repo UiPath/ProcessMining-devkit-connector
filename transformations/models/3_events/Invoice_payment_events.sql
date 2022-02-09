@@ -13,14 +13,14 @@ Invoice_payment_events as (
         -- Optional event attributes
         case
             when {{ pm_utils.date_from_timestamp('Invoices."Paid_at"') }} <= Invoices."Payment_due_date"
-            then 'Payment on time'
+                then 'Payment on time'
             else 'Payment overdue'
         end as "Event_detail",
         Invoices."Creator",
         Invoices."Team"
     from Invoices
     -- Filter the records that have a payment timestamp.
-    where Invoices."Paid_at" is not NULL
+    where Invoices."Paid_at" is not null
 )
 
 select * from Invoice_payment_events
