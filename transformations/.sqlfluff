@@ -1,0 +1,31 @@
+# The SQLfluff linter will on default use the configuration as presented in:
+# https://docs.sqlfluff.com/en/stable/configuration.html#default-configuration
+# The following settings override the settings defined in the default settings. 
+[sqlfluff]
+templater = dbt
+# It is not possible to check for multiple dialects simultaneously.
+# Since we create macros for sqlserver and snowflake we can choose any of the dialects.
+dialect = snowflake
+# The following rules are not applicable to our coding style.
+exclude_rules = L014, L016, L031, L034, L043, L059, L061
+
+# The following sqlfluff rules follow the standard but are repeated for transparancy.
+[sqlfluff:rules]
+indent_unit = space
+tab_space_size = 4
+comma_style = trailing
+capitalisation_policy = lower
+
+[sqlfluff:rules:L013]
+# Column aliasing
+allow_scalar = False
+
+[sqlfluff:rules:L028]
+# References must be consistently used
+# Disabled for some dialects (e.g. bigquery)
+force_enable = False
+single_table_references = qualified
+
+[sqlfluff:rules:L054]
+# GROUP BY/ORDER BY column references
+group_by_and_order_by_style = explicit
