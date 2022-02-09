@@ -1,6 +1,7 @@
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
+
 Purchase_order_approvals as (
     select * from {{ ref('Purchase_order_approvals') }}
 ),

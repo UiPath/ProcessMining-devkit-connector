@@ -14,4 +14,3 @@ Cases_base as (
 )
 
 select * from Cases_base
-

@@ -1,9 +1,11 @@
 with Purchase_order_event_log as (
     select * from {{ ref('Purchase_order_event_log') }}
 ),
+
 Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
+
 Invoices as (
     select * from {{ ref('Invoices') }}
 ),

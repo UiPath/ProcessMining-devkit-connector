@@ -1,6 +1,7 @@
 with Purchase_order_approvals_input as (
     select * from {{ ref('Purchase_order_approvals_input') }}
 ),
+
 Users as (
     select * from {{ ref('Users') }}
 ),
