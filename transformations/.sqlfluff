@@ -4,8 +4,8 @@
 [sqlfluff]
 templater = dbt
 # It is not possible to check for multiple dialects simultaneously.
-# Since we create macros for sqlserver and snowflake we can choose any of the dialects.
-dialect = snowflake
+# Therefore T-SQL (SQL Server) is kept as leading dialect.
+dialect = tsql
 # The following rules are not applicable to our coding style.
 exclude_rules = L014, L016, L031, L034, L043, L059, L061
 
