@@ -46,7 +46,7 @@ Tags_preprocessing as (
     from Purchase_orders
     left join Invoices
         on Purchase_orders."Purchase_order_ID" = Invoices."Purchase_order_ID"
-    where Purchase_orders."Price" <> Invoices."Price"
+    where Purchase_orders."Price" != Invoices."Price"
     union all
     -- Order executed without approval
     select
