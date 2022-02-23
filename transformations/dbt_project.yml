@@ -18,6 +18,7 @@ vars:
 # These configurations specify where dbt should look for different types of files.
 model-paths: ["models"]
 macro-paths: ["macros"]
+seed-paths: ["seeds"]
 
 # Directory which will store compiled SQL files and will be removed by 'dbt clean'.
 target-path: "target"
@@ -33,3 +34,7 @@ quoting:
   database: true
   schema: true
   identifier: true
+
+# Quoting is enabled for columns in the seeds files.
+seeds:
+  quote_columns: true 
