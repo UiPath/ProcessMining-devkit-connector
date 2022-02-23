@@ -63,5 +63,4 @@ $Logfile = $scriptDir + "\LogFile.log"
 $responseFile=$scriptDir + "\response.txt"
 
 Execute-dbt("deps")
-Execute-dbt("run")
-Execute-dbt("test")
+Execute-dbt("build")
