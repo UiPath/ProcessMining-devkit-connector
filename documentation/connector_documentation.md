@@ -13,6 +13,7 @@
 - [Extraction](#Extraction)
     - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
     - [Input data](#Input-data)
+- [Connector configuration](#Connector-configuration)
 - [Connector transformation design](#Connector_transformation_design)
     - [Entities](#Entities)
     - [Activities](#Activities)
@@ -24,7 +25,6 @@
     - [Entity relationship diagram](#Entity_relationship_diagram)
 - [Connector transformation design details](#Connector-transformation-design-details)
 - [How to extend the connector](#How-to-extend-the-connector)
-    - [Connector configuration](#Connector-configuration)
     - [Adding output attributes](#Adding-output-attributes)
     - [Adding activities](#Adding-activities)
     - [Adding entities](#Adding-entities)
@@ -65,6 +65,9 @@
 \<For each input table, list and describe the fields to be extracted.>\
 \<List fields that can be used to filter input data.>
 
+## Connector configuration
+\<Describe which configuration options the connector provides out of the box. Describe where and how these settings should be defined.>
+
 ## Connector transformation design
 
 ### Entities
@@ -100,9 +103,6 @@
 \<List and describe any relevant design details not yet covered in the other sections. If none exist, remove this section.>
 
 ## How to extend the connector
-### Connector configuration
-\<Describe which configuration options the connector provides out of the box. Describe where and how these settings should be defined.>
-
 ### Adding output attributes
 \<Describe how to add output attributes to the connector.>
 
