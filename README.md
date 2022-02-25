@@ -30,13 +30,16 @@ The raw input data is split over six .csv files and can be found in the `sample_
 ### Folder structure
 The example dbt project contains the following:
 
-- `macros\`: functions to use in the dbt project that are not included in the pm-utils package.
+- `macros\`: functions to use in the dbt project that are not included in the [pm-utils package](https://github.com/UiPath/ProcessMining-pm-utils).
 - `models\`: the transformations of the example project in the advised structure of a connector.
     - `Frequently_used_transforms.sql`: example query with frequently used transformations.
     - `Multiple_databases_support.sql`: example query to illustrate multiple databases support.
+- `seeds\`: .csv files containing a mapping for static data, such as automation estimates.
 - `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project.
 - `packages.yml`: lists the packages used in this dbt project. The example project uses the pm-utils package and can be installed by running the command `dbt deps`.
 - `profiles.yml`: contains the configuration to connect to your database.
+
+The files `.sqlfluff` and `.sqlfluffignore` contain configuration on the SQL linter [SQLFluff](https://docs.sqlfluff.com/en/stable/), which checks the SQL on style guidelines.
 
 ### Tests
 The example project includes tests to validate the transformations. The implemented tests can be found in the `models\schema` folder. Some tests are offered out of the box by dbt and others are from the pm-utils package. 
