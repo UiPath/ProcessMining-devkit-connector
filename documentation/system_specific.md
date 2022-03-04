@@ -40,6 +40,16 @@
 ### Connector transformation design flowchart
 \<Connector design flowchart that visually shows on a high level how the data 'flows' through the connector. At least include input and output tables.> 
 
+## How to extend the connector
+### Adding output attributes
+\<Describe how to add output attributes to the connector.>
+
+### Adding activities
+\<Describe how to add activities to the connector.>
+
+### Adding business data
+\<Describe how to add business data (tags, due dates) to the connector. This section is only applicable if the connector outputs files for TemplateOne.>
+
 ## Limitations, known issues, common problems
 ### Limitations
 \<List all known limitations.>
