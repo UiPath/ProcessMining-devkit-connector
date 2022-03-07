@@ -1,5 +1,35 @@
-## General system description
-\<High level system description.>
+# \<Connector title>
+
+[REMOVE THIS: The intended audience of this documentation is a developer persona that intends to use/deploy this connector. Please keep this in mind when writing this documentation.]
+
+## Table of contents
+- [General solution description](#General-solution-description)
+    - [Source system](#Source-system)
+- [Prerequisites](#Prerequisites)
+    - [Environmental settings](#Environmental_settings)
+    - [System specific settings](#System_specific_settings)
+- [Extraction](#Extraction)
+    - [Data extraction & connection to source system](#Data-extraction-&-connection-to-source-system)
+    - [Input data](#Input-data)
+- [Connector configuration](#Connector-configuration)
+- [Connector transformation design](#Connector_transformation_design)
+    - [Entities](#Entities)
+    - [Activities](#Activities)
+    - [Output attribute mapping](#Output-attribute-mapping)
+- [Connector transformation design diagrams](#Connector_transformation_design_diagrams)
+    - [Connector transformation design flowchart](#Connector-transformation-design-flowchart)
+- [Connector transformation design details](#Connector-transformation-design-details)
+- [How to extend the connector](#How-to-extend-the-connector)
+    - [Adding output attributes](#Adding-output-attributes)
+    - [Adding activities](#Adding-activities)
+    - [Adding business data](#Adding_business_data)
+- [Limitations, known issues, common problems](#Limitations-known-issues-common-problems)
+    - [Limitations](#Limitations)
+    - [Known issues](#Known-issues)
+    - [Common problems](#Common-problems)
+
+## General solution description
+\<High level solution description.>
 
 ### Source system
 \<Describe the source system for which this connector was built. Include technical details such as version compatibility.>
