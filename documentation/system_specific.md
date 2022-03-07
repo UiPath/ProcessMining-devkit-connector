@@ -46,7 +46,7 @@
 ## Extraction
 
 ### Data extraction & connection to source system
-\<Refer to the documentation provided in the `extractor` folder for each extraction method. Same information provided in this folder should not be repeated. Also provide information how the different scripts provided should be used. >
+\<Only refer to the detailed documentation provided in the `extractor` folder for each extraction method.>
 
 ### Input data
 \<List and describe each of the input tables required by the connector.>\
@@ -70,7 +70,11 @@
 ### Connector transformation design flowchart
 \<Connector design flowchart that visually shows on a high level how the data 'flows' through the connector. At least include input and output tables.> 
 
+## Connector transformation design details
+\<List and describe any relevant design details not yet covered in the other sections. If none exist, remove this section.>
+
 ## How to extend the connector
+
 ### Adding output attributes
 \<Describe how to add output attributes to the connector.>
 

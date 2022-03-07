@@ -9,6 +9,7 @@
     - [Business data configuration](#Business_data_configuration)
     - [KPIs](#KPIs)
     - [Entity relationship diagram](#Entity_relationship_diagram)
+- [Design details](#Design_details)
 
 ## General solution description
 \<High level solution description.>
@@ -32,3 +33,6 @@
 
 ### Entity relationship diagram
 \<In case multiple entities are used and combined in the output give an entity relationship diagram.>
+
+## Design details
+\<List and describe any relevant design details for the related process not yet covered in the other sections. If none exist, remove this section.>
