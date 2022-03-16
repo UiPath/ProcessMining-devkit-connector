@@ -45,6 +45,7 @@
 ### Input data
 \<List and describe each of the input tables required by the connector.>\
 \<For each input table, list and describe the fields to be extracted.>\
+\<For each field, list the name, description, and data type.>\
 \<List fields that can be used to filter input data.>
 
 ## Connector configuration
@@ -70,10 +71,10 @@
 ## How to extend the connector
 
 ### Adding attributes
-\<Describe how to add attributes to the connector.>
+\<Describe steps that are specific to this connector when adding attributes.>
 
 ### Adding activities
-\<Describe how to add activities to the connector.>
+\<Describe steps that are specific to this connector when adding activities.>
 
 ## Limitations, known issues, common problems
 
