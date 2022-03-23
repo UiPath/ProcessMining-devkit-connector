@@ -2,6 +2,7 @@
 $scriptDir = $PSScriptRoot
 $eDir = $scriptDir
 $tDir = $scriptDir
+$lDir = $scriptDir
 
 <# Extractor #>
 $extractionReturnCode = PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $eDir\extract_cdata.ps1"
@@ -22,3 +23,6 @@ if($transformReturnCode -ne 0)
 {
     return $transformReturnCode
 }
+
+<# Load #>
+PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $lDir\load.ps1"
