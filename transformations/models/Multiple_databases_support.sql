@@ -16,8 +16,8 @@ Multiple_databases_support as (
         as "Price_converted",
         -- With a macro the code is more readable.
         {{ pm_utils.to_varchar('Invoices_input."Price"') }} as "Price_converted_with_macro",
-        -- Timestamp based on only a date attribute.
-        {{ pm_utils.timestamp_from_date('Invoices_input."Payment_due_date"') }} as "Payment_due_date_timestamp"
+        -- Implement your own macro when a macro is not available in pm-utils.
+        {{ concatenate_currency('Invoices_input."Price"', 'dollar') }} as "Price_with_currency"
     from Invoices_input
 )
 
