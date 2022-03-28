@@ -62,7 +62,7 @@ Tags_preprocessing as (
         Min_and_max_event_ends."Purchase_order_ID",
         'Throughput time more than 10 days' as "Tag"
     from Min_and_max_event_ends
-    where {{ datediff('day', 'Min_and_max_event_ends."Min_event_end"', 'Min_and_max_event_ends."Max_event_end"') }} > 10
+    where {{ pm_utils.datediff('day', 'Min_and_max_event_ends."Min_event_end"', 'Min_and_max_event_ends."Max_event_end"') }} > 10
 ),
 
 -- The fields on this table should match the data model.

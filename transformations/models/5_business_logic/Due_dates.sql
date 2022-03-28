@@ -19,7 +19,7 @@ Due_dates as (
         'Payment due date' as "Due_date",
         Purchase_order_event_log."Event_end" as "Actual_date",
         Invoices."Payment_due_date" as "Expected_date",
-        {{ datediff('millisecond', 'Invoices."Payment_due_date"', 'Purchase_order_event_log."Event_end"') }} as "Days_late"
+        {{ pm_utils.datediff('millisecond', 'Invoices."Payment_due_date"', 'Purchase_order_event_log."Event_end"') }} as "Days_late"
     from Purchase_order_event_log
     -- Get the payment due date from the invoices table.
     -- Invoice information can be made available on this table via the purchase order ID of the event.
