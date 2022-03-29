@@ -24,11 +24,11 @@ Frequently_used_transforms as (
         {{ pm_utils.timestamp_from_date('Invoices_input."Payment_due_date"') }} as "Payment_due_date_timestamp",
         -- Trim part of a value: get the user number, which is at the right from the '-' character.
         right(Invoices_input."Creator", len(Invoices_input."Creator") - charindex('-', Invoices_input."Creator")) as "User_number",
-        -- Assign boolean values: boolean values are best stored as 0 and 1. Indicate with 0 and 1 whether the payment is done.
+        -- Assign boolean values: indicate whether the payment is done.
         case
             when Invoices_input."Paid_at" is null
-                then 0
-            else 1
+                then {{ pm_utils.to_boolean('false') }}
+            else {{ pm_utils.to_boolean('true') }}
         end as "Payment_done"
     from Invoices_input
 )
