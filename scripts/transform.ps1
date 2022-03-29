@@ -64,3 +64,6 @@ $responseFile=$scriptDir + "\response.txt"
 
 Execute-dbt("deps")
 Execute-dbt("build")
+
+<# At this point dbt deps and dbt build are executed succesfully, so return 0. #>
+return 0
