@@ -1,4 +1,4 @@
-<# Configure if the extraction or transform scripts are in different locations #>
+<# Configure if the scripts are in different locations #>
 $scriptDir = $PSScriptRoot
 $eDir = $scriptDir
 $tDir = $scriptDir
@@ -26,3 +26,4 @@ if($transformReturnCode -ne 0)
 
 <# Load #>
 PowerShell -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& $lDir\load.ps1"
+Write-Host "load.ps1 executed"
