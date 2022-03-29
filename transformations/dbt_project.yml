@@ -7,13 +7,10 @@ config-version: 2
 # This setting configures which "profile" dbt uses for this project.
 profile: 'devkit_connector'
 
+# Configuration of variables that are used in this dbt project.
 vars:
    # Name of the schema where the raw input data is stored.
   schema_sources: "devkit_connector"
-  # Configuration to use pm-utils package.
-  date_format: 23 # SQL Server: 23, Snowflake: 'YYYY-MM-DD'
-  time_format: 8 # SQL Server: 8, Snowflake: 'hh24:mi:ss'
-  datetime_format: 20 # SQL Server: 20, Snowflake: 'YYYY-MM-DD hh24:mi:ss.ff3'
 
 # These configurations specify where dbt should look for different types of files.
 model-paths: ["models"]
