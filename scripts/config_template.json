@@ -1,4 +1,4 @@
 {
     "job": "JOB_NAME_CREATED_IN_CDATA",
-    "environment": "ENVIRONMENT"
+    "pm_environment": "PROCESS_MINING_ENVIRONMENT"
 }

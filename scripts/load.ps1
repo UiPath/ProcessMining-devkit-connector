@@ -15,7 +15,7 @@ Add-content $LogFile -value $LogMessage
 $PM_installation= $Env:PM_INSTALLATION  
   
 $SettingsObject = Get-Content -Path "$scriptDir\config.json" | ConvertFrom-Json
-$environment= $SettingsObject.environment
+$environment= $SettingsObject.pm_environment
 
 <# Execute the cache generation #>
 Write-log ("Start cache generation")
