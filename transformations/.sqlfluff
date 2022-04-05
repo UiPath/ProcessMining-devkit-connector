@@ -7,7 +7,7 @@ templater = dbt
 # Therefore T-SQL (SQL Server) is kept as leading dialect.
 dialect = tsql
 # The following rules are not applicable to our coding style.
-exclude_rules = L014, L016, L031, L034, L043, L059
+exclude_rules = L014, L016, L031, L034, L036, L043, L059
 
 # The following sqlfluff rules follow the standard but are repeated for transparancy.
 [sqlfluff:rules]
