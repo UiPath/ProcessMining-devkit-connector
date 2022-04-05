@@ -43,10 +43,11 @@ Purchase_order_event_log_preprocessing as (
 ),
 
 /* Table containing a record for each event in the purchase order end to end event log.
-Based on the event ID the event attributes are added to the event log. */
+Based on the internal event ID the event attributes are added to the event log. */
 Purchase_order_event_log as (
     select
         -- Mandatory event attributes
+        row_number() over (order by Events_base."Event_end") as "Event_ID",
         Purchase_order_event_log_preprocessing."Purchase_order_ID",
         Events_base."Activity",
         Events_base."Event_end",
@@ -59,8 +60,4 @@ Purchase_order_event_log as (
         on Purchase_order_event_log_preprocessing."Event_ID_internal" = Events_base."Event_ID_internal"
 )
 
-select
-    *,
-    -- An event ID is generated to define the due dates.
-    row_number() over (order by Purchase_order_event_log."Event_end") as "Event_ID"
-from Purchase_order_event_log
+select * from Purchase_order_event_log
