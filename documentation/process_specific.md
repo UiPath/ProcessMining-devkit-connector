@@ -5,9 +5,9 @@
 ## Table of contents
 - [Process](#Process)
     - [Description](#Description)
-    - [Entity relationship diagram](#Entity_relationship_diagram)
-- [Business logic design](#Business_logic_design)
-    - [Business data configuration](#Business_data_configuration)
+    - [Entity relationship diagram](#Entity-relationship-diagram)
+- [Business logic design](#Business-logic-design)
+    - [Business data configuration](#Business-data-configuration)
     - [KPIs](#KPIs)
 
 ## Process
