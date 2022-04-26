@@ -24,7 +24,7 @@ The devkit connector contains a simple procurement example on how to write trans
 The entities that are involved in this process are *purchase orders* and *invoices*. A purchase order is created in the system after which it needs two approvals before it can be executed. Once the invoice for the order is received, the invoice is entered into the system. The invoice contains the price, the payment due date, and the payment timestamp. Until the payment is done, the payment timestamp on the invoice is empty. Once the payment is done, the payment timestamp is updated.
 
 ### Data model
-The goal of every connector is to transform raw input data into a data model for process mining. The data model describes the tables and attributes of the output which can be used by a specific process mining app. This example project transforms the input data to the [TemplateOne data model](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone-10) in which the purchase orders function as the cases.
+The goal of every connector is to transform raw input data into a data model for process mining. The data model describes the tables and fields of the output which can be used by a specific process mining app. This example project transforms the input data to the [TemplateOne data model](https://docs.uipath.com/process-mining/docs/input-tables-of-templateone-10) in which the purchase orders function as the cases.
 
 The raw input data is split over six .csv files and can be found in the `sample_data` folder. Import the files in your database to run the transformations on this sample data. See the comments in the transformations on how the raw input data is transformed to the data model.
 

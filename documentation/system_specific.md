@@ -14,11 +14,11 @@
 - [Connector transformation design](#Connector-transformation-design)
     - [Entities](#Entities)
     - [Activities](#Activities)
-    - [Attributes](#Attributes)
+    - [Fields](#Fields)
     - [Design flowchart](#Design-flowchart)
     - [Design details](#Design-details)
 - [How to extend the connector](#How-to-extend-the-connector)
-    - [Adding attributes](#Adding-attributes)
+    - [Adding fields](#Adding-fields)
     - [Adding activities](#Adding-activities)
 - [Limitations, known issues, common problems](#Limitations-known-issues-common-problems)
     - [Limitations](#Limitations)
@@ -59,8 +59,8 @@
 ### Activities
 \<For each activity, list which input data is used to create an activity. Also, provide a brief description of each activity and its relevance.>
 
-### Attributes
-\<Describe the available attributes for entities and events, list which input data is used to create the attribute and briefly describe how the attribute values are computed. Also, for any attribute that is not part of the data model for which this connector is created, describe the attribute and its relevance.>
+### Fields
+\<Describe the available fields for entities and events, list which input data is used to create the field and briefly describe how the field values are computed. Also, for any field that is not part of the data model for which this connector is created, describe the field and its relevance.>
 
 ### Design flowchart
 \<Connector design flowchart that visually shows on a high level how the data 'flows' through the connector.>
@@ -70,8 +70,8 @@
 
 ## How to extend the connector
 
-### Adding attributes
-\<Describe steps that are specific to this connector when adding attributes.>
+### Adding fields
+\<Describe steps that are specific to this connector when adding fields.>
 
 ### Adding activities
 \<Describe steps that are specific to this connector when adding activities.>
