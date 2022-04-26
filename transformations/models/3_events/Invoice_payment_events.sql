@@ -6,11 +6,11 @@ with Invoices as (
 Only define events for the invoices that are already paid. */
 Invoice_payment_events as (
     select
-        -- Mandatory event attributes
+        -- Mandatory event fields
         Invoices."Invoice_ID",
         'Pay invoice' as "Activity",
         Invoices."Paid_at" as "Event_end",
-        -- Optional event attributes
+        -- Optional event fields
         case
             when {{ pm_utils.date_from_timestamp('Invoices."Paid_at"') }} <= Invoices."Payment_due_date"
                 then 'Payment on time'
