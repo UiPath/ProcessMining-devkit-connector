@@ -6,11 +6,11 @@ with Invoices as (
 Every entity has exactly one create event. */
 Invoice_create_events as (
     select
-        -- Mandatory event attributes
+        -- Mandatory event fields
         Invoices."Invoice_ID",
         'Enter invoice' as "Activity",
         Invoices."Created_at" as "Event_end",
-        -- Optional event attributes
+        -- Optional event fields
         Invoices."Creator",
         concat('Invoice price ', Invoices."Price") as "Event_detail",
         Invoices."Team"

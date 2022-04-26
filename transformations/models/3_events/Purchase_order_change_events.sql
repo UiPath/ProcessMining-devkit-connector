@@ -10,7 +10,7 @@ Change_log as (
 The activity name is based on the field that is changed and on the old and new value. */
 Purchase_order_change_events as (
     select
-        -- Mandatory event attributes
+        -- Mandatory event fields
         Purchase_orders."Purchase_order_ID",
         case
             when Change_log."Field" = 'Price'
@@ -19,7 +19,7 @@ Purchase_order_change_events as (
                 then 'Execute order'
         end as "Activity",
         Change_log."Timestamp" as "Event_end",
-        -- Optional event attributes
+        -- Optional event fields
         concat('Change from ', Change_log."Old_value", ' to ', Change_log."New_value") as "Event_detail",
         Change_log."Team",
         Change_log."User"

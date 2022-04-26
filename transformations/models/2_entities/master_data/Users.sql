@@ -3,7 +3,7 @@ with Users_input as (
 ),
 
 /* Master data table of the user.
-The first and last name of the user are concatenated to get one user name attribute. */
+The first and last name of the user are concatenated to get one user name field. */
 Users as (
     select
         -- Key fields

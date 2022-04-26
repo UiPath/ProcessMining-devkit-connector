@@ -43,15 +43,15 @@ Purchase_order_event_log_preprocessing as (
 ),
 
 /* Table containing a record for each event in the purchase order end to end event log.
-Based on the internal event ID the event attributes are added to the event log. */
+Based on the internal event ID the event fields are added to the event log. */
 Purchase_order_event_log as (
     select
-        -- Mandatory event attributes
+        -- Mandatory event fields
         row_number() over (order by Events_base."Event_end") as "Event_ID",
         Purchase_order_event_log_preprocessing."Purchase_order_ID",
         Events_base."Activity",
         Events_base."Event_end",
-        -- Optional event attributes
+        -- Optional event fields
         Events_base."Event_detail",
         Events_base."Team",
         Events_base."User"

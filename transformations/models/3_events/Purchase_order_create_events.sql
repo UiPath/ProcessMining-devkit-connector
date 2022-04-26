@@ -6,11 +6,11 @@ with Purchase_orders as (
 Every entity has exactly one create event. */
 Purchase_order_create_events as (
     select
-        -- Mandatory event attributes
+        -- Mandatory event fields
         Purchase_orders."Purchase_order_ID",
         'Create purchase order' as "Activity",
         Purchase_orders."Created_at" as "Event_end",
-        -- Optional event attributes
+        -- Optional event fields
         Purchase_orders."Creator",
         Purchase_orders."Team"
     from Purchase_orders

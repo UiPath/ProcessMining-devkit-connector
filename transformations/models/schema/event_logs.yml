@@ -3,7 +3,7 @@ version: 2
 # Events tests cover that Event_log_base matches the defined data model.
 models:
   - name: Event_log_base
-    # Test whether the combination of mandatory event attributes are unique.
+    # Test whether the combination of mandatory event fields are unique.
     # They do not have to be unique, so indicate this test as a warning.
     tests:
       - pm_utils.unique_combination_of_columns:
