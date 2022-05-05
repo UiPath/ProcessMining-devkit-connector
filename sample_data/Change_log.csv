@@ -1,0 +1,9 @@
+﻿ID	Field	Old_value	New_value	User	Timestamp
+PO-1	Price	180.00	220.00	E-001	2021-06-20 09:20:10
+PO-1	Price	220.00	200.00	E-001	2021-06-20 09:40:18
+PO-1	Status	Open	Approved	M-002	2021-06-21 10:20:23
+PO-1	Status	Approved	Ordered	E-001	2021-06-24 17:54:12
+PO-2	Status	Open	Ordered	E-001	2021-06-23 10:17:54
+PO-3	Status	Open	Approved	M-002	2021-06-27 13:00:09
+PO-3	Status	Approved	Ordered	E-002	2021-06-28 09:00:02
+PO-4	Status	Open	Approved	M-002	2021-06-27 13:02:20
