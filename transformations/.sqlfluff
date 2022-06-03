@@ -1,31 +1,29 @@
-# The SQLfluff linter will on default use the configuration as presented in:
-# https://docs.sqlfluff.com/en/stable/configuration.html#default-configuration
-# The following settings override the settings defined in the default settings. 
+# See for an overview of all rules: https://docs.sqlfluff.com/en/stable/rules.html.
+# More info on the configuration of the SQLFluff linter for dbt projects can be found here:
+# https://docs.sqlfluff.com/en/stable/configuration.html#dbt-project-configuration.
 [sqlfluff]
 templater = dbt
-# It is not possible to check for multiple dialects simultaneously.
-# Therefore T-SQL (SQL Server) is kept as leading dialect.
+
+# The dialect of SQL Server is used as dialect. Make sure to set your default profile to the one for SQL Server.
 dialect = tsql
+
 # The following rules are not applicable to our coding style.
 exclude_rules = L014, L016, L031, L034, L036, L043, L059
 
-# The following sqlfluff rules follow the standard but are repeated for transparancy.
+[sqlfluff:indentation]
+indented_joins = False
+indented_ctes = False
+indented_using_on = True
+
 [sqlfluff:rules]
 indent_unit = space
 tab_space_size = 4
 comma_style = trailing
-capitalisation_policy = lower
-
-[sqlfluff:rules:L013]
-# Column aliasing
-allow_scalar = False
-
-[sqlfluff:rules:L028]
-# References must be consistently used
-# Disabled for some dialects (e.g. bigquery)
-force_enable = False
+allow_scalar = True
 single_table_references = qualified
+unquoted_identifiers_policy = all
+capitalisation_policy = lower
+extended_capitalisation_policy = lower
 
 [sqlfluff:rules:L054]
-# GROUP BY/ORDER BY column references
 group_by_and_order_by_style = explicit
