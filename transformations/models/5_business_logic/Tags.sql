@@ -1,3 +1,7 @@
+{{ config(
+    post_hook="{{ pm_utils.generate_id('Tag_ID') }}"
+) }}
+
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
@@ -68,7 +72,6 @@ Tags_preprocessing as (
 -- The fields on this table should match the data model.
 Tags as (
     select
-        row_number() over (order by Tags_preprocessing."Purchase_order_ID") as "Tag_ID",
         Tags_preprocessing."Purchase_order_ID" as "Case_ID",
         Tags_preprocessing."Tag"
     from Tags_preprocessing

@@ -1,3 +1,7 @@
+{{ config(
+    post_hook="{{ pm_utils.generate_id('Event_ID') }}"
+) }}
+
 with Entity_relations as (
     select * from {{ ref('Entity_relations') }}
 ),
@@ -47,7 +51,6 @@ Based on the internal event ID the event fields are added to the event log. */
 Purchase_order_event_log as (
     select
         -- Mandatory event fields
-        row_number() over (order by Events_base."Event_end") as "Event_ID",
         Purchase_order_event_log_preprocessing."Purchase_order_ID",
         Events_base."Activity",
         Events_base."Event_end",
