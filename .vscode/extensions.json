@@ -4,6 +4,7 @@
     // List of extensions which should be recommended for users of this workspace.
     "recommendations": [
         "ms-python.python",
-        "innoverio.vscode-dbt-power-user"
+        "innoverio.vscode-dbt-power-user",
+        "streetsidesoftware.code-spell-checker"
     ]
 }
