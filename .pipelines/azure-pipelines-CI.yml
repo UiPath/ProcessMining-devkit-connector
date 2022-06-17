@@ -1,0 +1,43 @@
+name: Automated CI checks
+
+parameters:
+  - name: dbtVariableConfigurationSQLServer
+    type: string
+    default: ''
+  - name: dbtVariableConfigurationSnowflake
+    type: string
+    default: ''
+  - name: serviceConnection
+    type: string
+    default: 'pmc-dev-config-kv-sc'
+
+resources:
+  repositories:
+    - repository: toggleKeyVaultRepo
+      endpoint: UiPath
+      type: github
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.kv-access.1.2.1
+
+    - repository: dbtTransformations
+      endpoint: UiPath
+      type: github
+      name: UiPath/ProcessMining-framework-resources
+      ref: refs/tags/dbt_transformations.0.1.0
+
+# By leaving the trigger undefined, the pipeline starts on each push to any branch.
+# Therefore it is not necessary to also start it via a PR.
+pr:
+  none
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: test_dbt_transformations
+    steps:
+      - template: ./.pipelines/templates/test.dbt_transformations.job.yml@dbtTransformations
+        parameters:
+          dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
+          dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
+          serviceConnection: ${{ parameters.serviceConnection }}
