@@ -1,0 +1,22 @@
+name: Spell check
+
+resources:
+  repositories:
+    - repository: spellCheck
+      endpoint: UiPath
+      type: github
+      name: UiPath/ProcessMining-framework-resources
+      ref: refs/tags/spell_check.0.1.0
+
+# By leaving the trigger undefined, the pipeline starts on each push to any branch.
+# Therefore it is not necessary to also start it via a PR.
+pr:
+  none
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: spell_check
+    steps:
+      - template: ./.pipelines/templates/spell_check.job.yml@spellCheck
