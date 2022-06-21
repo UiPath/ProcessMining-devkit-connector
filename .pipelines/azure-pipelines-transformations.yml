@@ -1,4 +1,4 @@
-name: Automated CI checks
+name: Transformations
 
 parameters:
   - name: dbtVariableConfigurationSQLServer
