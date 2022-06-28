@@ -24,21 +24,21 @@ devkit_connector:
     sqlserver-ci:
       type: sqlserver
       driver: 'ODBC Driver 17 for SQL Server'
-      server: pm-da.westeurope.cloudapp.azure.com
       port: 1433
-      user: "dev_user"
-      password: "{{ env_var('DBT_SQLSERVER_PASSWORD') }}"
-      database: "{{ var('database') }}"
-      schema: "{{ var('schema_target') }}"
+      server: "{{ env_var('DBT_SQL_SERVER_SERVER') }}"
+      user: "{{ env_var('DBT_SQL_SERVER_USER') }}"
+      password: "{{ env_var('DBT_SQL_SERVER_PASSWORD') }}"
+      database: "{{ env_var('DBT_SQL_SERVER_DATABASE') }}"
+      schema: "{{ env_var('DBT_SCHEMA') }}"
 
     snowflake-ci:
       type: snowflake
-      account: uipathalpha.west-europe.azure
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
       password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
-      role: PMC_CONNECTOR_ROLE
-      database: PMC_CONNECTOR
-      warehouse: PMC_WH_DEV
-      schema: "{{ var('schema_target') }}"
+      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
+      database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}"
+      warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
+      schema: "{{ env_var('DBT_SCHEMA') }}"
 
   target: sqlserver
