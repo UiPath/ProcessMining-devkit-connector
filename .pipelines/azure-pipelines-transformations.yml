@@ -23,7 +23,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: chore/secrets_transformation_pipeline
+      ref: refs/tags/dbt_transformations.0.1.2
 
 # By leaving the trigger undefined, the pipeline starts on each push to any branch.
 # Therefore it is not necessary to also start it via a PR.
