@@ -25,6 +25,12 @@ resources:
       name: UiPath/ProcessMining-framework-resources
       ref: refs/tags/dbt_transformations.0.1.2
 
+    - repository: sqlfluffLinter
+      endpoint: UiPath
+      type: github
+      name: UiPath/ProcessMining-framework-resources
+      ref: feat/add_linter_job
+
 # By leaving the trigger undefined, the pipeline starts on each push to any branch.
 # Therefore it is not necessary to also start it via a PR.
 pr:
@@ -40,4 +46,10 @@ jobs:
         parameters:
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
+          serviceConnection: ${{ parameters.serviceConnection }}
+
+  - job: lint_sql
+    steps:
+      - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
+        parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
