@@ -1,0 +1,8 @@
+# The following rule expects different line endings on a Linux system used for automatic checks.
+[sqlfluff]
+exclude_rules = L009, L014, L016, L031, L034, L036, L043, L059
+
+# During automated checks, use the pipelines profile
+[sqlfluff:templater:dbt]
+profiles_dir = ./
+profile = default
