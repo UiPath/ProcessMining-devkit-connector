@@ -29,7 +29,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/add_linter_job
+      ref: refs/tags/sqlfluff_lint.0.1.0
 
 # By leaving the trigger undefined, the pipeline starts on each push to any branch.
 # Therefore it is not necessary to also start it via a PR.
