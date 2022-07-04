@@ -1,0 +1,34 @@
+name: Deliverables
+
+parameters:
+  - name: isTemplateOneConnector
+    type: string
+    default: true
+
+resources:
+  repositories:
+    - repository: deliverablesCheck
+      endpoint: UiPath
+      type: github
+      name: UiPath/ProcessMining-framework-resources
+      ref: refs/tags/deliverables_check.0.1.0
+
+# The pipeline runs on PRs to main or validation, not on pushes to other branches.
+trigger:
+  none
+
+pr:
+  branches:
+    include:
+      - main
+      - validation
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: test_deliverables_complete
+    steps:
+      - template: ./.pipelines/templates/deliverables_check.job.yml@deliverablesCheck
+        parameters:
+          isTemplateOneConnector: ${{ parameters.isTemplateOneConnector }}
