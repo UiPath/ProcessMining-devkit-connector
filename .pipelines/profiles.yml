@@ -20,5 +20,6 @@ default:
       database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}"
       warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
       schema: "{{ env_var('DBT_SCHEMA') }}"
+      threads: 10
 
   target: sqlserver-ci
