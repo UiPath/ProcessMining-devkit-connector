@@ -63,10 +63,10 @@ jobs:
   - job: post_failure_to_slack
     steps:
       - template: AzurePipelines/post-slack-message.yml@slackmessages
-          parameters:
-            condition: failed() #will send the notification if one ore more steps (in the same job) before this one have failed
-            message: "Failed to run the pipeline $(Build.DefinitionName)"
-            messageAuthor: "Pipeline gods"
-            channel: "pmc-devops-alerts-playground"
-            useExistingSlackMessagesApp: true
-            azureInternalProdEAConnectionName: 'Internal-Production-EA' #Required if useExistingSlackMessagesApp is true
+        parameters:
+          condition: failed() #will send the notification if one ore more steps (in the same job) before this one have failed
+          message: "Failed to run the pipeline $(Build.DefinitionName)"
+          messageAuthor: "Pipeline gods"
+          channel: "pmc-devops-alerts-playground"
+          useExistingSlackMessagesApp: true
+          azureInternalProdEAConnectionName: 'Internal-Production-EA' #Required if useExistingSlackMessagesApp is true
