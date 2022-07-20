@@ -31,6 +31,12 @@ resources:
       name: UiPath/ProcessMining-framework-resources
       ref: feat/partner_feedback
 
+    - repository: slackmessages
+      type: GitHub
+      endpoint: UiPath
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.post-slack-message.1.1.2
+
 # By leaving the trigger undefined, the pipeline starts on each push to any branch.
 # Therefore it is not necessary to also start it via a PR.
 pr:
@@ -53,3 +59,14 @@ jobs:
       - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
+
+  - job: post_failure_to_slack
+    steps:
+      - template: AzurePipelines/post-slack-message.yml@slackmessages
+          parameters:
+            condition: failed() #will send the notification if one ore more steps (in the same job) before this one have failed
+            message: "Failed to run the pipeline $(Build.DefinitionName)"
+            messageAuthor: "Pipeline gods"
+            channel: "pmc-devops-alerts-playground"
+            useExistingSlackMessagesApp: true
+            azureInternalProdEAConnectionName: 'Internal-Production-EA' #Required if useExistingSlackMessagesApp is true
