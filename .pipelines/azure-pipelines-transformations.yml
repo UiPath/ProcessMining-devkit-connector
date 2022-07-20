@@ -61,6 +61,9 @@ jobs:
           serviceConnection: ${{ parameters.serviceConnection }}
 
   - job: post_failure_to_slack
+    dependsOn: 
+      - test_dbt_transformations
+      - lint_sql
     steps:
       - template: AzurePipelines/post-slack-message.yml@slackmessages
         parameters:
