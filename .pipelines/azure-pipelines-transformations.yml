@@ -10,6 +10,12 @@ parameters:
   - name: serviceConnection
     type: string
     default: 'pmc-dev-config-kv-sc'
+  - name: sendSlackMessage
+    default: true
+    type: boolean
+  - name: slackChannel
+    default: 'pmc-devops-alerts-playground'
+    type: string
 
 resources:
   repositories:
@@ -59,3 +65,5 @@ jobs:
       - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
