@@ -11,7 +11,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/deliverables_check.0.2.0
+      ref: feat/partner_feedback
 
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
 trigger:
@@ -27,7 +27,7 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: test_deliverables_complete
+  - job: deliverables_complete
     steps:
       - template: ./.pipelines/templates/deliverables_check.job.yml@deliverablesCheck
         parameters:
