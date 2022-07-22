@@ -14,8 +14,6 @@ resources:
       ref: feat/partner_feedback
 
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
-trigger:
-  none
 
 pr:
   none
