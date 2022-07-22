@@ -14,14 +14,8 @@ resources:
       ref: feat/partner_feedback
 
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
-trigger:
-  none
-
 pr:
-  branches:
-    include:
-      - main
-      - validation
+  none
 
 pool:
   vmImage: ubuntu-latest
