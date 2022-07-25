@@ -22,6 +22,12 @@ resources:
       name: UiPath/ProcessMining-framework-resources
       ref: feat/partner_feedback
 
+    - repository: uploadToStorage
+      endpoint: UiPath
+      type: GitHub
+      name: UiPath/ProcessMining-framework-resources
+      ref: feat/partner_feedback
+
     - repository: slackmessages
       type: GitHub
       endpoint: UiPath
