@@ -1,6 +1,9 @@
 name: Deliverables
 
 parameters:
+  - name: serviceConnection
+    type: string
+    default: 'pmc-dev-config-kv-sc'
   - name: isTemplateOneConnector
     type: string
     default: true
