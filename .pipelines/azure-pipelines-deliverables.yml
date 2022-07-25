@@ -61,4 +61,4 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactToBePublished: 'Deliverables logs'
+          artifactToBePublished: 'Logs deliverables'
