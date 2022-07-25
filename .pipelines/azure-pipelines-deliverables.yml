@@ -4,6 +4,12 @@ parameters:
   - name: isTemplateOneConnector
     type: string
     default: true
+    - name: sendSlackMessage
+    default: false
+    type: boolean
+  - name: slackChannel
+    default: ''
+    type: string
 
 resources:
   repositories:
@@ -13,10 +19,21 @@ resources:
       name: UiPath/ProcessMining-framework-resources
       ref: feat/partner_feedback
 
+    - repository: slackmessages
+      type: GitHub
+      endpoint: UiPath
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.post-slack-message.1.1.2
+
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
+trigger:
+  none
 
 pr:
-  none
+  branches:
+    include:
+      - main
+      - validation
 
 pool:
   vmImage: ubuntu-latest
@@ -27,3 +44,14 @@ jobs:
       - template: ./.pipelines/templates/deliverables_check.job.yml@deliverablesCheck
         parameters:
           isTemplateOneConnector: ${{ parameters.isTemplateOneConnector }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
+
+  - job: publish_deliverables_logs_to_blobstore
+    dependsOn: deliverables_complete
+    condition: failed()
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
+        parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
+          artifactToBePublished: 'Deliverables logs'
