@@ -4,7 +4,7 @@ parameters:
   - name: isTemplateOneConnector
     type: string
     default: true
-    - name: sendSlackMessage
+  - name: sendSlackMessage
     default: false
     type: boolean
   - name: slackChannel
