@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: Purchase_order_change_events
+    tests:
+      - pm_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - 'Purchase_order_ID'
+            - 'Activity'
+            - 'Event_end'
+          severity: 'warn'
+    columns:
+      - name: '"Purchase_order_ID"'
+        tests:
+          - not_null
+      - name: '"Activity"'
+        tests:
+          - not_null
+      - name: '"Event_end"'
+        tests:
+          - not_null
