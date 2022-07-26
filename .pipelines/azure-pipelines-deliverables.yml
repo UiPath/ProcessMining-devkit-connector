@@ -34,6 +34,12 @@ resources:
       name: UiPath/AzurePipelinesTemplates
       ref: refs/tags/uipath.post-slack-message.1.1.2
 
+    - repository: toggleKeyVaultRepo
+      endpoint: UiPath
+      type: github
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.kv-access.1.2.1
+
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
 
 pr:
