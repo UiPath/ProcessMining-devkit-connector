@@ -62,3 +62,4 @@ jobs:
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
           artifactToBePublished: 'Logs deliverables'
+          blobStorDestinationFolder: 'devkit-connector'
