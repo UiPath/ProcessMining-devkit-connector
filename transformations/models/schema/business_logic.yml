@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: Tags
+    tests:
+      - pm_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - 'Case_ID'
+            - 'Tag'
+    columns:
+      - name: '"Case_ID"'
+        tests:
+          - not_null
+      - name: '"Tag"'
+        tests:
+          - not_null
