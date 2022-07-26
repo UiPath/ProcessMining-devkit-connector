@@ -1,6 +1,5 @@
 version: 2
 
-# Input tests cover the input tables, where we check whether the IDs are not null and unique.
 models:
   - name: Purchase_orders_input
     columns:
