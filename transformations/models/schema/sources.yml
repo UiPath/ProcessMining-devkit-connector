@@ -4,15 +4,33 @@ version: 2
 # You can refer to these sources in the models by using the {{ source() }} jinja function.
 sources:
   - name: "{{ var('schema_sources') }}"
+
+    # List all source tables and implement tests on them.
+    tables:
+      - name: Change_log_raw
+
+      - name: Invoices_raw
+
+      - name: Purchase_order_approvals_raw
+
+      - name: Purchase_orders_status_raw
+
+      - name: Purchase_orders_raw
+        columns:
+          - name: '"ID"'
+            tests:
+              - pm_utils.exists
+              - not_null
+              - unique
+          - name: '"Created_at"'
+            tests:
+              - pm_utils.format:
+                  data_type: datetime
+
+      - name: Users_raw
+
     # Enabled quoting for databases, schemas, and identifiers where the sources are located.
     quoting:
       database: true
       schema: true
       identifier: true
-    tables:
-      - name: Change_log_raw
-      - name: Invoices_raw
-      - name: Purchase_order_approvals_raw
-      - name: Purchase_orders_status_raw
-      - name: Purchase_orders_raw
-      - name: Users_raw
