@@ -69,8 +69,6 @@ jobs:
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
           artifactName: 'Transformations'
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
 
   - job: publish_transformation_logs_to_storage
     dependsOn: dbt_transformations
