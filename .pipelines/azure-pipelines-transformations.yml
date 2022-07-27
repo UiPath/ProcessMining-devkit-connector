@@ -68,7 +68,7 @@ jobs:
           serviceConnection: ${{ parameters.serviceConnection }}
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
-          artifactName: 'Transformations'
+          artifactName: 'transformations_dbt'
 
   - job: publish_transformation_logs_to_storage
     dependsOn: dbt_transformations
@@ -77,4 +77,20 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactToBePublished: 'Transformations'
+          artifactToBePublished: 'transformations_dbt'
+
+  - job: lint_sql
+    steps:
+      - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
+        parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
+          artifactName: 'transformations_sqlfluff'
+
+  - job: publish_lint_sql_logs_to_storage
+    dependsOn: lint_sql
+    condition: failed()
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
+        parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
+          artifactToBePublished: 'transformations_sqlfluff'
