@@ -11,7 +11,7 @@ default:
       database: "{{ env_var('DBT_SQL_SERVER_DATABASE') }}"
       schema: "{{ env_var('DBT_SCHEMA') }}"
 
-    snowflake-ci:
+    snowflake-cii:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
