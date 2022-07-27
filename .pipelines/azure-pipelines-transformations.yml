@@ -1,41 +1,50 @@
 name: Transformations
 
 parameters:
+  - name: serviceConnection
+    type: string
+    default: 'pmc-dev-config-kv-sc'
+  - name: storageAccountFolder
+    default: 'devkit-connector'
+    type: string
   - name: dbtVariableConfigurationSQLServer
     type: string
     default: ''
   - name: dbtVariableConfigurationSnowflake
     type: string
     default: ''
-  - name: serviceConnection
-    type: string
-    default: 'pmc-dev-config-kv-sc'
   - name: sendSlackMessage
-    default: true
+    default: false
     type: boolean
   - name: slackChannel
-    default: 'pmc-devops-alerts-playground'
+    default: ''
     type: string
 
 resources:
   repositories:
-    - repository: toggleKeyVaultRepo
-      endpoint: UiPath
-      type: github
-      name: UiPath/AzurePipelinesTemplates
-      ref: refs/tags/uipath.kv-access.1.2.1
-
     - repository: dbtTransformations
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/dbt_transformations.0.1.2
+      ref: feat/pipeline_logs_to_azure_blobstore
 
     - repository: sqlfluffLinter
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/partner_feedback
+      ref: feat/pipeline_logs_to_azure_blobstore
+
+    - repository: uploadToStorage
+      endpoint: UiPath
+      type: GitHub
+      name: UiPath/ProcessMining-framework-resources
+      ref: feat/pipeline_logs_to_azure_blobstore
+
+    - repository: toggleKeyVaultRepo
+      endpoint: UiPath
+      type: github
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.kv-access.1.2.1
 
     - repository: slackmessages
       type: GitHub
@@ -48,25 +57,46 @@ resources:
 pr:
   none
 
-trigger:
-  none
-
 pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: test_dbt_transformations
+  - job: dbt_transformations
     steps:
-      - template: ./.pipelines/templates/test.dbt_transformations.job.yml@dbtTransformations
+      - template: ./.pipelines/templates/dbt_transformations.job.yml@dbtTransformations
         parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
+          artifactName: 'Transformation logs'
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
+
+  - job: publish_transformation_logs_to_storage
+    dependsOn: dbt_transformations
+    condition: failed()
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+        parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
+          artifactName: 'Transformation logs'
+          storageAccountFolder: ${{ parameters.storageAccountFolder }}
 
   - job: lint_sql
     steps:
       - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
+          artifactName: 'Sqlfluff logs'
           sendSlackMessage: ${{ parameters.sendSlackMessage }}
           slackChannel: ${{ parameters.slackChannel }}
+
+  - job: publish_lint_sql_logs_to_storage
+    dependsOn: lint_sql
+    condition: failed()
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+        parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
+          artifactName: 'Sqlfluff logs'
+          storageAccountFolder: ${{ parameters.storageAccountFolder }}
