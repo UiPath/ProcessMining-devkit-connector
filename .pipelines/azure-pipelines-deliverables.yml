@@ -1,9 +1,18 @@
 name: Deliverables
 
 parameters:
+  - name: serviceConnection
+    type: string
+    default: 'pmc-dev-config-kv-sc'
   - name: isTemplateOneConnector
     type: string
     default: true
+  - name: sendSlackMessage
+    default: false
+    type: boolean
+  - name: slackChannel
+    default: ''
+    type: string
 
 resources:
   repositories:
@@ -11,7 +20,25 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/deliverables_check.0.2.0
+      ref: feat/pipeline_logs_to_azure_blobstore
+
+    - repository: uploadToStorage
+      endpoint: UiPath
+      type: GitHub
+      name: UiPath/ProcessMining-framework-resources
+      ref: feat/pipeline_logs_to_azure_blobstore
+
+    - repository: toggleKeyVaultRepo
+      endpoint: UiPath
+      type: github
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.kv-access.1.2.1
+
+    - repository: slackmessages
+      type: GitHub
+      endpoint: UiPath
+      name: UiPath/AzurePipelinesTemplates
+      ref: refs/tags/uipath.post-slack-message.1.1.2
 
 # The pipeline runs on PRs to main or validation, not on pushes to other branches.
 trigger:
@@ -27,8 +54,20 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: test_deliverables_complete
+  - job: deliverables_complete
     steps:
       - template: ./.pipelines/templates/deliverables_check.job.yml@deliverablesCheck
         parameters:
           isTemplateOneConnector: ${{ parameters.isTemplateOneConnector }}
+          artifactName: 'Deliverables logs'
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
+
+  - job: publish_deliverables_logs_to_storage
+    dependsOn: deliverables_complete
+    condition: failed()
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+        parameters:
+          serviceConnection: ${{ parameters.serviceConnection }}
+          artifactName: 'Deliverables logs'
