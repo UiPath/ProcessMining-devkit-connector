@@ -38,7 +38,7 @@ resources:
       endpoint: UiPath
       type: GitHub
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: feat/partner_feedback
 
     - repository: toggleKeyVaultRepo
       endpoint: UiPath
@@ -68,7 +68,7 @@ jobs:
           serviceConnection: ${{ parameters.serviceConnection }}
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
-          artifactName: 'Transformation logs'
+          artifactName: 'Transformations'
           sendSlackMessage: ${{ parameters.sendSlackMessage }}
           slackChannel: ${{ parameters.slackChannel }}
 
@@ -79,15 +79,14 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Transformation logs'
-          storageAccountFolder: ${{ parameters.storageAccountFolder }}
+          artifactToBePublished: 'Transformations'
 
   - job: lint_sql
     steps:
       - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff logs'
+          artifactName: 'Sqlfluff'
           sendSlackMessage: ${{ parameters.sendSlackMessage }}
           slackChannel: ${{ parameters.slackChannel }}
 
@@ -98,5 +97,5 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff logs'
+          artifactName: 'Sqlfluff'
           storageAccountFolder: ${{ parameters.storageAccountFolder }}
