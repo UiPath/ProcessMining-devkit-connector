@@ -32,13 +32,13 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/partner_feedback
+      ref: feat/pipeline_logs_to_azure_blobstore
 
     - repository: uploadToStorage
       endpoint: UiPath
       type: GitHub
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/partner_feedback
+      ref: feat/pipeline_logs_to_azure_blobstore
 
     - repository: toggleKeyVaultRepo
       endpoint: UiPath
