@@ -1,0 +1,20 @@
+version: 2
+
+# Entities tests cover that Cases_base matches the defined data model.
+models:
+  - name: Cases_base
+    # Test whether the output table has an equal number of records as the input table.
+    tests:
+      - pm_utils.equal_rowcount:
+          compare_model: 'Purchase_orders_input'
+    columns:
+      - name: '"Case_ID"'
+        # The ID should be not null, unique, and exist in the output.
+        tests:
+          - not_null
+          - unique
+          - pm_utils.exists
+      - name: '"Case_value"'
+        # The case value should be of type double.
+        tests:
+          - pm_utils.type_double

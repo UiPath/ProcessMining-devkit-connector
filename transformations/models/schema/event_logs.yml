@@ -1,0 +1,31 @@
+version: 2
+
+# Events tests cover that Event_log_base matches the defined data model.
+models:
+  - name: Event_log_base
+    # Test whether the combination of mandatory event fields are unique.
+    # They do not have to be unique, so indicate this test as a warning.
+    tests:
+      - pm_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - 'Case_ID'
+            - 'Activity'
+            - 'Event_end'
+          severity: 'warn'
+    columns:
+      - name: '"Case_ID"'
+        # The ID should be not null and exist in the output. Uniqueness is not required at the event log table.
+        tests:
+          - not_null
+          - pm_utils.exists
+      - name: '"Activity"'
+        # The activity should be not null and exist in the output.
+        tests:
+          - not_null
+          - pm_utils.exists
+      - name: '"Event_end"'
+        # The event end should be not null and exist in the output and of type timestamp.
+        tests:
+          - not_null
+          - pm_utils.exists
+          - pm_utils.type_timestamp
