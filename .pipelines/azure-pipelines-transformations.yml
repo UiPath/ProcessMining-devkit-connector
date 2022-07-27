@@ -76,7 +76,7 @@ jobs:
     dependsOn: dbt_transformations
     condition: failed()
     steps:
-      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+      - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
           artifactToBePublished: 'Transformations'
@@ -94,7 +94,7 @@ jobs:
     dependsOn: lint_sql
     condition: failed()
     steps:
-      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+      - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
           artifactName: 'Sqlfluff'
