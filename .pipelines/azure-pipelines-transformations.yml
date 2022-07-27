@@ -26,19 +26,19 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: feat/partner_feedback
 
     - repository: sqlfluffLinter
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: feat/partner_feedback
 
     - repository: uploadToStorage
       endpoint: UiPath
       type: GitHub
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: feat/partner_feedback
 
     - repository: toggleKeyVaultRepo
       endpoint: UiPath
