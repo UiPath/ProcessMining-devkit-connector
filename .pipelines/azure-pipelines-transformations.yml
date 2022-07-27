@@ -80,22 +80,3 @@ jobs:
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
           artifactToBePublished: 'Transformations'
-
-  - job: lint_sql
-    steps:
-      - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
-        parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff'
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
-
-  - job: publish_lint_sql_logs_to_storage
-    dependsOn: lint_sql
-    condition: failed()
-    steps:
-      - template: ./.pipelines/templates/publish_artifact_to_blobstore.job.yml@uploadToStorage
-        parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff'
-          storageAccountFolder: ${{ parameters.storageAccountFolder }}
