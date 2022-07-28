@@ -68,9 +68,8 @@ jobs:
           serviceConnection: ${{ parameters.serviceConnection }}
           dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
           dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
-          artifactName: 'Transformation logs'
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
+          artifactName: 'transformations_dbt'
+          
 
   - job: publish_transformation_logs_to_storage
     dependsOn: dbt_transformations
@@ -79,17 +78,17 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Transformation logs'
+          artifactName: 'transformations_dbt'
           storageAccountFolder: ${{ parameters.storageAccountFolder }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
 
   - job: lint_sql
     steps:
       - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff logs'
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
+          artifactName: 'transformations_lint_sql'
 
   - job: publish_lint_sql_logs_to_storage
     dependsOn: lint_sql
@@ -98,5 +97,8 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Sqlfluff logs'
+          artifactName: 'transformations_lint_sql'
           storageAccountFolder: ${{ parameters.storageAccountFolder }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
+

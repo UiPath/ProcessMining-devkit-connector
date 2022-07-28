@@ -4,6 +4,9 @@ parameters:
   - name: serviceConnection
     type: string
     default: 'pmc-dev-config-kv-sc'
+  - name: storageAccountFolder
+    default: 'devkit-connector'
+    type: string
   - name: isTemplateOneConnector
     type: string
     default: true
@@ -59,9 +62,7 @@ jobs:
       - template: ./.pipelines/templates/deliverables_check.job.yml@deliverablesCheck
         parameters:
           isTemplateOneConnector: ${{ parameters.isTemplateOneConnector }}
-          artifactName: 'Deliverables logs'
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
+          artifactName: 'deliverables_complete'
 
   - job: publish_deliverables_logs_to_storage
     dependsOn: deliverables_complete
@@ -70,4 +71,8 @@ jobs:
       - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'Deliverables logs'
+          artifactName: 'deliverables_complete'
+          storageAccountFolder: ${{ parameters.storageAccountFolder }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}
+
