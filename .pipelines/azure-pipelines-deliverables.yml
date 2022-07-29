@@ -23,13 +23,13 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: refs/tags/deliverables_check.0.3.0
 
     - repository: uploadToStorage
       endpoint: UiPath
       type: GitHub
       name: UiPath/ProcessMining-framework-resources
-      ref: feat/pipeline_logs_to_azure_blobstore
+      ref: refs/tags/publish_artifact_to_storage.0.1.0
 
     - repository: toggleKeyVaultRepo
       endpoint: UiPath
