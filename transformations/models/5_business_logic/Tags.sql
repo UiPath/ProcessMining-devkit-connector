@@ -46,7 +46,7 @@ Tags_preprocessing as (
     -- Invoice price differs from order price
     select
         Purchase_orders."Purchase_order_ID",
-        'Invoice price differs from order price' as "Tag"
+        {{ pm_utils.as_varchar('Invoice price differs from order price') }} as "Tag"
     from Purchase_orders
     left join Invoices
         on Purchase_orders."Purchase_order_ID" = Invoices."Purchase_order_ID"
@@ -55,7 +55,7 @@ Tags_preprocessing as (
     -- Order executed without approval
     select
         Execute_order_events."Purchase_order_ID",
-        'Order executed without approval' as "Tag"
+        {{ pm_utils.as_varchar('Order executed without approval') }} as "Tag"
     from Execute_order_events
     left join Approve_order_level_2_events
         on Execute_order_events."Purchase_order_ID" = Approve_order_level_2_events."Purchase_order_ID"
@@ -64,7 +64,7 @@ Tags_preprocessing as (
     union all
     select
         Min_and_max_event_ends."Purchase_order_ID",
-        'Throughput time more than 10 days' as "Tag"
+        {{ pm_utils.as_varchar('Throughput time more than 10 days') }} as "Tag"
     from Min_and_max_event_ends
     where {{ pm_utils.datediff('day', 'Min_and_max_event_ends."Min_event_end"', 'Min_and_max_event_ends."Max_event_end"') }} > 10
 ),
