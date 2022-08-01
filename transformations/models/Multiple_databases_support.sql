@@ -11,7 +11,7 @@ Multiple_databases_support as (
         {% if target.type == 'snowflake' %}
             to_varchar(Invoices_input."Price")
         {% elif target.type == 'sqlserver' %}
-            convert(nvarchar(50), Invoices_input."Price")
+            convert(nvarchar(2000), Invoices_input."Price")
         {% endif %}
         as "Price_converted",
         -- With a macro the code is more readable.

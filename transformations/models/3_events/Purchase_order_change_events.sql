@@ -14,9 +14,9 @@ Purchase_order_change_events as (
         Purchase_orders."Purchase_order_ID",
         case
             when Change_log."Field" = 'Price'
-                then 'Change order price'
+                then {{ pm_utils.as_varchar('Change order price') }}
             when Change_log."Field" = 'Status' and Change_log."New_value" = 'Ordered'
-                then 'Execute order'
+                then {{ pm_utils.as_varchar('Execute order') }}
         end as "Activity",
         Change_log."Timestamp" as "Event_end",
         -- Optional event fields
