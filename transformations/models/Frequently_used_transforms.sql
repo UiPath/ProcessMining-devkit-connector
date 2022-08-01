@@ -14,8 +14,8 @@ Frequently_used_transforms as (
         -- Case statement: based on the price, define whether the invoice is high value or low value.
         case
             when Invoices_input."Price" > 100
-                then 'High value invoice'
-            else 'Low value invoice'
+                then {{ pm_utils.as_varchar('High value invoice') }}
+            else {{ pm_utils.as_varchar('Low value invoice') }}
         end as "Invoice_type",
         -- Get first non-null value: when there is no payment timestamp, give it the value 'No payment'.
         -- When using coalesce() all arguments should be of the same data type.

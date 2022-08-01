@@ -16,7 +16,7 @@ The fields on this table should match the data model. */
 Due_dates as (
     select
         Purchase_order_event_log."Event_ID",
-        'Payment due date' as "Due_date",
+        {{ pm_utils.as_varchar('Payment due date') }} as "Due_date",
         Purchase_order_event_log."Event_end" as "Actual_date",
         Invoices."Payment_due_date" as "Expected_date",
         {{ pm_utils.datediff('millisecond', 'Invoices."Payment_due_date"', 'Purchase_order_event_log."Event_end"') }} as "Days_late"
