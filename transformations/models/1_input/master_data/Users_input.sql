@@ -6,10 +6,10 @@ with Users_raw as (
 The user is identified by the ID. */
 Users_input as (
     select
-        Users_raw."First_name",
-        Users_raw."ID",
-        Users_raw."Last_name",
-        Users_raw."Team"
+        {{ pm_utils.to_varchar('Users_raw."First_name"') }} as "First_name",
+        {{ pm_utils.to_varchar('Users_raw."ID"') }} as "ID",
+        {{ pm_utils.to_varchar('Users_raw."Last_name"') }} as "Last_name",
+        {{ pm_utils.to_varchar('Users_raw."Team"') }} as "Team"
     from Users_raw
 )
 

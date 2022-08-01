@@ -5,8 +5,8 @@ with Purchase_orders_status_raw as (
 /* Status information related to the purchase order entity. */
 Purchase_orders_status as (
     select
-        Purchase_orders_status_raw."ID",
-        Purchase_orders_status_raw."Status"
+        {{ pm_utils.to_varchar('Purchase_orders_status_raw."ID"') }} as "ID",
+        {{ pm_utils.to_varchar('Purchase_orders_status_raw."Status"') }} as "Status"
     from Purchase_orders_status_raw
 )
 

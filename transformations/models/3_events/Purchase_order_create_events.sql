@@ -8,7 +8,7 @@ Purchase_order_create_events as (
     select
         -- Mandatory event fields
         Purchase_orders."Purchase_order_ID",
-        'Create purchase order' as "Activity",
+        {{ pm_utils.as_varchar('Create purchase order') }} as "Activity",
         Purchase_orders."Created_at" as "Event_end",
         -- Optional event fields
         Purchase_orders."Creator",

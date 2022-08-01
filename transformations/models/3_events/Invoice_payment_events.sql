@@ -8,13 +8,13 @@ Invoice_payment_events as (
     select
         -- Mandatory event fields
         Invoices."Invoice_ID",
-        'Pay invoice' as "Activity",
+        {{ pm_utils.as_varchar('Pay invoice') }} as "Activity",
         Invoices."Paid_at" as "Event_end",
         -- Optional event fields
         case
             when {{ pm_utils.date_from_timestamp('Invoices."Paid_at"') }} <= Invoices."Payment_due_date"
-                then 'Payment on time'
-            else 'Payment overdue'
+                then {{ pm_utils.as_varchar('Payment on time') }}
+            else {{ pm_utils.as_varchar('Payment overdue') }}
         end as "Event_detail",
         Invoices."Creator",
         Invoices."Team"
