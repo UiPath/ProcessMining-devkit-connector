@@ -1,3 +1,7 @@
+{{ config(
+    pre_hook="{{ pm_utils.create_index('Purchase_order_approvals_raw') }}"
+) }}
+
 with Purchase_order_approvals_raw as (
     select * from {{ source(var("schema_sources"), 'Purchase_order_approvals_raw') }}
 ),

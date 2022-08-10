@@ -1,3 +1,7 @@
+{{ config(
+    pre_hook="{{ pm_utils.create_index('Invoices_raw') }}"
+) }}
+
 with Invoices_raw as (
     select * from {{ source(var("schema_sources"), 'Invoices_raw') }}
 ),
