@@ -1,3 +1,7 @@
+{{ config(
+    pre_hook="{{ pm_utils.create_index('Change_log_raw') }}"
+) }}
+
 with Change_log_raw as (
     select * from {{ source(var("schema_sources"), 'Change_log_raw') }}
 ),
