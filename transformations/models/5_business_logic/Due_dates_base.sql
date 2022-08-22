@@ -13,7 +13,7 @@ Invoices as (
 /* Table containing the due dates for the purchase order event log.
 The implemented due date is the 'Payment due date' related to the 'Pay invoice' event.
 The fields on this table should match the data model. */
-Due_dates as (
+Due_dates_base as (
     select
         Purchase_order_event_log."Event_ID",
         {{ pm_utils.as_varchar('Payment due date') }} as "Due_date",
@@ -30,4 +30,4 @@ Due_dates as (
     where Purchase_order_event_log."Activity" = 'Pay invoice'
 )
 
-select * from Due_dates
+select * from Due_dates_base
