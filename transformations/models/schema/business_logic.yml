@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: Tags
+  - name: Tags_base
     tests:
       - pm_utils.unique_combination_of_columns:
           combination_of_columns:
