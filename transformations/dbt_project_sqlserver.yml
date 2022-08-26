@@ -1,0 +1,47 @@
+# Name and version of this dbt project.
+name: 'devkit_connector'
+version: '0.3.0'
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'devkit_connector'
+
+# Configuration of variables that are used in this dbt project.
+vars:
+   # Name of the schema where the raw input data is stored.
+  schema_sources: "devkit_connector"
+
+# These configurations specify where dbt should look for different types of files.
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+
+# Directory which will store compiled SQL files and will be removed by 'dbt clean'.
+target-path: "target"
+clean-targets:
+  - "target"
+
+# Input models are materialized as view and the rest as table.
+models:
+  devkit_connector:
+    1_input:
+      +materialized: view
+    2_entities:
+      +materialized: table
+    3_events:
+      +materialized: table
+    4_event_logs:
+      +materialized: table
+    5_business_logic:
+      +materialized: table
+
+# Quoting is enabled for databases, schemas, and identifiers.
+quoting:
+  database: true
+  schema: true
+  identifier: true
+
+# Quoting is enabled for columns in the seeds files.
+seeds:
+  quote_columns: true 
