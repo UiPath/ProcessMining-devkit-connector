@@ -7,12 +7,6 @@ parameters:
   - name: storageAccountFolder
     default: 'devkit-connector'
     type: string
-  - name: dbtVariableConfigurationSQLServer
-    type: string
-    default: ''
-  - name: dbtVariableConfigurationSnowflake
-    type: string
-    default: ''
   - name: sendSlackMessage
     default: false
     type: boolean
@@ -66,8 +60,6 @@ jobs:
       - template: ./.pipelines/templates/dbt_transformations.job.yml@dbtTransformations
         parameters:
           serviceConnection: ${{ parameters.serviceConnection }}
-          dbtVariableConfigurationSQLServer: ${{ parameters.dbtVariableConfigurationSQLServer }}
-          dbtVariableConfigurationSnowflake: ${{ parameters.dbtVariableConfigurationSnowflake }}
           artifactName: 'transformations_dbt'
           
 
