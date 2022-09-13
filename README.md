@@ -36,7 +36,8 @@ The example dbt project contains the following:
     - `Frequently_used_transforms.sql`: example query with frequently used transformations.
     - `Multiple_databases_support.sql`: example query to illustrate multiple databases support.
 - `seeds\`: .csv files containing a mapping for static data.
-- `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project.
+- `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project when used on a Snowflake database.
+- `dbt_project_sqlserver.yml`: a separate settings file for the dbt project, containing configurations when used on a SQL Server database.
 - `packages.yml`: lists the packages used in this dbt project. The example project uses the pm-utils package and can be installed by running the command `dbt deps`.
 - `profiles.yml`: contains the configuration to connect to your database.
 
@@ -47,3 +48,7 @@ The example project includes tests to validate the transformations. The implemen
 
 ### Multiple databases support
 For an illustration on how a dbt project can run on multiple databases, see `Multiple_databases_support.sql`. The Jinja language allows to define which lines of code should end up in the compiled query. Based on the value of `target.type` either the code for SQL Server or for Snowflake is used. This functionality can best be implemented in macros for readability of the transformations. Some useful functions are implemented in the pm-utils package.
+
+Database-specific settings for the entire dbt project, like variables, are stored in the corresponding `dbt_project` file:
+- `dbt_project.yml`: used for Snowflake database.
+- `dbt_project_sqlserver.yml`: used for SQL Server database.
