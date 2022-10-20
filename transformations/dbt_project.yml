@@ -7,11 +7,6 @@ config-version: 2
 # This setting configures which "profile" dbt uses for this project.
 profile: 'devkit_connector'
 
-# Configuration of variables that are used in this dbt project.
-vars:
-   # Name of the schema where the raw input data is stored.
-  schema_sources: "devkit_connector"
-
 # These configurations specify where dbt should look for different types of files.
 model-paths: ["models"]
 macro-paths: ["macros"]
