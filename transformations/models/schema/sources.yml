@@ -4,7 +4,7 @@ version: 2
 # You can refer to these sources in the models by using the {{ source() }} jinja function.
 sources:
   - name: sources
-    schema: "{{ env_var('DBT_SCHEMA') }}"
+    schema: "{{ target.schema }}"
 
     # List all source tables and implement tests on them.
     tables:
