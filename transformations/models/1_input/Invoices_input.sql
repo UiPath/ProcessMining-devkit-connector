@@ -1,9 +1,9 @@
 {{ config(
-    pre_hook="{{ pm_utils.create_index('Invoices_raw') }}"
+    pre_hook="{{ pm_utils.create_index(source('sources', 'Invoices_raw')) }}"
 ) }}
 
 with Invoices_raw as (
-    select * from {{ source(var("schema_sources"), 'Invoices_raw') }}
+    select * from {{ source('sources', 'Invoices_raw') }}
 ),
 
 /* Input table for the invoices entity.

@@ -1,9 +1,9 @@
 {{ config(
-    pre_hook="{{ pm_utils.create_index('Change_log_raw') }}"
+    pre_hook="{{ pm_utils.create_index(source('sources', 'Change_log_raw')) }}"
 ) }}
 
 with Change_log_raw as (
-    select * from {{ source(var("schema_sources"), 'Change_log_raw') }}
+    select * from {{ source('sources', 'Change_log_raw') }}
 ),
 
 /* Transaction log describing changes on entities identified by the ID.
