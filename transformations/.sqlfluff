@@ -4,8 +4,8 @@
 [sqlfluff]
 templater = dbt
 
-# The dialect of SQL Server is used as dialect. Make sure to set your default profile to the one for SQL Server.
-dialect = tsql
+# The dialect of Snowflake is used as dialect. Make sure to set your default profile to the one for Snowflake.
+dialect = snowflake
 
 # The following rules are not applicable to our coding style.
 exclude_rules = L014, L016, L031, L034, L036, L043, L059
