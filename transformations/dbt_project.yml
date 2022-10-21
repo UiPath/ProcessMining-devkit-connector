@@ -25,16 +25,9 @@ clean-targets:
 # Input models are materialized as view and the rest as table.
 models:
   devkit_connector:
+    materialized: table
     1_input:
-      +materialized: view
-    2_entities:
-      +materialized: table
-    3_events:
-      +materialized: table
-    4_event_logs:
-      +materialized: table
-    5_business_logic:
-      +materialized: table
+      materialized: view
 
 # Quoting is enabled for databases, schemas, and identifiers.
 quoting:

@@ -1,9 +1,9 @@
 {{ config(
-    pre_hook="{{ pm_utils.create_index('Purchase_orders_status_raw') }}"
+    pre_hook="{{ pm_utils.create_index(source('sources', 'Purchase_orders_status_raw')) }}"
 ) }}
 
 with Purchase_orders_status_raw as (
-    select * from {{ source(var("schema_sources"), 'Purchase_orders_status_raw') }}
+    select * from {{ source('sources', 'Purchase_orders_status_raw') }}
 ),
 
 /* Status information related to the purchase order entity. */
