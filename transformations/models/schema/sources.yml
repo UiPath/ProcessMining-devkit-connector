@@ -4,6 +4,8 @@ version: 2
 # You can refer to these sources in the models by using the {{ source() }} jinja function.
 sources:
   - name: sources
+    # If the source tables are in a different schema than your transformations, change the next line into something like:
+    #schema: "my_source_schema"
     schema: "{{ target.schema }}"
 
     # List all source tables and implement tests on them.
