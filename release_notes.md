@@ -1,5 +1,9 @@
 # Release notes
 
+## v1.1.2
+
+- Update: simplified source schema settings.
+
 ## v1.1.1
 
 - Bug fix: shortly describe the previous and current state of a fixed bug. E.g. Another bug is fixed.
