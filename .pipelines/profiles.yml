@@ -22,4 +22,4 @@ default:
       schema: "{{ env_var('DBT_SCHEMA') }}"
       threads: 10
 
-  target: sqlserver-ci
+  target: snowflake-ci
