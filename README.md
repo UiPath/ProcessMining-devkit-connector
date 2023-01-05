@@ -3,20 +3,6 @@ The devkit connector describes the standardized format of UiPath Process Mining 
 
 A UiPath Process Mining connector is part of the Connector & App Framework. For information about the framework, see the [UiPath documentation](https://docs.uipath.com/process-mining/v0/docs/connector-and-app-framework). Here you can also find information about what is expected from a UiPath Process Mining connector and how to work with dbt.
 
-## Repository structure
-The repository contains the following:
-- `.vscode\`: workspace settings that are relevant when working in Visual Studio Code.
-- `documentation\`: connector documentation template.
-- `extractors\`: the extraction methods to load input data.
-- `sample_data\`: input data files to validate the transformations.
-- `scripts\`: scripts to extract data, run transformations, and run tests.
-- `transformations\`: the transformations of the connector (example dbt project).
-- `.gitignore`: list of generated files from running the transformations.
-- `README.md`: introduction to the connector.
-- `license.txt`: license for UiPath Process Mining connectors.
-- `settings.json`: settings for the connector.
-- `third-party_licenses.txt`: licenses for relevant third party tools used in the connector.
-
 ## Example
 The devkit connector contains a simple procurement example on how to write transformations in a dbt project. The example dbt project can be found in the `transformations` folder. The input data and the process are artificial and simplified compared to a real procurement process. The structure of the dbt project is the advised structure to have in any connector.
 
