@@ -20,13 +20,13 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/dbt_transformations.0.6.4
+      ref: refs/tags/dbt_transformations.0.6.7
 
     - repository: sqlfluffLinter
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/sqlfluff_lint.0.2.1
+      ref: refs/tags/sqlfluff_lint.0.2.2
 
     - repository: uploadToStorage
       endpoint: UiPath
