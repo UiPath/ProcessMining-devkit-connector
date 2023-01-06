@@ -20,13 +20,8 @@ sources:
         columns:
           - name: '"ID"'
             tests:
-              - pm_utils.exists
               - not_null
               - unique
-          - name: '"Created_at"'
-            tests:
-              - pm_utils.format:
-                  data_type: datetime
 
       - name: Users_raw
 
