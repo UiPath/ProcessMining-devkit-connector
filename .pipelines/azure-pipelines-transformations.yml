@@ -20,7 +20,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/dbt_transformations.0.7.1
+      ref: feat/elt_editing_improvements
 
     - repository: sqlfluffLinter
       endpoint: UiPath
