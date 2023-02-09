@@ -43,14 +43,13 @@ resources:
       name: UiPath/AzurePipelinesTemplates
       ref: refs/tags/uipath.post-slack-message.1.1.2
 
-# The pipeline runs on PRs to main or validation, not on pushes to other branches.
+# The pipeline runs on PRs to validation, not on pushes to other branches.
 trigger:
   none
 
 pr:
   branches:
     include:
-      - main
       - validation
 
 pool:
