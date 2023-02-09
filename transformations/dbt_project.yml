@@ -8,6 +8,10 @@ config-version: 2
 profile: 'devkit_connector'
 
 vars:
+  # Define schema_sources if your source tables are in a different schema. Example: schema_sources: "my_schema"
+  date_format: "{{ 'YYYY-MM-DD' if target.type == 'snowflake' else 23 }}"
+  time_format: "{{ 'hh24:mi:ss.ff3' if target.type == 'snowflake' else 14 }}"
+  datetime_format: "{{ 'YYYY-MM-DD hh24:mi:ss.ff3' if target.type == 'snowflake' else 21 }}"
 
 # These configurations specify where dbt should look for different types of files.
 model-paths: ["models"]
