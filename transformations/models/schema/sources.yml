@@ -8,22 +8,22 @@ sources:
 
     # List all source tables and implement tests on them.
     tables:
-      - name: Change_log_raw
+      - name: Transaction_history
 
-      - name: Invoices_raw
+      - name: INV
 
-      - name: Purchase_order_approvals_raw
+      - name: PO_approvals
 
-      - name: Purchase_orders_status_raw
+      - name: PO_status
 
-      - name: Purchase_orders_raw
+      - name: PO
         columns:
           - name: '"ID"'
             tests:
               - not_null
               - unique
 
-      - name: Users_raw
+      - name: Users
 
     # Enabled quoting for databases, schemas, and identifiers where the sources are located.
     quoting:
