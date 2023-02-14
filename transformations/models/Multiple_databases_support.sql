@@ -1,5 +1,5 @@
-with Invoices_input as (
-    select * from {{ ref('Invoices_input') }}
+with INV_input as (
+    select * from {{ ref('INV_input') }}
 ),
 
 /* Illustration on how to implement multiple databases support in your dbt project. */
@@ -9,16 +9,16 @@ Multiple_databases_support as (
         -- Snowflake: to_varchar()
         -- SQL server: convert()
         {% if target.type == 'snowflake' %}
-            to_varchar(Invoices_input."Price")
+            to_varchar(INV_input."Price")
         {% elif target.type == 'sqlserver' %}
-            convert(nvarchar(2000), Invoices_input."Price")
+            convert(nvarchar(2000), INV_input."Price")
         {% endif %}
         as "Price_converted",
         -- With a macro the code is more readable.
-        {{ pm_utils.to_varchar('Invoices_input."Price"') }} as "Price_converted_with_macro",
+        {{ pm_utils.to_varchar('INV_input."Price"') }} as "Price_converted_with_macro",
         -- Implement your own macro when a macro is not available in pm-utils.
-        {{ concatenate_currency('Invoices_input."Price"', 'dollar') }} as "Price_with_currency"
-    from Invoices_input
+        {{ concatenate_currency('INV_input."Price"', 'dollar') }} as "Price_with_currency"
+    from INV_input
 )
 
 select * from Multiple_databases_support

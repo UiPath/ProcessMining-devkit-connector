@@ -1,33 +1,33 @@
-with Purchase_orders_input as (
-    select * from {{ ref('Purchase_orders_input') }}
+with PO_input as (
+    select * from {{ ref('PO_input') }}
 ),
 
-Purchase_orders_status as (
-    select * from {{ ref('Purchase_orders_status') }}
+PO_status_input as (
+    select * from {{ ref('PO_status_input') }}
 ),
 
-Users as (
-    select * from {{ ref('Users') }}
+Users_base as (
+    select * from {{ ref('Users_base') }}
 ),
 
 /* Entity table of the purchase order. */
 Purchase_orders as (
     select
         -- Key fields
-        Purchase_orders_input."ID" as "Purchase_order_ID",
+        PO_input."ID" as "Purchase_order_ID",
         -- Properties
-        Purchase_orders_input."Created_at",
-        concat(Purchase_orders_input."Creator", ' - ', Users."User_name") as "Creator",
-        Purchase_orders_input."Price",
-        Purchase_orders_status."Status",
-        Users."Team"
-    from Purchase_orders_input
+        PO_input."Created_at",
+        concat(PO_input."Creator", ' - ', Users_base."User_name") as "Creator",
+        PO_input."Price",
+        PO_status_input."Status",
+        Users_base."Team"
+    from PO_input
     -- Join the purchase order status table to have status information available.
-    left join Purchase_orders_status
-        on Purchase_orders_input."ID" = Purchase_orders_status."ID"
+    left join PO_status_input
+        on PO_input."ID" = PO_status_input."ID"
     -- Join the users table to enrich the user related properties with master data.
-    left join Users
-        on Purchase_orders_input."Creator" = Users."ID"
+    left join Users_base
+        on PO_input."Creator" = Users_base."ID"
 )
 
 select * from Purchase_orders
