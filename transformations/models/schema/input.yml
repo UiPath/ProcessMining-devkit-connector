@@ -1,14 +1,14 @@
 version: 2
 
 models:
-  - name: Purchase_orders_input
+  - name: PO_input
     columns:
       - name: '"ID"'
         tests:
           - not_null
           - unique
 
-  - name: Invoices_input
+  - name: INV_input
     columns:
       - name: '"ID"'
         tests:
