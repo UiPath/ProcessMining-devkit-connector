@@ -20,8 +20,8 @@ sources:
         columns:
           - name: '"ID"'
             tests:
-              - not_null
-              - unique
+              - pm_utils.not_null
+              - pm_utils.unique
 
       - name: Users
 
