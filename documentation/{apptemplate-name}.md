@@ -71,11 +71,10 @@ In general, you should follow the steps as described in [Loading data using CDat
 
 ## Input data
 <a id="markdown-input-data" name="input-data"></a>
-The following tables include the list of fields per input table, their description, data type to be used when formatting the input and the filter flag to identify those that are being used to filter data.
 
 ### Input types
 <a id="markdown-input-types" name="input-types"></a>
-Below is an overview of the different field types and their default format settings.
+The following table provides an overview of the different field types and their default format settings.
 
 \<Update/add field types with the correct descriptions.>
 |Field type	|Description                                            |
@@ -97,15 +96,14 @@ The following tables are extracted from the source system:
 - Etc.
 
 #### Table A
-\<Shortly explain what the table represents.>
+\<Shortly explain what the table represents. Add filtering on table if applicable.>
 
 |Field   |Type     |Description                                     |
 |:-------|:--------|:-----------------------------------------------|
 |Field A |text     |Example: User who created the record.           |
 |Field B |datetime |Example: timestamp when the record was created. |
 
-\<Add filtering on table if applicable, example below>
-Filtering: only records after a certain time (based on `Field B`) are selected
+Filtering: only records after a certain time (based on `Field B`) are selected.
 
 ---
 
