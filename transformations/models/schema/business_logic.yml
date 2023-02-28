@@ -10,7 +10,7 @@ models:
     columns:
       - name: '"Case_ID"'
         tests:
-          - not_null
+          - pm_utils.not_null
       - name: '"Tag"'
         tests:
-          - not_null
+          - pm_utils.not_null

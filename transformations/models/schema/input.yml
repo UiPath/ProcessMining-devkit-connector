@@ -5,12 +5,12 @@ models:
     columns:
       - name: '"ID"'
         tests:
-          - not_null
-          - unique
+          - pm_utils.not_null
+          - pm_utils.unique
 
   - name: INV_input
     columns:
       - name: '"ID"'
         tests:
-          - not_null
-          - unique
+          - pm_utils.not_null
+          - pm_utils.unique
