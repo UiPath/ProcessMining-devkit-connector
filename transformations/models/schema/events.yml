@@ -12,10 +12,10 @@ models:
     columns:
       - name: '"Purchase_order_ID"'
         tests:
-          - not_null
+          - pm_utils.not_null
       - name: '"Activity"'
         tests:
-          - not_null
+          - pm_utils.not_null
       - name: '"Event_end"'
         tests:
-          - not_null
+          - pm_utils.not_null

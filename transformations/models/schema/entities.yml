@@ -8,5 +8,5 @@ models:
     columns:
       - name: '"Case_ID"'
         tests:
-          - not_null
-          - unique
+          - pm_utils.not_null
+          - pm_utils.unique
