@@ -23,7 +23,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/deliverables_check.0.4.0
+      ref: refs/tags/deliverables_check.0.6.0
 
     - repository: uploadToStorage
       endpoint: UiPath
