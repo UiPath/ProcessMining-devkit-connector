@@ -5,24 +5,42 @@ version: 2
 sources:
   - name: sources
     schema: "{{ var('schema_sources', target.schema) }}"
-
-    # List all source tables and implement tests on them.
     tables:
       - name: Transaction_history
-
+        columns:
+          - name: '"ID"'
+            tests:
+              - pm_utils.not_null
+          - name: '"Timestamp"'
+            tests:
+              - pm_utils.not_null:
+                  severity: warn
       - name: INV
-
+        columns:
+          - name: '"ID"'
+            tests:
+              - pm_utils.not_null
+              - pm_utils.unique
+          - name: '"Created_at"'
+            tests:
+              - pm_utils.not_null:
+                  severity: warn
       - name: PO_approvals
-
-      - name: PO_status
-
+        columns:
+          - name: '"ID"'
+            tests:
+              - pm_utils.not_null
+          - name: '"Approved_at"'
+            tests:
+              - pm_utils.not_null:
+                  severity: warn
       - name: PO
         columns:
           - name: '"ID"'
             tests:
               - pm_utils.not_null
               - pm_utils.unique
-
+      - name: PO_status
       - name: Users
 
     # Enabled quoting for databases, schemas, and identifiers where the sources are located.
