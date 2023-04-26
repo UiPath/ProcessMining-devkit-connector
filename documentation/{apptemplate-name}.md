@@ -62,7 +62,7 @@ The data extraction is developed for **\<source system name>**.
 <a id="markdown-extraction-tool-configuration" name="extraction-tool-configuration"></a>
 Below is a description on how to use CData Sync to set up a source connection and load data into Process Mining.
 
-In general, you should follow the steps as described in [Loading data using CData Sync (Automation Cloud)](https://docs.uipath.com/process-mining/docs/loading-data-using-cdata-sync) or [Loading data using CData Sync (Automation Suite)](https://docs.uipath.com/process-mining/v2022.10/docs/loading-data-using-cdata-sync) to set up data loading using CData Sync.
+In general, you should follow the steps as described in [Loading data using CData Sync (Automation Cloud)](https://docs.uipath.com/process-mining/automation-cloud/latest/user-guide/loading-data-using-cdata-sync) to set up data loading using CData Sync. **Note**: If you are using Automation Suite, make sure to select `AUTOMATION SUITE` as the `DELIVERY` option on the documentation page. In addition, select the Automation Suite version you are using to open the appropriate Loading data using CData Sync page.
 
 #### Extraction tool config sub-section A
 \<Explain larger extraction tool configuration topics in separate sub-sections like this one.>
