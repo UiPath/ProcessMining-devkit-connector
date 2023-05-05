@@ -1,7 +1,3 @@
-{{ config(
-    pre_hook="{{ pm_utils.create_index(source('sources', 'PO_status')) }}"
-) }}
-
 {% set source_table = source('sources', 'PO_status') %}
 
 /* Status information related to the purchase order entity. */

@@ -1,7 +1,3 @@
-{{ config(
-    pre_hook="{{ pm_utils.create_index(source('sources', 'PO_approvals')) }}"
-) }}
-
 {% set source_table = source('sources', 'PO_approvals') %}
 
 /* Transaction log of purchase order approvals.
