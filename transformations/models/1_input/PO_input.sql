@@ -2,18 +2,16 @@
     pre_hook="{{ pm_utils.create_index(source('sources', 'PO')) }}"
 ) }}
 
-with PO as (
-    select * from {{ source('sources', 'PO') }}
-),
+{% set source_table = source('sources', 'PO') %}
 
 /* Input table for the purchase order entity containing purchase order properties. */
-PO_input as (
+with PO_input as (
     select
-        {{ pm_utils.to_timestamp('PO."Created_at"') }} as "Created_at",
-        {{ pm_utils.to_varchar('PO."Creator"') }} as "Creator",
-        {{ pm_utils.to_varchar('PO."ID"') }} as "ID",
-        {{ pm_utils.to_double('PO."Price"') }} as "Price"
-    from PO
+        {{ pm_utils.mandatory(source_table, '"Created_at"', 'datetime') }} as "Created_at",
+        {{ pm_utils.mandatory(source_table, '"Creator"') }} as "Creator",
+        {{ pm_utils.mandatory(source_table, '"ID"') }} as "ID",
+        {{ pm_utils.mandatory(source_table, '"Price"', 'double') }} as "Price"
+    from {{ source_table }}
 )
 
 select * from PO_input

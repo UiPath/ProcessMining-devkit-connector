@@ -1,16 +1,14 @@
-with Users as (
-    select * from {{ source('sources', 'Users') }}
-),
+{% set source_table = source('sources', 'Users') %}
 
 /* Master data table containing information about users.
 The user is identified by the ID. */
-Users_input as (
+with Users_input as (
     select
-        {{ pm_utils.to_varchar('Users."First_name"') }} as "First_name",
-        {{ pm_utils.to_varchar('Users."ID"') }} as "ID",
-        {{ pm_utils.to_varchar('Users."Last_name"') }} as "Last_name",
-        {{ pm_utils.to_varchar('Users."Team"') }} as "Team"
-    from Users
+        {{ pm_utils.mandatory(source_table, '"First_name"') }} as "First_name",
+        {{ pm_utils.mandatory(source_table, '"ID"') }} as "ID",
+        {{ pm_utils.mandatory(source_table, '"Last_name"') }} as "Last_name",
+        {{ pm_utils.mandatory(source_table, '"Team"') }} as "Team"
+    from {{ source_table }}
 )
 
 select * from Users_input
