@@ -1,7 +1,3 @@
-{{ config(
-    pre_hook="{{ pm_utils.create_index(source('sources', 'PO')) }}"
-) }}
-
 {% set source_table = source('sources', 'PO') %}
 
 /* Input table for the purchase order entity containing purchase order properties. */

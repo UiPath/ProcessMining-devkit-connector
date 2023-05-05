@@ -1,7 +1,3 @@
-{{ config(
-    pre_hook="{{ pm_utils.create_index(source('sources', 'INV')) }}"
-) }}
-
 {% set source_table = source('sources', 'INV') %}
 
 /* Input table for the invoices entity.

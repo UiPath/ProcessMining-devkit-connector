@@ -1,7 +1,3 @@
-{{ config(
-    pre_hook="{{ pm_utils.create_index(source('sources', 'Transaction_history')) }}"
-) }}
-
 {% set source_table = source('sources', 'Transaction_history') %}
 
 /* Transaction log describing changes on entities identified by the ID.
