@@ -7,7 +7,7 @@ on:
       - reopened
       - edited
       - synchronize
-    branches: [main, "release/*", "hotfix/*", "dev*"]
+    branches: [main, "release/*", "hotfix/*", "dev/*", "dev*"]
 
 jobs:
   check_jira_issue_key:
