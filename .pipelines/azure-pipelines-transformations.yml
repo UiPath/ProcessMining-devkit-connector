@@ -1,9 +1,6 @@
 name: Transformations
 
 parameters:
-  - name: serviceConnection
-    type: string
-    default: 'pmc-dev-config-kv-sc'
   - name: storageAccountFolder
     default: 'devkit-connector'
     type: string
@@ -16,29 +13,17 @@ parameters:
 
 resources:
   repositories:
-    - repository: dbtTransformations
-      endpoint: UiPath
-      type: github
-      name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/dbt_transformations.0.8.0
-
-    - repository: sqlfluffLinter
-      endpoint: UiPath
-      type: github
-      name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/sqlfluff_lint.0.3.0
-
-    - repository: uploadToStorage
-      endpoint: UiPath
-      type: GitHub
-      name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/publish_artifact_to_storage.0.1.0
-
     - repository: toggleKeyVaultRepo
       endpoint: UiPath
       type: github
       name: UiPath/AzurePipelinesTemplates
       ref: refs/tags/uipath.kv-access.1.2.1
+
+    - repository: testTransformations
+      endpoint: UiPath
+      type: github
+      name: UiPath/ProcessMining-framework-resources
+      ref: refs/tags/test_transformations.1.1.0
 
     - repository: slackmessages
       type: GitHub
@@ -46,51 +31,89 @@ resources:
       name: UiPath/AzurePipelinesTemplates
       ref: refs/tags/uipath.post-slack-message.1.1.2
 
-# By leaving the trigger undefined, the pipeline starts on each push to any branch.
-# Therefore it is not necessary to also start it via a PR.
-pr:
+# Trigger the pipeline for all PRs we open, but do not start as long as there is no PR.
+trigger:
   none
 
+pr:
+  branches:
+    include:
+    - '*'
+
 pool:
-  vmImage: ubuntu-20.04
+  vmImage: ubuntu-latest
 
 jobs:
-  - job: dbt_transformations
+  - job: get_keyvault_secrets
+    displayName: Get keyvault secrets
     steps:
-      - template: ./.pipelines/templates/dbt_transformations.job.yml@dbtTransformations
+      - template: ./.pipelines/templates/get_keyvault_secrets.job.yml@testTransformations
         parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'transformations_dbt'
-          
+          serviceConnection: pmc-dev-config-kv-sc
+          keyVaultName: pmc-dev-config-kv
 
-  - job: publish_transformation_logs_to_storage
-    dependsOn: dbt_transformations
-    condition: failed()
+  - job: dbt_transformations
+    dependsOn: get_keyvault_secrets
+    condition: eq(dependencies.get_keyvault_secrets.result, 'Succeeded')
+    variables:
+      SNOWSQL_PWD_input: $[ dependencies.get_keyvault_secrets.outputs['set_variables.SNOWSQL_PWD_input'] ]
+      DBT_SQL_SERVER_SERVER: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SQL_SERVER_SERVER'] ]
+      DBT_SQL_SERVER_USER: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SQL_SERVER_USER'] ]
+      DBT_SQL_SERVER_PASSWORD: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SQL_SERVER_PASSWORD'] ]
+      DBT_SQL_SERVER_DATABASE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SQL_SERVER_DATABASE'] ]
+      DBT_SNOWFLAKE_ACCOUNT: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_ACCOUNT'] ]
+      DBT_SNOWFLAKE_USER: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_USER'] ]
+      DBT_SNOWFLAKE_PASSWORD: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_PASSWORD'] ]
+      DBT_SNOWFLAKE_ROLE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_ROLE'] ]
+      DBT_SNOWFLAKE_DATABASE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_DATABASE'] ]
+      DBT_SNOWFLAKE_WAREHOUSE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_WAREHOUSE'] ]
     steps:
-      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+      - template: ./.pipelines/templates/dbt_transformations.job.yml@testTransformations
         parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
           artifactName: 'transformations_dbt'
-          storageAccountFolder: ${{ parameters.storageAccountFolder }}
-          sendSlackMessage: ${{ parameters.sendSlackMessage }}
-          slackChannel: ${{ parameters.slackChannel }}
 
   - job: lint_sql
+    dependsOn: get_keyvault_secrets
+    condition: eq(dependencies.get_keyvault_secrets.result, 'Succeeded')
+    variables:
+      SNOWSQL_PWD_input: $[ dependencies.get_keyvault_secrets.outputs['set_variables.SNOWSQL_PWD_input'] ]
+      DBT_SNOWFLAKE_ACCOUNT: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_ACCOUNT'] ]
+      DBT_SNOWFLAKE_USER: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_USER'] ]
+      DBT_SNOWFLAKE_PASSWORD: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_PASSWORD'] ]
+      DBT_SNOWFLAKE_ROLE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_ROLE'] ]
+      DBT_SNOWFLAKE_DATABASE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_DATABASE'] ]
+      DBT_SNOWFLAKE_WAREHOUSE: $[ dependencies.get_keyvault_secrets.outputs['set_variables.DBT_SNOWFLAKE_WAREHOUSE'] ]
     steps:
-      - template: ./.pipelines/templates/sqlfluff_lint.job.yml@sqlfluffLinter
+      - template: ./.pipelines/templates/sqlfluff_lint.job.yml@testTransformations
         parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
           artifactName: 'transformations_lint_sql'
 
-  - job: publish_lint_sql_logs_to_storage
-    dependsOn: lint_sql
+  - job: publish_transformation_logs_to_storage
+    dependsOn:
+      - get_keyvault_secrets
+      - dbt_transformations
     condition: failed()
+    variables:
+      STORAGE_ACCESS_KEY: $[ dependencies.get_keyvault_secrets.outputs['set_variables.STORAGE_ACCESS_KEY'] ]
     steps:
-      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@uploadToStorage
+      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@testTransformations
         parameters:
-          serviceConnection: ${{ parameters.serviceConnection }}
-          artifactName: 'transformations_lint_sql'
+          artifactName: 'transformations_dbt'
           storageAccountFolder: ${{ parameters.storageAccountFolder }}
           sendSlackMessage: ${{ parameters.sendSlackMessage }}
           slackChannel: ${{ parameters.slackChannel }}
 
+  - job: publish_lint_sql_logs_to_storage
+    dependsOn:
+      - get_keyvault_secrets
+      - lint_sql
+    condition: failed()
+    variables:
+      STORAGE_ACCESS_KEY: $[ dependencies.get_keyvault_secrets.outputs['set_variables.STORAGE_ACCESS_KEY'] ]
+    steps:
+      - template: ./.pipelines/templates/publish_artifact_to_storage.job.yml@testTransformations
+        parameters:
+          artifactName: 'transformations_lint_sql'
+          storageAccountFolder: ${{ parameters.storageAccountFolder }}
+          sendSlackMessage: ${{ parameters.sendSlackMessage }}
+          slackChannel: ${{ parameters.slackChannel }}

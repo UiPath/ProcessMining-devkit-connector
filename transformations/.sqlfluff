@@ -8,22 +8,24 @@ templater = dbt
 dialect = snowflake
 
 # The following rules are not applicable to our coding style.
-exclude_rules = L014, L016, L031, L034, L036, L043, L059
+exclude_rules = L009, L014, L016, L031, L034, L036, L043, L059
 
 [sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
 indented_joins = False
 indented_ctes = False
 indented_using_on = True
 
+[sqlfluff:layout]
+line_position = trailing
+
 [sqlfluff:rules]
-indent_unit = space
-tab_space_size = 4
-comma_style = trailing
 allow_scalar = True
 single_table_references = qualified
 unquoted_identifiers_policy = all
 capitalisation_policy = lower
 extended_capitalisation_policy = lower
 
-[sqlfluff:rules:L054]
+[sqlfluff:rules:ambiguous.column_references]
 group_by_and_order_by_style = explicit

@@ -25,7 +25,6 @@ The example dbt project contains the following:
 - `dbt_project.yml`: by this file dbt knows the directory is a dbt project. It contains configurations for your project when used on a Snowflake database.
 - `dbt_project_sqlserver.yml`: a separate settings file for the dbt project, containing configurations when used on a SQL Server database.
 - `packages.yml`: lists the packages used in this dbt project. The example project uses the pm-utils package and can be installed by running the command `dbt deps`.
-- `profiles.yml`: contains the configuration to connect to your database.
 
 The files `.sqlfluff` and `.sqlfluffignore` contain configuration on the SQL linter [SQLFluff](https://docs.sqlfluff.com/en/stable/), which checks the SQL on style guidelines.
 
