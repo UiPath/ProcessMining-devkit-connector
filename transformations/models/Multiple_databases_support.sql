@@ -13,7 +13,7 @@ Multiple_databases_support as (
         {% elif target.type == 'sqlserver' %}
             convert(nvarchar(2000), INV_input."Price")
         {% endif %}
-        as "Price_converted",
+            as "Price_converted",
         -- With a macro the code is more readable.
         {{ pm_utils.to_varchar('INV_input."Price"') }} as "Price_converted_with_macro",
         -- Implement your own macro when a macro is not available in pm-utils.
