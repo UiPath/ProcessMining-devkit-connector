@@ -31,14 +31,10 @@ resources:
       name: UiPath/AzurePipelinesTemplates
       ref: refs/tags/uipath.post-slack-message.1.1.2
 
-# Trigger the pipeline for all PRs we open, but do not start as long as there is no PR.
-trigger:
-  none
-
+# By leaving the trigger undefined, the pipeline starts on each push to any branch.
+# Therefore it is not necessary to also start it via a PR.
 pr:
-  branches:
-    include:
-    - '*'
+  none
 
 pool:
   vmImage: ubuntu-latest
