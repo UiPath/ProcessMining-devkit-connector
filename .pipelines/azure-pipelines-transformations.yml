@@ -17,7 +17,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/AzurePipelinesTemplates
-      ref: refs/tags/uipath.kv-access.1.2.1
+      ref: refs/tags/uipath.kv-access.1.2.7
 
     - repository: testTransformations
       endpoint: UiPath
