@@ -23,7 +23,7 @@ resources:
       endpoint: UiPath
       type: github
       name: UiPath/ProcessMining-framework-resources
-      ref: refs/tags/test_transformations.1.1.0
+      ref: refs/tags/test_transformations.1.1.1
 
     - repository: slackmessages
       type: GitHub
