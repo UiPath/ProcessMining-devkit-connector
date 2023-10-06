@@ -1,7 +1,3 @@
-{{ config(
-    post_hook="{{ pm_utils.generate_id('Tag_ID') }}"
-) }}
-
 with Purchase_orders as (
     select * from {{ ref('Purchase_orders') }}
 ),
@@ -73,7 +69,8 @@ Tags_preprocessing as (
 Tags_base as (
     select
         Tags_preprocessing."Purchase_order_ID" as "Case_ID",
-        Tags_preprocessing."Tag"
+        Tags_preprocessing."Tag",
+        {{ pm_utils.id() }} as "Tag_ID"
     from Tags_preprocessing
 )
 
