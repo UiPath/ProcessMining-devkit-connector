@@ -1,7 +1,3 @@
-{{ config(
-    post_hook="{{ pm_utils.generate_id('Event_ID') }}"
-) }}
-
 with Entity_relations as (
     select * from {{ ref('Entity_relations') }}
 ),
@@ -54,6 +50,7 @@ Purchase_order_event_log as (
         Purchase_order_event_log_preprocessing."Purchase_order_ID",
         Events_base."Activity",
         Events_base."Event_end",
+        {{ pm_utils.id() }} as "Event_ID",
         -- Optional event fields
         Events_base."Event_detail",
         Events_base."Team",

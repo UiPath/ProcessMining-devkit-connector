@@ -1,8 +1,3 @@
--- An event ID is generated to join event properties to the event log.
-{{ config(
-    post_hook="{{ pm_utils.generate_id('Event_ID_internal') }}"
-) }}
-
 with Invoice_create_events as (
     select * from {{ ref('Invoice_create_events') }}
 ),
@@ -88,4 +83,7 @@ Events_base as (
     from Purchase_order_create_events
 )
 
-select * from Events_base
+select
+    *,
+    {{ pm_utils.id() }} as "Event_ID_internal"
+from Events_base
